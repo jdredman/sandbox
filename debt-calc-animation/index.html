@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visualize how additional payments can accelerate your debt payoff with this interactive calculator">
+    <title>Debt Snowball Calculator</title>
+    
+    <!-- Typekit fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css" />
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Your Debt-Free Date</h1>
+        
+        <section class="timeline-container" aria-label="Debt payoff timeline visualization">
+            <div class="timeline">
+                <div class="timeline-markers">
+                    <div class="marker baseline" aria-label="Minimum payments payoff date">
+                        <div class="marker-label">With Minimum Payments</div>
+                        <div class="marker-date">Dec 2030</div>
+                    </div>
+                    <div class="marker accelerated" aria-label="Accelerated payoff date with extra payments">
+                        <div class="marker-label">With Extra Payments</div>
+                        <div class="marker-date">Mar 2028</div>
+                    </div>
+                </div>
+                <div class="timeline-bar" role="presentation">
+                    <div class="timeline-progress baseline-progress" aria-hidden="true"></div>
+                    <div class="timeline-progress accelerated-progress" aria-hidden="true"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="input-section">
+            <h2>Boost your payments to pay off your debt even faster!</h2>
+            <div class="input-group">
+                <div class="slider-container">
+                    <input type="range" id="payment-slider" min="0" max="1000" value="0" step="10"
+                           aria-label="Additional monthly payment amount" 
+                           aria-valuemin="0" aria-valuemax="1000" aria-valuenow="0">
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" id="additional-payment" value="$0" readonly
+                           aria-label="Additional payment amount display">
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
