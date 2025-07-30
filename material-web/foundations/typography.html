@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Typography - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Complete design token definitions */
+    :root {
+      /* Base Colors */
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      
+      /* Gray Scale */
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      
+      /* Blue Scale */
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      
+      /* Teal Scale */
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      
+      /* Purple Scale */
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      
+      /* Red Scale */
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      
+      /* Green Scale */
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      
+      /* Typography */
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      
+      /* Material 3 System Color Tokens */
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    /* Material Web Typography Customization */
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    /* Base Styles */
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    /* Layout Container */
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Typography Showcase */
+    .type-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .type-specimen {
+      padding: 24px;
+      margin: 16px 0;
+      border-radius: 8px;
+      background: var(--md-sys-color-background);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .type-label {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 11px;
+      color: var(--md-sys-color-on-surface-variant);
+      background: var(--md-sys-color-surface-variant);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .type-content {
+      margin-bottom: 12px;
+    }
+    
+    .type-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .type-detail {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .type-detail-label {
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .type-detail-value {
+      font-family: monospace;
+    }
+    
+    /* Font weights demonstration */
+    .weight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    
+    .weight-example {
+      padding: 24px;
+      background: var(--md-sys-color-background);
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .weight-title {
+      font-size: 14px;
+      color: var(--md-sys-color-on-surface-variant);
+      margin-bottom: 12px;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .weight-text {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    
+    .weight-code {
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    /* Usage examples */
+    .usage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    
+    .usage-card {
+      padding: 24px;
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .usage-title {
+      margin: 0 0 16px 0;
+      color: var(--md-sys-color-primary);
+    }
+    
+    .usage-example {
+      margin: 12px 0;
+      padding: 16px;
+      background: var(--md-sys-color-background);
+      border-radius: 8px;
+      border-left: 4px solid var(--md-sys-color-primary);
+    }
+    
+    /* Code examples */
+    .code-example {
+      background: var(--color-base-gray-90);
+      color: var(--color-base-gray-10);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+      
+      .weight-grid, .usage-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Typography</h1>
+        <p class="page-description md-typescale-body-large">Gibson font family integrated with Material 3 typographic scale for consistent hierarchy and brand expression.</p>
+      </div>
+      
+      <!-- Font Family Overview -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Gibson Font Family</h2>
+        
+        <div class="type-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Ramsey's Brand Typography</h3>
+          <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Gibson is a geometric sans-serif that embodies Ramsey's modern, approachable, and trustworthy brand personality. It provides excellent readability across all digital platforms while maintaining strong brand recognition.</p>
+          
+          <div class="weight-grid">
+            <div class="weight-example">
+              <div class="weight-title">Gibson Regular</div>
+              <div class="weight-text" style="font-weight: 400;">The quick brown fox jumps</div>
+              <div class="weight-code">font-weight: 400</div>
+            </div>
+            
+            <div class="weight-example">
+              <div class="weight-title">Gibson Semibold</div>
+              <div class="weight-text" style="font-weight: 600;">The quick brown fox jumps</div>
+              <div class="weight-code">font-weight: 600</div>
+            </div>
+            
+            <div class="weight-example">
+              <div class="weight-title">Gibson Bold</div>
+              <div class="weight-text" style="font-weight: 700;">The quick brown fox jumps</div>
+              <div class="weight-code">font-weight: 700</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Material 3 Typographic Scale -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Material 3 Typographic Scale</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Our typography system uses Material 3's semantic type scale with Gibson font for consistent hierarchy and optimal readability.</p>
+        
+        <div class="type-showcase">
+          <!-- Display Styles -->
+          <div class="type-specimen">
+            <div class="type-label">Display Large</div>
+            <div class="type-content">
+              <div class="md-typescale-display-large">Building wealth is simple</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">57px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">400</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">64px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Hero headlines</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="type-specimen">
+            <div class="type-label">Display Medium</div>
+            <div class="type-content">
+              <div class="md-typescale-display-medium">Take control of your financial future</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">45px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">400</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">52px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Section headers</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="type-specimen">
+            <div class="type-label">Display Small</div>
+            <div class="type-content">
+              <div class="md-typescale-display-small">Get started with your budget today</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">36px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">400</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">44px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Page titles</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Headline Styles -->
+          <div class="type-specimen">
+            <div class="type-label">Headline Large</div>
+            <div class="type-content">
+              <div class="md-typescale-headline-large">Your roadmap to financial peace</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">32px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">400</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">40px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Major headings</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="type-specimen">
+            <div class="type-label">Headline Medium</div>
+            <div class="type-content">
+              <div class="md-typescale-headline-medium">Build an emergency fund that works for you</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">28px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">400</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">36px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Section headings</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="type-specimen">
+            <div class="type-label">Headline Small</div>
+            <div class="type-content">
+              <div class="md-typescale-headline-small">Invest for your retirement with confidence</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">24px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">400</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">32px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Card headers</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Title Styles -->
+          <div class="type-specimen">
+            <div class="type-label">Title Large</div>
+            <div class="type-content">
+              <div class="md-typescale-title-large">Smart money management starts here</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">22px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">400</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">28px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Dialog titles</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="type-specimen">
+            <div class="type-label">Title Medium</div>
+            <div class="type-content">
+              <div class="md-typescale-title-medium">Track your spending with ease</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">16px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">500</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">24px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Component titles</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="type-specimen">
+            <div class="type-label">Title Small</div>
+            <div class="type-content">
+              <div class="md-typescale-title-small">Set up automatic savings</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">14px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">500</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">20px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">List headers</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Body Styles -->
+          <div class="type-specimen">
+            <div class="type-label">Body Large</div>
+            <div class="type-content">
+              <div class="md-typescale-body-large">Building wealth doesn't have to be complicated. With the right plan and tools, you can achieve financial peace and build lasting wealth for your family's future. Start your journey today with our proven step-by-step approach.</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">16px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">400</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">24px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Primary content</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="type-specimen">
+            <div class="type-label">Body Medium</div>
+            <div class="type-content">
+              <div class="md-typescale-body-medium">Take control of your finances with our proven money management system. Create budgets, track expenses, and build wealth with confidence.</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">14px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">400</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">20px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Secondary content</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="type-specimen">
+            <div class="type-label">Body Small</div>
+            <div class="type-content">
+              <div class="md-typescale-body-small">Start building your emergency fund with automatic transfers. Save consistently and reach your goals faster.</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">12px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">400</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">16px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Captions, helper text</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Label Styles -->
+          <div class="type-specimen">
+            <div class="type-label">Label Large</div>
+            <div class="type-content">
+              <div class="md-typescale-label-large">GET STARTED TODAY</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">14px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">500</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">20px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Button labels</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="type-specimen">
+            <div class="type-label">Label Medium</div>
+            <div class="type-content">
+              <div class="md-typescale-label-medium">LEARN MORE</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">12px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">500</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">16px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Tab labels, chips</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="type-specimen">
+            <div class="type-label">Label Small</div>
+            <div class="type-content">
+              <div class="md-typescale-label-small">MENU</div>
+            </div>
+            <div class="type-details">
+              <div class="type-detail">
+                <span class="type-detail-label">Size:</span>
+                <span class="type-detail-value">11px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Weight:</span>
+                <span class="type-detail-value">500</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Line Height:</span>
+                <span class="type-detail-value">16px</span>
+              </div>
+              <div class="type-detail">
+                <span class="type-detail-label">Usage:</span>
+                <span class="type-detail-value">Small labels</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Usage Guidelines -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Usage Guidelines</h2>
+        
+        <div class="usage-grid">
+          <div class="usage-card">
+            <h3 class="usage-title md-typescale-title-medium">Hierarchy</h3>
+            <div class="usage-example">
+              <div class="md-typescale-headline-small">Use Display for hero messages</div>
+              <div class="md-typescale-title-medium">Use Headlines for major sections</div>
+              <div class="md-typescale-body-medium">Use Body for readable content</div>
+              <div class="md-typescale-label-medium">USE LABELS FOR ACTIONS</div>
+            </div>
+            <p class="md-typescale-body-small">Establish clear information hierarchy with consistent type scale usage.</p>
+          </div>
+          
+          <div class="usage-card">
+            <h3 class="usage-title md-typescale-title-medium">Readability</h3>
+            <div class="usage-example">
+              <div class="md-typescale-body-large" style="max-width: 65ch;">Keep line lengths between 45-75 characters for optimal readability. This ensures comfortable reading without losing your place.</div>
+            </div>
+            <p class="md-typescale-body-small">Maintain appropriate line lengths and spacing for comfortable reading.</p>
+          </div>
+          
+          <div class="usage-card">
+            <h3 class="usage-title md-typescale-title-medium">Emphasis</h3>
+            <div class="usage-example">
+              <div class="md-typescale-body-medium">Use <strong style="font-weight: 600;">semibold weight</strong> for emphasis within body text.</div>
+              <div class="md-typescale-body-medium" style="color: var(--md-sys-color-primary);">Use color for highlighting important information.</div>
+            </div>
+            <p class="md-typescale-body-small">Create emphasis through weight and color, not size changes.</p>
+          </div>
+          
+          <div class="usage-card">
+            <h3 class="usage-title md-typescale-title-medium">Accessibility</h3>
+            <div class="usage-example">
+              <div class="md-typescale-body-medium">Ensure sufficient contrast between text and background colors for all users.</div>
+            </div>
+            <p class="md-typescale-body-small">Follow WCAG guidelines for color contrast and font size minimums.</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Implementation -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Implementation</h2>
+        
+        <div class="type-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">CSS Classes</h3>
+          <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Use Material 3 typescale classes for consistent typography across your application.</p>
+          
+          <div class="code-example">
+&lt;!-- Display Typography --&gt;
+&lt;h1 class="md-typescale-display-large"&gt;Hero Headline&lt;/h1&gt;
+&lt;h2 class="md-typescale-display-medium"&gt;Section Header&lt;/h2&gt;
+&lt;h3 class="md-typescale-display-small"&gt;Page Title&lt;/h3&gt;
+
+&lt;!-- Headline Typography --&gt;
+&lt;h4 class="md-typescale-headline-large"&gt;Major Heading&lt;/h4&gt;
+&lt;h5 class="md-typescale-headline-medium"&gt;Section Heading&lt;/h5&gt;
+&lt;h6 class="md-typescale-headline-small"&gt;Card Header&lt;/h6&gt;
+
+&lt;!-- Body Typography --&gt;
+&lt;p class="md-typescale-body-large"&gt;Primary content text&lt;/p&gt;
+&lt;p class="md-typescale-body-medium"&gt;Secondary content text&lt;/p&gt;
+&lt;p class="md-typescale-body-small"&gt;Caption or helper text&lt;/p&gt;
+
+&lt;!-- Label Typography --&gt;
+&lt;span class="md-typescale-label-large"&gt;Button Text&lt;/span&gt;
+&lt;span class="md-typescale-label-medium"&gt;Tab Label&lt;/span&gt;
+&lt;span class="md-typescale-label-small"&gt;Small Label&lt;/span&gt;
+          </div>
+          
+          <h3 class="md-typescale-title-medium" style="margin: 32px 0 16px 0;">Custom Font Integration</h3>
+          <div class="code-example">
+/* Load Gibson via TypeKit */
+@import url('https://use.typekit.net/euz0vgw.css');
+
+/* Define font tokens */
+:root {
+  --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-family-base: var(--font-family-gibson);
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* Override Material 3 font tokens */
+:root {
+  --md-ref-typeface-brand: var(--font-family-gibson);
+  --md-ref-typeface-plain: var(--font-family-gibson);
+  --md-sys-typescale-display-large-font: var(--font-family-gibson);
+  /* ... continue for all typescale tokens ... */
+}
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    console.log('📝 Typography documentation loaded with Material 3 integration');
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

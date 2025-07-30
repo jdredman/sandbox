@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Mode Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      transition: all 0.3s ease;
+      background-color: white;
+      color: black;
+    }
+    
+    .theme-dark {
+      background-color: #121212 !important;
+      color: white !important;
+    }
+    
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    
+    .debug {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dark Mode Toggle Test</h1>
+  <button id="simple-toggle">🌙 Toggle Dark Mode</button>
+  <button id="console-test" onclick="console.log('Console test works!')">Test Console</button>
+  
+  <div class="debug">
+    <div>Current mode: <span id="mode-display">light</span></div>
+    <div>Body classes: <span id="class-display"></span></div>
+  </div>
+  
+  <script>
+    console.log('🚀 Simple test page loaded');
+    
+    const toggleBtn = document.getElementById('simple-toggle');
+    const modeDisplay = document.getElementById('mode-display');
+    const classDisplay = document.getElementById('class-display');
+    
+    function updateDisplay() {
+      const isDark = document.body.classList.contains('theme-dark');
+      modeDisplay.textContent = isDark ? 'dark' : 'light';
+      classDisplay.textContent = document.body.className || 'none';
+      toggleBtn.textContent = isDark ? '☀️ Toggle Light' : '🌙 Toggle Dark';
+    }
+    
+    toggleBtn.addEventListener('click', () => {
+      console.log('🖱️ Toggle clicked');
+      document.body.classList.toggle('theme-dark');
+      updateDisplay();
+    });
+    
+    // Initial update
+    updateDisplay();
+  </script>
+</body>
+</html>

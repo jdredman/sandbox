@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>List - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Include all the design tokens and base styles */
+    :root {
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .component-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+    }
+    
+    .showcase-item {
+      padding: 24px;
+      background: var(--md-sys-color-background);
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .showcase-title {
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Custom list styles */
+    .custom-list {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      overflow: hidden;
+    }
+    
+    .list-item {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+      transition: background-color 150ms ease;
+      cursor: pointer;
+    }
+    
+    .list-item:last-child {
+      border-bottom: none;
+    }
+    
+    .list-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .list-item.selected {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+    }
+    
+    .list-item-leading {
+      margin-right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .list-item-content {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .list-item-title {
+      margin: 0 0 4px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .list-item-subtitle {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+    }
+    
+    .list-item-trailing {
+      margin-left: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .list-section-header {
+      padding: 16px;
+      background-color: var(--md-sys-color-surface-variant);
+      color: var(--md-sys-color-on-surface-variant);
+      font-weight: var(--font-weight-semibold);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Avatar styles */
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Badge styles */
+    .badge {
+      background: var(--md-sys-color-error);
+      color: var(--md-sys-color-on-error);
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      min-width: 16px;
+      text-align: center;
+    }
+    
+    /* Status indicators */
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .status-online { background-color: var(--color-base-green-50); }
+    .status-busy { background-color: var(--color-base-red-50); }
+    .status-away { background-color: var(--color-base-yellow-50); }
+    .status-offline { background-color: var(--color-base-gray-50); }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">List</h1>
+        <p class="page-description md-typescale-body-large">Material 3 lists present multiple line items vertically as a single continuous element.</p>
+      </div>
+      
+      <!-- Basic Lists -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">List Types</h2>
+        
+        <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+          <div class="component-showcase">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">One-Line Lists</h3>
+            <div class="custom-list">
+              <div class="list-item" data-item="home">
+                <div class="list-item-leading">
+                  <md-icon>home</md-icon>
+                </div>
+                <div class="list-item-content">
+                  <div class="list-item-title md-typescale-body-large">Home</div>
+                </div>
+              </div>
+              <div class="list-item" data-item="inbox">
+                <div class="list-item-leading">
+                  <md-icon>inbox</md-icon>
+                </div>
+                <div class="list-item-content">
+                  <div class="list-item-title md-typescale-body-large">Inbox</div>
+                </div>
+                <div class="list-item-trailing">
+                  <div class="badge">3</div>
+                </div>
+              </div>
+              <div class="list-item" data-item="sent">
+                <div class="list-item-leading">
+                  <md-icon>send</md-icon>
+                </div>
+                <div class="list-item-content">
+                  <div class="list-item-title md-typescale-body-large">Sent</div>
+                </div>
+              </div>
+              <div class="list-item" data-item="drafts">
+                <div class="list-item-leading">
+                  <md-icon>drafts</md-icon>
+                </div>
+                <div class="list-item-content">
+                  <div class="list-item-title md-typescale-body-large">Drafts</div>
+                </div>
+                <div class="list-item-trailing">
+                  <div class="badge">7</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="component-showcase">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Two-Line Lists</h3>
+            <div class="custom-list">
+              <div class="list-item" data-item="john">
+                <div class="list-item-leading">
+                  <div class="avatar">JD</div>
+                </div>
+                <div class="list-item-content">
+                  <div class="list-item-title md-typescale-body-large">John Doe</div>
+                  <div class="list-item-subtitle md-typescale-body-medium">Product Manager</div>
+                </div>
+                <div class="list-item-trailing">
+                  <div class="status-indicator status-online"></div>
+                  <md-icon-button>
+                    <md-icon>more_vert</md-icon>
+                  </md-icon-button>
+                </div>
+              </div>
+              <div class="list-item" data-item="sarah">
+                <div class="list-item-leading">
+                  <div class="avatar" style="background: var(--md-sys-color-secondary);">SM</div>
+                </div>
+                <div class="list-item-content">
+                  <div class="list-item-title md-typescale-body-large">Sarah Martinez</div>
+                  <div class="list-item-subtitle md-typescale-body-medium">UX Designer</div>
+                </div>
+                <div class="list-item-trailing">
+                  <div class="status-indicator status-busy"></div>
+                  <md-icon-button>
+                    <md-icon>more_vert</md-icon>
+                  </md-icon-button>
+                </div>
+              </div>
+              <div class="list-item" data-item="mike">
+                <div class="list-item-leading">
+                  <div class="avatar" style="background: var(--md-sys-color-tertiary);">MC</div>
+                </div>
+                <div class="list-item-content">
+                  <div class="list-item-title md-typescale-body-large">Mike Chen</div>
+                  <div class="list-item-subtitle md-typescale-body-medium">Frontend Developer</div>
+                </div>
+                <div class="list-item-trailing">
+                  <div class="status-indicator status-away"></div>
+                  <md-icon-button>
+                    <md-icon>more_vert</md-icon>
+                  </md-icon-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Sectioned Lists -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Sectioned Lists</h2>
+        
+        <div class="component-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Settings List</h3>
+          <div class="custom-list">
+            <div class="list-section-header">Account</div>
+            <div class="list-item" data-item="profile">
+              <div class="list-item-leading">
+                <md-icon>account_circle</md-icon>
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title md-typescale-body-large">Profile</div>
+                <div class="list-item-subtitle md-typescale-body-medium">Manage your personal information</div>
+              </div>
+              <div class="list-item-trailing">
+                <md-icon>chevron_right</md-icon>
+              </div>
+            </div>
+            <div class="list-item" data-item="privacy">
+              <div class="list-item-leading">
+                <md-icon>security</md-icon>
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title md-typescale-body-large">Privacy & Security</div>
+                <div class="list-item-subtitle md-typescale-body-medium">Control your privacy settings</div>
+              </div>
+              <div class="list-item-trailing">
+                <md-icon>chevron_right</md-icon>
+              </div>
+            </div>
+            
+            <div class="list-section-header">Preferences</div>
+            <div class="list-item" data-item="notifications">
+              <div class="list-item-leading">
+                <md-icon>notifications</md-icon>
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title md-typescale-body-large">Notifications</div>
+                <div class="list-item-subtitle md-typescale-body-medium">Manage notification preferences</div>
+              </div>
+              <div class="list-item-trailing">
+                <md-switch></md-switch>
+              </div>
+            </div>
+            <div class="list-item" data-item="theme">
+              <div class="list-item-leading">
+                <md-icon>palette</md-icon>
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title md-typescale-body-large">Theme</div>
+                <div class="list-item-subtitle md-typescale-body-medium">Light mode enabled</div>
+              </div>
+              <div class="list-item-trailing">
+                <md-icon>chevron_right</md-icon>
+              </div>
+            </div>
+            <div class="list-item" data-item="language">
+              <div class="list-item-leading">
+                <md-icon>language</md-icon>
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title md-typescale-body-large">Language</div>
+                <div class="list-item-subtitle md-typescale-body-medium">English (US)</div>
+              </div>
+              <div class="list-item-trailing">
+                <md-icon>chevron_right</md-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Interactive Demo -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Interactive Demo</h2>
+        
+        <div class="component-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">File Manager</h3>
+          
+          <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+            <md-outlined-button id="select-all-btn">
+              <md-icon slot="icon">select_all</md-icon>
+              Select All
+            </md-outlined-button>
+            <md-outlined-button id="delete-selected-btn" disabled>
+              <md-icon slot="icon">delete</md-icon>
+              Delete Selected
+            </md-outlined-button>
+            <md-filled-button id="upload-btn">
+              <md-icon slot="icon">upload</md-icon>
+              Upload
+            </md-filled-button>
+          </div>
+          
+          <div class="custom-list">
+            <div class="list-item selectable-item" data-file="documents">
+              <div class="list-item-leading">
+                <md-checkbox class="file-checkbox"></md-checkbox>
+              </div>
+              <div class="list-item-leading">
+                <md-icon style="color: var(--md-sys-color-primary);">folder</md-icon>
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title md-typescale-body-large">Documents</div>
+                <div class="list-item-subtitle md-typescale-body-medium">24 files • Modified 2 hours ago</div>
+              </div>
+              <div class="list-item-trailing">
+                <md-icon-button>
+                  <md-icon>more_vert</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="list-item selectable-item" data-file="images">
+              <div class="list-item-leading">
+                <md-checkbox class="file-checkbox"></md-checkbox>
+              </div>
+              <div class="list-item-leading">
+                <md-icon style="color: var(--md-sys-color-secondary);">folder</md-icon>
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title md-typescale-body-large">Images</div>
+                <div class="list-item-subtitle md-typescale-body-medium">156 files • Modified yesterday</div>
+              </div>
+              <div class="list-item-trailing">
+                <md-icon-button>
+                  <md-icon>more_vert</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="list-item selectable-item" data-file="report">
+              <div class="list-item-leading">
+                <md-checkbox class="file-checkbox"></md-checkbox>
+              </div>
+              <div class="list-item-leading">
+                <md-icon style="color: var(--color-base-red-50);">description</md-icon>
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title md-typescale-body-large">Q4 Report.pdf</div>
+                <div class="list-item-subtitle md-typescale-body-medium">2.4 MB • Modified 3 days ago</div>
+              </div>
+              <div class="list-item-trailing">
+                <md-icon-button>
+                  <md-icon>more_vert</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="list-item selectable-item" data-file="presentation">
+              <div class="list-item-leading">
+                <md-checkbox class="file-checkbox"></md-checkbox>
+              </div>
+              <div class="list-item-leading">
+                <md-icon style="color: var(--color-base-purple-50);">slideshow</md-icon>
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title md-typescale-body-large">Team Presentation.pptx</div>
+                <div class="list-item-subtitle md-typescale-body-medium">8.7 MB • Modified 1 week ago</div>
+              </div>
+              <div class="list-item-trailing">
+                <md-icon-button>
+                  <md-icon>more_vert</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="list-item selectable-item" data-file="spreadsheet">
+              <div class="list-item-leading">
+                <md-checkbox class="file-checkbox"></md-checkbox>
+              </div>
+              <div class="list-item-leading">
+                <md-icon style="color: var(--color-base-green-50);">table_chart</md-icon>
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title md-typescale-body-large">Budget 2024.xlsx</div>
+                <div class="list-item-subtitle md-typescale-body-medium">1.2 MB • Modified 2 weeks ago</div>
+              </div>
+              <div class="list-item-trailing">
+                <md-icon-button>
+                  <md-icon>more_vert</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+          </div>
+          
+          <div style="margin-top: 16px; padding: 16px; background: var(--md-sys-color-surface-variant); border-radius: 8px;">
+            <div class="md-typescale-body-small">
+              <span id="selection-count">0</span> files selected
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Best Practices -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Best Practices</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-green-70);">Do</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use consistent item heights within a list</li>
+              <li>Include relevant leading icons or avatars</li>
+              <li>Provide clear visual hierarchy</li>
+              <li>Use sectioning for logical grouping</li>
+              <li>Support keyboard navigation</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-red-70);">Don't</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Mix different list item types inappropriately</li>
+              <li>Use lists for single items</li>
+              <li>Overcrowd with too much information</li>
+              <li>Forget hover and focus states</li>
+              <li>Use poor contrast for secondary text</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Accessibility</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use semantic list markup (ul, ol, li)</li>
+              <li>Provide proper ARIA labels</li>
+              <li>Ensure keyboard navigation works</li>
+              <li>Support screen readers properly</li>
+              <li>Maintain focus indicators</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let selectedFiles = new Set();
+      
+      // Handle file selection
+      function updateSelection() {
+        const checkboxes = document.querySelectorAll('.file-checkbox');
+        const deleteBtn = document.getElementById('delete-selected-btn');
+        const selectionCount = document.getElementById('selection-count');
+        
+        selectedFiles.clear();
+        
+        checkboxes.forEach(checkbox => {
+          if (checkbox.checked) {
+            const fileItem = checkbox.closest('.selectable-item');
+            selectedFiles.add(fileItem.dataset.file);
+          }
+        });
+        
+        deleteBtn.disabled = selectedFiles.size === 0;
+        selectionCount.textContent = selectedFiles.size;
+        
+        console.log('Selected files:', Array.from(selectedFiles));
+      }
+      
+      // Handle checkbox changes
+      document.querySelectorAll('.file-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', updateSelection);
+      });
+      
+      // Handle select all button
+      document.getElementById('select-all-btn').addEventListener('click', () => {
+        const checkboxes = document.querySelectorAll('.file-checkbox');
+        const allSelected = Array.from(checkboxes).every(cb => cb.checked);
+        
+        checkboxes.forEach(checkbox => {
+          checkbox.checked = !allSelected;
+        });
+        
+        updateSelection();
+      });
+      
+      // Handle delete selected button
+      document.getElementById('delete-selected-btn').addEventListener('click', () => {
+        if (selectedFiles.size > 0) {
+          const fileNames = Array.from(selectedFiles).join(', ');
+          alert(`Would delete: ${fileNames}`);
+          
+          // Reset selections
+          document.querySelectorAll('.file-checkbox').forEach(cb => cb.checked = false);
+          updateSelection();
+        }
+      });
+      
+      // Handle upload button
+      document.getElementById('upload-btn').addEventListener('click', () => {
+        alert('Upload dialog would open here');
+      });
+      
+      // Handle list item clicks (basic navigation)
+      document.querySelectorAll('.list-item[data-item]').forEach(item => {
+        item.addEventListener('click', (e) => {
+          // Don't trigger if clicking on interactive elements
+          if (e.target.closest('md-icon-button, md-switch, md-checkbox')) {
+            return;
+          }
+          
+          const itemId = item.dataset.item;
+          console.log(`Navigated to: ${itemId}`);
+        });
+      });
+      
+      // Handle file item clicks
+      document.querySelectorAll('.selectable-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          // Don't trigger if clicking on checkbox or menu button
+          if (e.target.closest('md-checkbox, md-icon-button')) {
+            return;
+          }
+          
+          const fileName = item.dataset.file;
+          console.log(`Opened file: ${fileName}`);
+        });
+      });
+      
+      console.log('✅ List interactions initialized');
+    });
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

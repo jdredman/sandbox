@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Color - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Complete design token definitions */
+    :root {
+      /* Base Colors */
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      
+      /* Gray Scale */
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      
+      /* Blue Scale (Primary) */
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      
+      /* Teal Scale (Secondary) */
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      
+      /* Purple Scale (Tertiary) */
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      
+      /* Red Scale (Error) */
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      
+      /* Green Scale (Success) */
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      
+      /* Typography */
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      
+      /* Material 3 System Color Tokens */
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    /* Material Web Typography Customization */
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    /* Base Styles */
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    /* Layout Container */
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Color Showcase */
+    .color-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .color-scale {
+      margin-bottom: 32px;
+    }
+    
+    .scale-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .scale-preview {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .scale-info h3 {
+      margin: 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .scale-info p {
+      margin: 4px 0 0 0;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+    }
+    
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+    }
+    
+    .color-swatch {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 12px;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      position: relative;
+      cursor: pointer;
+      transition: transform 150ms ease;
+    }
+    
+    .color-swatch:hover {
+      transform: scale(1.05);
+    }
+    
+    .swatch-number {
+      font-weight: var(--font-weight-bold);
+      font-size: 18px;
+    }
+    
+    .swatch-value {
+      font-size: 11px;
+      font-family: monospace;
+      opacity: 0.9;
+    }
+    
+    /* Semantic Color Mapping */
+    .semantic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+    
+    .semantic-card {
+      background: var(--md-sys-color-background);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      overflow: hidden;
+    }
+    
+    .semantic-header {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .semantic-swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .semantic-title {
+      margin: 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .semantic-role {
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 12px;
+      margin: 4px 0 0 0;
+    }
+    
+    .semantic-content {
+      padding: 16px;
+      border-top: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .semantic-token {
+      font-family: monospace;
+      font-size: 12px;
+      background: var(--md-sys-color-surface-variant);
+      padding: 4px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin: 2px;
+    }
+    
+    /* Usage Examples */
+    .usage-example {
+      padding: 24px;
+      border-radius: 12px;
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .example-primary {
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+    }
+    
+    .example-secondary {
+      background: var(--md-sys-color-secondary);
+      color: var(--md-sys-color-on-secondary);
+    }
+    
+    .example-tertiary {
+      background: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+    }
+    
+    .example-error {
+      background: var(--md-sys-color-error);
+      color: var(--md-sys-color-on-error);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+      
+      .color-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      }
+      
+      .semantic-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Color</h1>
+        <p class="page-description md-typescale-body-large">Ramsey brand colors integrated with Material 3 color system for consistency and accessibility.</p>
+      </div>
+      
+      <!-- Color System Overview -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Ramsey Color Scales</h2>
+        
+        <div class="color-showcase">
+          <!-- Blue Scale (Primary) -->
+          <div class="color-scale">
+            <div class="scale-header">
+              <div class="scale-preview" style="background: var(--color-base-blue-50);"></div>
+              <div class="scale-info">
+                <h3 class="md-typescale-title-medium">Blue Scale</h3>
+                <p class="md-typescale-body-small">Primary brand color • Trust, reliability, professionalism</p>
+              </div>
+            </div>
+            <div class="color-grid">
+              <div class="color-swatch" style="background-color: var(--color-base-blue-10);" onclick="copyToClipboard('--color-base-blue-10')">
+                <span class="swatch-number">10</span>
+                <span class="swatch-value">#ade9ff</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-blue-20);" onclick="copyToClipboard('--color-base-blue-20')">
+                <span class="swatch-number">20</span>
+                <span class="swatch-value">#61d5ff</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-blue-30);" onclick="copyToClipboard('--color-base-blue-30')">
+                <span class="swatch-number">30</span>
+                <span class="swatch-value">#00b2f6</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-blue-40);" onclick="copyToClipboard('--color-base-blue-40')">
+                <span class="swatch-number">40</span>
+                <span class="swatch-value">#0091d9</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-blue-50);" onclick="copyToClipboard('--color-base-blue-50')">
+                <span class="swatch-number">50</span>
+                <span class="swatch-value">#0073b9</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-blue-60);" onclick="copyToClipboard('--color-base-blue-60')">
+                <span class="swatch-number">60</span>
+                <span class="swatch-value">#005b98</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-blue-70);" onclick="copyToClipboard('--color-base-blue-70')">
+                <span class="swatch-number">70</span>
+                <span class="swatch-value">#004477</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-blue-80);" onclick="copyToClipboard('--color-base-blue-80')">
+                <span class="swatch-number">80</span>
+                <span class="swatch-value">#003561</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-blue-90);" onclick="copyToClipboard('--color-base-blue-90')">
+                <span class="swatch-number">90</span>
+                <span class="swatch-value">#002342</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Teal Scale (Secondary) -->
+          <div class="color-scale">
+            <div class="scale-header">
+              <div class="scale-preview" style="background: var(--color-base-teal-50);"></div>
+              <div class="scale-info">
+                <h3 class="md-typescale-title-medium">Teal Scale</h3>
+                <p class="md-typescale-body-small">Secondary brand color • Growth, stability, balance</p>
+              </div>
+            </div>
+            <div class="color-grid">
+              <div class="color-swatch" style="background-color: var(--color-base-teal-10);" onclick="copyToClipboard('--color-base-teal-10')">
+                <span class="swatch-number">10</span>
+                <span class="swatch-value">#adfff4</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-teal-20);" onclick="copyToClipboard('--color-base-teal-20')">
+                <span class="swatch-number">20</span>
+                <span class="swatch-value">#67f5e2</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-teal-30);" onclick="copyToClipboard('--color-base-teal-30')">
+                <span class="swatch-number">30</span>
+                <span class="swatch-value">#2de0c8</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-teal-40);" onclick="copyToClipboard('--color-base-teal-40')">
+                <span class="swatch-number">40</span>
+                <span class="swatch-value">#1cc8b4</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-teal-50);" onclick="copyToClipboard('--color-base-teal-50')">
+                <span class="swatch-number">50</span>
+                <span class="swatch-value">#16a597</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-teal-60);" onclick="copyToClipboard('--color-base-teal-60')">
+                <span class="swatch-number">60</span>
+                <span class="swatch-value">#0e8e7e</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-teal-70);" onclick="copyToClipboard('--color-base-teal-70')">
+                <span class="swatch-number">70</span>
+                <span class="swatch-value">#077565</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-teal-80);" onclick="copyToClipboard('--color-base-teal-80')">
+                <span class="swatch-number">80</span>
+                <span class="swatch-value">#035a4b</span>
+              </div>
+              <div class="color-swatch" style="background-color: var(--color-base-teal-90);" onclick="copyToClipboard('--color-base-teal-90')">
+                <span class="swatch-number">90</span>
+                <span class="swatch-value">#004033</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Supporting Colors -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px;">
+            <div class="color-scale">
+              <div class="scale-header">
+                <div class="scale-preview" style="background: var(--color-base-purple-50);"></div>
+                <div class="scale-info">
+                  <h3 class="md-typescale-title-medium">Purple Scale</h3>
+                  <p class="md-typescale-body-small">Tertiary • Creativity, luxury</p>
+                </div>
+              </div>
+              <div class="color-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="color-swatch" style="background-color: var(--color-base-purple-10); color: black;" onclick="copyToClipboard('--color-base-purple-10')">
+                  <span class="swatch-number">10</span>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-base-purple-30);" onclick="copyToClipboard('--color-base-purple-30')">
+                  <span class="swatch-number">30</span>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-base-purple-50);" onclick="copyToClipboard('--color-base-purple-50')">
+                  <span class="swatch-number">50</span>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-base-purple-80);" onclick="copyToClipboard('--color-base-purple-80')">
+                  <span class="swatch-number">80</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="color-scale">
+              <div class="scale-header">
+                <div class="scale-preview" style="background: var(--color-base-red-60);"></div>
+                <div class="scale-info">
+                  <h3 class="md-typescale-title-medium">Red Scale</h3>
+                  <p class="md-typescale-body-small">Error states • Urgency, alerts</p>
+                </div>
+              </div>
+              <div class="color-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="color-swatch" style="background-color: var(--color-base-red-10); color: black;" onclick="copyToClipboard('--color-base-red-10')">
+                  <span class="swatch-number">10</span>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-base-red-30);" onclick="copyToClipboard('--color-base-red-30')">
+                  <span class="swatch-number">30</span>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-base-red-60);" onclick="copyToClipboard('--color-base-red-60')">
+                  <span class="swatch-number">60</span>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-base-red-80);" onclick="copyToClipboard('--color-base-red-80')">
+                  <span class="swatch-number">80</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="color-scale">
+              <div class="scale-header">
+                <div class="scale-preview" style="background: var(--color-base-green-50);"></div>
+                <div class="scale-info">
+                  <h3 class="md-typescale-title-medium">Green Scale</h3>
+                  <p class="md-typescale-body-small">Success states • Growth, positive</p>
+                </div>
+              </div>
+              <div class="color-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="color-swatch" style="background-color: var(--color-base-green-10); color: black;" onclick="copyToClipboard('--color-base-green-10')">
+                  <span class="swatch-number">10</span>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-base-green-30);" onclick="copyToClipboard('--color-base-green-30')">
+                  <span class="swatch-number">30</span>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-base-green-50);" onclick="copyToClipboard('--color-base-green-50')">
+                  <span class="swatch-number">50</span>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-base-green-80);" onclick="copyToClipboard('--color-base-green-80')">
+                  <span class="swatch-number">80</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Material 3 Semantic Colors -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Material 3 Semantic Colors</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Our Ramsey colors are mapped to Material 3 semantic roles for consistent component theming and accessibility.</p>
+        
+        <div class="color-showcase">
+          <div class="semantic-grid">
+            <div class="semantic-card">
+              <div class="semantic-header">
+                <div class="semantic-swatch" style="background: var(--md-sys-color-primary);"></div>
+                <div>
+                  <h3 class="semantic-title md-typescale-title-medium">Primary</h3>
+                  <p class="semantic-role">Main brand actions</p>
+                </div>
+              </div>
+              <div class="semantic-content">
+                <div class="md-typescale-body-small" style="margin-bottom: 8px;">Uses Blue 50 for high-emphasis actions</div>
+                <div>
+                  <span class="semantic-token">--md-sys-color-primary</span>
+                  <span class="semantic-token">--md-sys-color-on-primary</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="semantic-card">
+              <div class="semantic-header">
+                <div class="semantic-swatch" style="background: var(--md-sys-color-secondary);"></div>
+                <div>
+                  <h3 class="semantic-title md-typescale-title-medium">Secondary</h3>
+                  <p class="semantic-role">Supporting actions</p>
+                </div>
+              </div>
+              <div class="semantic-content">
+                <div class="md-typescale-body-small" style="margin-bottom: 8px;">Uses Teal 50 for medium-emphasis actions</div>
+                <div>
+                  <span class="semantic-token">--md-sys-color-secondary</span>
+                  <span class="semantic-token">--md-sys-color-on-secondary</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="semantic-card">
+              <div class="semantic-header">
+                <div class="semantic-swatch" style="background: var(--md-sys-color-tertiary);"></div>
+                <div>
+                  <h3 class="semantic-title md-typescale-title-medium">Tertiary</h3>
+                  <p class="semantic-role">Accent elements</p>
+                </div>
+              </div>
+              <div class="semantic-content">
+                <div class="md-typescale-body-small" style="margin-bottom: 8px;">Uses Purple 50 for accent and contrast</div>
+                <div>
+                  <span class="semantic-token">--md-sys-color-tertiary</span>
+                  <span class="semantic-token">--md-sys-color-on-tertiary</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="semantic-card">
+              <div class="semantic-header">
+                <div class="semantic-swatch" style="background: var(--md-sys-color-error);"></div>
+                <div>
+                  <h3 class="semantic-title md-typescale-title-medium">Error</h3>
+                  <p class="semantic-role">Error states</p>
+                </div>
+              </div>
+              <div class="semantic-content">
+                <div class="md-typescale-body-small" style="margin-bottom: 8px;">Uses Red 60 for errors and warnings</div>
+                <div>
+                  <span class="semantic-token">--md-sys-color-error</span>
+                  <span class="semantic-token">--md-sys-color-on-error</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="semantic-card">
+              <div class="semantic-header">
+                <div class="semantic-swatch" style="background: var(--md-sys-color-surface);"></div>
+                <div>
+                  <h3 class="semantic-title md-typescale-title-medium">Surface</h3>
+                  <p class="semantic-role">Background surfaces</p>
+                </div>
+              </div>
+              <div class="semantic-content">
+                <div class="md-typescale-body-small" style="margin-bottom: 8px;">Uses White and Gray 10 for content areas</div>
+                <div>
+                  <span class="semantic-token">--md-sys-color-surface</span>
+                  <span class="semantic-token">--md-sys-color-on-surface</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="semantic-card">
+              <div class="semantic-header">
+                <div class="semantic-swatch" style="background: var(--md-sys-color-outline);"></div>
+                <div>
+                  <h3 class="semantic-title md-typescale-title-medium">Outline</h3>
+                  <p class="semantic-role">Borders and dividers</p>
+                </div>
+              </div>
+              <div class="semantic-content">
+                <div class="md-typescale-body-small" style="margin-bottom: 8px;">Uses Gray 60 and 30 for subtle boundaries</div>
+                <div>
+                  <span class="semantic-token">--md-sys-color-outline</span>
+                  <span class="semantic-token">--md-sys-color-outline-variant</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Usage Examples -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Usage Examples</h2>
+        
+        <div class="color-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Color in Action</h3>
+          
+          <div class="usage-example example-primary">
+            <md-filled-button>Primary Action</md-filled-button>
+            <div>
+              <div class="md-typescale-title-small">Primary Color Usage</div>
+              <div class="md-typescale-body-small">Used for high-emphasis actions like "Submit" or "Continue"</div>
+            </div>
+          </div>
+          
+          <div class="usage-example example-secondary">
+            <md-filled-button style="--md-filled-button-container-color: var(--md-sys-color-secondary); --md-filled-button-label-text-color: var(--md-sys-color-on-secondary);">Secondary Action</md-filled-button>
+            <div>
+              <div class="md-typescale-title-small">Secondary Color Usage</div>
+              <div class="md-typescale-body-small">Used for supporting actions and complementary elements</div>
+            </div>
+          </div>
+          
+          <div class="usage-example example-tertiary">
+            <md-filled-button style="--md-filled-button-container-color: var(--md-sys-color-tertiary); --md-filled-button-label-text-color: var(--md-sys-color-on-tertiary);">Tertiary Action</md-filled-button>
+            <div>
+              <div class="md-typescale-title-small">Tertiary Color Usage</div>
+              <div class="md-typescale-body-small">Used for accent elements and creative touches</div>
+            </div>
+          </div>
+          
+          <div class="usage-example example-error">
+            <md-filled-button style="--md-filled-button-container-color: var(--md-sys-color-error); --md-filled-button-label-text-color: var(--md-sys-color-on-error);">Error Action</md-filled-button>
+            <div>
+              <div class="md-typescale-title-small">Error Color Usage</div>
+              <div class="md-typescale-body-small">Used for destructive actions and error states</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Accessibility Guidelines -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Accessibility Guidelines</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Contrast Standards</h3>
+            <ul class="md-typescale-body-medium">
+              <li>All color combinations meet WCAG AA standards</li>
+              <li>Text on backgrounds maintains 4.5:1 contrast ratio</li>
+              <li>UI elements maintain 3:1 contrast ratio</li>
+              <li>Large text maintains 3:1 contrast ratio</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Color Independence</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Never rely on color alone to convey information</li>
+              <li>Use icons, text labels, or patterns alongside color</li>
+              <li>Provide alternative indicators for status and state</li>
+              <li>Test with color vision deficiency simulators</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Best Practices</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use semantic color tokens rather than base colors</li>
+              <li>Test in both light and dark modes</li>
+              <li>Maintain color meaning consistency across the experience</li>
+              <li>Consider cultural color associations for global audiences</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    function copyToClipboard(token) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(token).then(() => {
+          console.log('Color token copied:', token);
+          
+          // Show a brief visual feedback
+          const event = new CustomEvent('colorCopied', { detail: { token } });
+          document.dispatchEvent(event);
+        });
+      }
+    }
+    
+    // Listen for color copy events and show feedback
+    document.addEventListener('colorCopied', (event) => {
+      console.log('Color token copied to clipboard:', event.detail.token);
+    });
+    
+    console.log('🎨 Color documentation loaded with interactive swatches');
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

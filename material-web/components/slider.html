@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Slider - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Include all the design tokens and base styles */
+    :root {
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .component-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+    }
+    
+    .showcase-item {
+      padding: 24px;
+      background: var(--md-sys-color-background);
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .showcase-title {
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .slider-demo {
+      margin: 24px 0;
+    }
+    
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    .slider-value {
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-primary);
+    }
+    
+    .slider-with-icons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .slider-with-icons md-slider {
+      flex: 1;
+    }
+    
+    /* Range slider styles */
+    .range-display {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Slider</h1>
+        <p class="page-description md-typescale-body-large">Material 3 sliders allow users to select from a range of values by moving a slider thumb.</p>
+      </div>
+      
+      <!-- Basic Sliders -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Slider Types</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Continuous Slider</h3>
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Volume</span>
+                  <span class="slider-value" id="volume-value">50</span>
+                </div>
+                <md-slider id="volume-slider" value="50" min="0" max="100"></md-slider>
+              </div>
+              
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Brightness</span>
+                  <span class="slider-value" id="brightness-value">75</span>
+                </div>
+                <md-slider id="brightness-slider" value="75" min="0" max="100"></md-slider>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Discrete Slider</h3>
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Steps</span>
+                  <span class="slider-value" id="steps-value">5</span>
+                </div>
+                <md-slider id="steps-slider" value="5" min="0" max="10" step="1" labeled></md-slider>
+              </div>
+              
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Rating</span>
+                  <span class="slider-value" id="rating-value">3</span>
+                </div>
+                <md-slider id="rating-slider" value="3" min="1" max="5" step="1" labeled></md-slider>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Slider with Icons -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Sliders with Icons</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Audio Controls</h3>
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Volume</span>
+                  <span class="slider-value" id="audio-volume-value">60</span>
+                </div>
+                <div class="slider-with-icons">
+                  <md-icon>volume_down</md-icon>
+                  <md-slider id="audio-volume-slider" value="60" min="0" max="100"></md-slider>
+                  <md-icon>volume_up</md-icon>
+                </div>
+              </div>
+              
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Bass</span>
+                  <span class="slider-value" id="bass-value">0</span>
+                </div>
+                <div class="slider-with-icons">
+                  <md-icon>remove</md-icon>
+                  <md-slider id="bass-slider" value="0" min="-10" max="10" step="1"></md-slider>
+                  <md-icon>add</md-icon>
+                </div>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Display Settings</h3>
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Brightness</span>
+                  <span class="slider-value" id="display-brightness-value">80</span>
+                </div>
+                <div class="slider-with-icons">
+                  <md-icon>brightness_low</md-icon>
+                  <md-slider id="display-brightness-slider" value="80" min="0" max="100"></md-slider>
+                  <md-icon>brightness_high</md-icon>
+                </div>
+              </div>
+              
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Font Size</span>
+                  <span class="slider-value" id="font-size-value">16</span>
+                </div>
+                <div class="slider-with-icons">
+                  <md-icon>text_decrease</md-icon>
+                  <md-slider id="font-size-slider" value="16" min="12" max="24" step="2"></md-slider>
+                  <md-icon>text_increase</md-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Range Sliders -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Range Sliders</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Price Range</h3>
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Price Range</span>
+                  <span class="slider-value">$<span id="price-min">25</span> - $<span id="price-max">75</span></span>
+                </div>
+                <md-slider id="price-range" range value-start="25" value-end="75" min="0" max="100"></md-slider>
+                <div class="range-display">
+                  <span>$0</span>
+                  <span>$100</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Time Range</h3>
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Working Hours</span>
+                  <span class="slider-value"><span id="time-start">9</span>:00 - <span id="time-end">17</span>:00</span>
+                </div>
+                <md-slider id="time-range" range value-start="9" value-end="17" min="0" max="24" step="1" labeled></md-slider>
+                <div class="range-display">
+                  <span>00:00</span>
+                  <span>24:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Interactive Demo -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Interactive Demo</h2>
+        
+        <div class="component-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Media Player Controls</h3>
+          <div style="max-width: 500px;">
+            <div class="slider-demo">
+              <div class="slider-label">
+                <span>Playback Position</span>
+                <span class="slider-value"><span id="current-time">1:23</span> / <span id="total-time">3:45</span></span>
+              </div>
+              <md-slider id="playback-slider" value="37" min="0" max="225"></md-slider>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px;">
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Volume</span>
+                  <span class="slider-value" id="player-volume-value">75</span>
+                </div>
+                <div class="slider-with-icons">
+                  <md-icon>volume_off</md-icon>
+                  <md-slider id="player-volume-slider" value="75" min="0" max="100"></md-slider>
+                  <md-icon>volume_up</md-icon>
+                </div>
+              </div>
+              
+              <div class="slider-demo">
+                <div class="slider-label">
+                  <span>Speed</span>
+                  <span class="slider-value" id="speed-value">1.0x</span>
+                </div>
+                <md-slider id="speed-slider" value="10" min="5" max="20" step="1"></md-slider>
+              </div>
+            </div>
+            
+            <div style="margin-top: 24px; padding: 16px; background: var(--md-sys-color-surface-variant); border-radius: 8px;">
+              <h4 class="md-typescale-title-small" style="margin: 0 0 8px 0;">Player Status</h4>
+              <div id="player-status" class="md-typescale-body-small"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Best Practices -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Best Practices</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-green-70);">Do</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Provide clear labels for what the slider controls</li>
+              <li>Show current values and ranges</li>
+              <li>Use appropriate min, max, and step values</li>
+              <li>Consider adding icons for context</li>
+              <li>Use discrete sliders for stepped values</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-red-70);">Don't</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use sliders for binary choices</li>
+              <li>Make ranges too large without steps</li>
+              <li>Forget to show current values</li>
+              <li>Use sliders for precise input</li>
+              <li>Make touch targets too small</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Accessibility</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Ensure 44px minimum touch target</li>
+              <li>Support keyboard navigation</li>
+              <li>Provide ARIA labels and values</li>
+              <li>Announce value changes</li>
+              <li>Use sufficient color contrast</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Utility function to format time
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+      }
+      
+      // Basic sliders
+      const volumeSlider = document.getElementById('volume-slider');
+      const volumeValue = document.getElementById('volume-value');
+      if (volumeSlider && volumeValue) {
+        volumeSlider.addEventListener('input', () => {
+          volumeValue.textContent = Math.round(volumeSlider.value);
+        });
+      }
+      
+      const brightnessSlider = document.getElementById('brightness-slider');
+      const brightnessValue = document.getElementById('brightness-value');
+      if (brightnessSlider && brightnessValue) {
+        brightnessSlider.addEventListener('input', () => {
+          brightnessValue.textContent = Math.round(brightnessSlider.value);
+        });
+      }
+      
+      // Discrete sliders
+      const stepsSlider = document.getElementById('steps-slider');
+      const stepsValue = document.getElementById('steps-value');
+      if (stepsSlider && stepsValue) {
+        stepsSlider.addEventListener('input', () => {
+          stepsValue.textContent = Math.round(stepsSlider.value);
+        });
+      }
+      
+      const ratingSlider = document.getElementById('rating-slider');
+      const ratingValue = document.getElementById('rating-value');
+      if (ratingSlider && ratingValue) {
+        ratingSlider.addEventListener('input', () => {
+          ratingValue.textContent = Math.round(ratingSlider.value);
+        });
+      }
+      
+      // Audio controls
+      const audioVolumeSlider = document.getElementById('audio-volume-slider');
+      const audioVolumeValue = document.getElementById('audio-volume-value');
+      if (audioVolumeSlider && audioVolumeValue) {
+        audioVolumeSlider.addEventListener('input', () => {
+          audioVolumeValue.textContent = Math.round(audioVolumeSlider.value);
+        });
+      }
+      
+      const bassSlider = document.getElementById('bass-slider');
+      const bassValue = document.getElementById('bass-value');
+      if (bassSlider && bassValue) {
+        bassSlider.addEventListener('input', () => {
+          const value = Math.round(bassSlider.value);
+          bassValue.textContent = value > 0 ? `+${value}` : value;
+        });
+      }
+      
+      // Display settings
+      const displayBrightnessSlider = document.getElementById('display-brightness-slider');
+      const displayBrightnessValue = document.getElementById('display-brightness-value');
+      if (displayBrightnessSlider && displayBrightnessValue) {
+        displayBrightnessSlider.addEventListener('input', () => {
+          displayBrightnessValue.textContent = Math.round(displayBrightnessSlider.value);
+        });
+      }
+      
+      const fontSizeSlider = document.getElementById('font-size-slider');
+      const fontSizeValue = document.getElementById('font-size-value');
+      if (fontSizeSlider && fontSizeValue) {
+        fontSizeSlider.addEventListener('input', () => {
+          fontSizeValue.textContent = Math.round(fontSizeSlider.value);
+        });
+      }
+      
+      // Range sliders
+      const priceRange = document.getElementById('price-range');
+      const priceMin = document.getElementById('price-min');
+      const priceMax = document.getElementById('price-max');
+      if (priceRange && priceMin && priceMax) {
+        priceRange.addEventListener('input', () => {
+          priceMin.textContent = Math.round(priceRange.valueStart);
+          priceMax.textContent = Math.round(priceRange.valueEnd);
+        });
+      }
+      
+      const timeRange = document.getElementById('time-range');
+      const timeStart = document.getElementById('time-start');
+      const timeEnd = document.getElementById('time-end');
+      if (timeRange && timeStart && timeEnd) {
+        timeRange.addEventListener('input', () => {
+          timeStart.textContent = Math.round(timeRange.valueStart);
+          timeEnd.textContent = Math.round(timeRange.valueEnd);
+        });
+      }
+      
+      // Media player demo
+      const playbackSlider = document.getElementById('playback-slider');
+      const currentTime = document.getElementById('current-time');
+      const totalTime = document.getElementById('total-time');
+      const playerVolumeSlider = document.getElementById('player-volume-slider');
+      const playerVolumeValue = document.getElementById('player-volume-value');
+      const speedSlider = document.getElementById('speed-slider');
+      const speedValue = document.getElementById('speed-value');
+      const playerStatus = document.getElementById('player-status');
+      
+      if (playbackSlider && currentTime) {
+        playbackSlider.addEventListener('input', () => {
+          const seconds = Math.round(playbackSlider.value);
+          currentTime.textContent = formatTime(seconds);
+          updatePlayerStatus();
+        });
+      }
+      
+      if (playerVolumeSlider && playerVolumeValue) {
+        playerVolumeSlider.addEventListener('input', () => {
+          playerVolumeValue.textContent = Math.round(playerVolumeSlider.value);
+          updatePlayerStatus();
+        });
+      }
+      
+      if (speedSlider && speedValue) {
+        speedSlider.addEventListener('input', () => {
+          const speed = Math.round(speedSlider.value) / 10;
+          speedValue.textContent = `${speed.toFixed(1)}x`;
+          updatePlayerStatus();
+        });
+      }
+      
+      function updatePlayerStatus() {
+        if (playerStatus && playbackSlider && playerVolumeSlider && speedSlider) {
+          const position = Math.round(playbackSlider.value);
+          const volume = Math.round(playerVolumeSlider.value);
+          const speed = Math.round(speedSlider.value) / 10;
+          
+          playerStatus.textContent = `Position: ${formatTime(position)}, Volume: ${volume}%, Speed: ${speed.toFixed(1)}x`;
+        }
+      }
+      
+      // Initialize player status
+      updatePlayerStatus();
+    });
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Floating Action Button - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Include all the design tokens and base styles */
+    :root {
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .component-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+    }
+    
+    .showcase-item {
+      padding: 24px;
+      background: var(--md-sys-color-background);
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .showcase-title {
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .fab-demo {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .fab-demo-area {
+      position: relative;
+      background: var(--md-sys-color-surface-variant);
+      border-radius: 8px;
+      padding: 40px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+      
+      .fab-demo {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Floating Action Button</h1>
+        <p class="page-description md-typescale-body-large">Material 3 floating action buttons represent the primary action in an application.</p>
+      </div>
+      
+      <!-- FAB Variants -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">FAB Variants</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Standard FABs</h3>
+              <div class="fab-demo">
+                <div class="fab-demo-area">
+                  <md-fab aria-label="Create new item">
+                    <md-icon slot="icon">add</md-icon>
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab aria-label="Edit item">
+                    <md-icon slot="icon">edit</md-icon>
+                  </md-fab>
+                </div>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Small FABs</h3>
+              <div class="fab-demo">
+                <div class="fab-demo-area">
+                  <md-fab size="small" aria-label="Create">
+                    <md-icon slot="icon">add</md-icon>
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab size="small" aria-label="Favorite">
+                    <md-icon slot="icon">favorite</md-icon>
+                  </md-fab>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Extended FABs -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Extended FABs</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">With Text Labels</h3>
+              <div class="fab-demo">
+                <div class="fab-demo-area">
+                  <md-fab variant="extended" aria-label="Create new document">
+                    <md-icon slot="icon">add</md-icon>
+                    Create
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab variant="extended" aria-label="Compose message">
+                    <md-icon slot="icon">edit</md-icon>
+                    Compose
+                  </md-fab>
+                </div>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Text Only</h3>
+              <div class="fab-demo">
+                <div class="fab-demo-area">
+                  <md-fab variant="extended" aria-label="Get started">
+                    Get Started
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab variant="extended" aria-label="Learn more">
+                    Learn More
+                  </md-fab>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Color Variants -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Color Variants</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Surface Colors</h3>
+              <div class="fab-demo">
+                <div class="fab-demo-area">
+                  <md-fab aria-label="Primary action">
+                    <md-icon slot="icon">star</md-icon>
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab variant="surface" aria-label="Surface action">
+                    <md-icon slot="icon">bookmark</md-icon>
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab variant="secondary" aria-label="Secondary action">
+                    <md-icon slot="icon">share</md-icon>
+                  </md-fab>
+                </div>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Tertiary Colors</h3>
+              <div class="fab-demo">
+                <div class="fab-demo-area">
+                  <md-fab variant="tertiary" aria-label="Tertiary action">
+                    <md-icon slot="icon">palette</md-icon>
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab variant="tertiary" size="small" aria-label="Small tertiary">
+                    <md-icon slot="icon">brush</md-icon>
+                  </md-fab>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Usage Examples -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Usage Examples</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Create Actions</h3>
+              <div class="fab-demo">
+                <div class="fab-demo-area">
+                  <md-fab variant="extended" aria-label="New contact">
+                    <md-icon slot="icon">person_add</md-icon>
+                    New Contact
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab aria-label="Add photo">
+                    <md-icon slot="icon">photo_camera</md-icon>
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab size="small" aria-label="Add note">
+                    <md-icon slot="icon">note_add</md-icon>
+                  </md-fab>
+                </div>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Communication</h3>
+              <div class="fab-demo">
+                <div class="fab-demo-area">
+                  <md-fab variant="extended" aria-label="Send message">
+                    <md-icon slot="icon">send</md-icon>
+                    Send
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab variant="surface" aria-label="Call">
+                    <md-icon slot="icon">phone</md-icon>
+                  </md-fab>
+                </div>
+                <div class="fab-demo-area">
+                  <md-fab variant="secondary" size="small" aria-label="Video call">
+                    <md-icon slot="icon">videocam</md-icon>
+                  </md-fab>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Interactive Demo -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Interactive Demo</h2>
+        
+        <div class="component-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Click to See Actions</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+            <div class="fab-demo-area">
+              <md-fab id="fab-save" aria-label="Save document">
+                <md-icon slot="icon">save</md-icon>
+              </md-fab>
+              <div class="md-typescale-body-small" style="margin-top: 8px; text-align: center;">Save</div>
+            </div>
+            
+            <div class="fab-demo-area">
+              <md-fab id="fab-print" variant="surface" aria-label="Print document">
+                <md-icon slot="icon">print</md-icon>
+              </md-fab>
+              <div class="md-typescale-body-small" style="margin-top: 8px; text-align: center;">Print</div>
+            </div>
+            
+            <div class="fab-demo-area">
+              <md-fab id="fab-share" variant="secondary" aria-label="Share document">
+                <md-icon slot="icon">share</md-icon>
+              </md-fab>
+              <div class="md-typescale-body-small" style="margin-top: 8px; text-align: center;">Share</div>
+            </div>
+            
+            <div class="fab-demo-area">
+              <md-fab id="fab-delete" variant="tertiary" aria-label="Delete document">
+                <md-icon slot="icon">delete</md-icon>
+              </md-fab>
+              <div class="md-typescale-body-small" style="margin-top: 8px; text-align: center;">Delete</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Best Practices -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Best Practices</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-green-70);">Do</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use for the primary action on a screen</li>
+              <li>Place in the bottom-right corner</li>
+              <li>Keep above other elements</li>
+              <li>Use meaningful icons and labels</li>
+              <li>Provide proper accessibility labels</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-red-70);">Don't</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use for every action on a screen</li>
+              <li>Place multiple FABs on one screen</li>
+              <li>Use for destructive actions</li>
+              <li>Block important content</li>
+              <li>Change position during scroll</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Accessibility</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Always include aria-label</li>
+              <li>Ensure 44px minimum touch target</li>
+              <li>Support keyboard navigation</li>
+              <li>Use high contrast colors</li>
+              <li>Announce state changes</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Interactive FAB demo
+      document.getElementById('fab-save').addEventListener('click', () => {
+        alert('Document saved! (Demo action)');
+      });
+      
+      document.getElementById('fab-print').addEventListener('click', () => {
+        alert('Print dialog opened! (Demo action)');
+      });
+      
+      document.getElementById('fab-share').addEventListener('click', () => {
+        alert('Share menu opened! (Demo action)');
+      });
+      
+      document.getElementById('fab-delete').addEventListener('click', () => {
+        if (confirm('Are you sure you want to delete this document?')) {
+          alert('Document deleted! (Demo action)');
+        }
+      });
+    });
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

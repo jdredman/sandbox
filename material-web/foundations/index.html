@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Foundations - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* === COMPLETE DESIGN TOKEN DEFINITIONS === */
+    :root {
+      /* === COLOR TOKENS === */
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      
+      /* Gray Scale */
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      
+      /* Blue Scale */
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      
+      /* Teal Scale */
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      
+      /* Purple Scale */
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      
+      /* Red Scale */
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      
+      /* Green Scale */
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      
+      /* Text Colors */
+      --color-text-darkCanvas: var(--color-base-white);
+      
+      /* Font Families */
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      
+      /* Font Weights */
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      
+      /* Material 3 System Tokens */
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+
+    /* === DARK THEME TOKENS === */
+    .theme-dark {
+      /* Primary Color Tokens - Blue Scale Dark */
+      --md-sys-color-primary: var(--color-base-blue-30);
+      --md-sys-color-on-primary: var(--color-base-blue-90);
+      --md-sys-color-primary-container: var(--color-base-blue-80);
+      --md-sys-color-on-primary-container: var(--color-base-blue-20);
+      
+      /* Secondary Color Tokens - Teal Scale Dark */
+      --md-sys-color-secondary: var(--color-base-teal-30);
+      --md-sys-color-on-secondary: var(--color-base-teal-90);
+      --md-sys-color-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-20);
+      
+      /* Tertiary Color Tokens - Purple Scale Dark */
+      --md-sys-color-tertiary: var(--color-base-purple-30);
+      --md-sys-color-on-tertiary: var(--color-base-purple-90);
+      --md-sys-color-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-20);
+      
+      /* Error Color Tokens - Red Scale Dark */
+      --md-sys-color-error: var(--color-base-red-40);
+      --md-sys-color-on-error: var(--color-base-red-90);
+      --md-sys-color-error-container: var(--color-base-red-80);
+      --md-sys-color-on-error-container: var(--color-base-red-20);
+      
+      /* Surface Color Tokens - Gray Scale Dark */
+      --md-sys-color-background: var(--color-base-gray-90);
+      --md-sys-color-on-background: var(--color-text-darkCanvas);
+      --md-sys-color-surface: var(--color-base-gray-80);
+      --md-sys-color-on-surface: var(--color-text-darkCanvas);
+      --md-sys-color-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-40);
+      
+      /* Outline Tokens Dark */
+      --md-sys-color-outline: var(--color-base-gray-50);
+      --md-sys-color-outline-variant: var(--color-base-gray-70);
+      
+      /* Color scheme for browser */
+      color-scheme: dark;
+    }
+    
+    /* Material Web Typography Customization */
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    /* Base Styles */
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    /* Content Sections */
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Color Palette Grid */
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    
+    .color-scale {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .color-scale-header {
+      padding: 16px;
+      background: var(--md-sys-color-surface-variant);
+    }
+    
+    .color-scale-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .color-swatch {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-family: monospace;
+    }
+    
+    .color-swatch-indicator {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    /* Typography Showcase */
+    .typography-showcase {
+      display: grid;
+      gap: 24px;
+    }
+    
+    .typography-sample {
+      padding: 24px;
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .typography-label {
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+      margin-bottom: 8px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Foundations</h1>
+        <p class="page-description md-typescale-body-large">Core design decisions that ensure cohesiveness across all Ramsey experiences using Material 3 principles.</p>
+      </div>
+      
+      <!-- Color Palette Section -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Color System</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Our color system is built on Material 3 principles with Ramsey brand colors mapped to semantic roles.</p>
+        
+        <div class="color-palette">
+          <!-- Primary Scale -->
+          <div class="color-scale">
+            <div class="color-scale-header">
+              <h3 class="color-scale-title">Primary (Blue)</h3>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-blue-10); color: var(--color-base-blue-90);">
+              <span>blue-10</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-blue-10);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-blue-30); color: var(--color-base-white);">
+              <span>blue-30</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-blue-30);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-blue-50); color: var(--color-base-white);">
+              <span>blue-50</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-blue-50);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-blue-70); color: var(--color-base-white);">
+              <span>blue-70</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-blue-70);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-blue-90); color: var(--color-base-white);">
+              <span>blue-90</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-blue-90);"></div>
+            </div>
+          </div>
+          
+          <!-- Secondary Scale -->
+          <div class="color-scale">
+            <div class="color-scale-header">
+              <h3 class="color-scale-title">Secondary (Teal)</h3>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-teal-10); color: var(--color-base-teal-90);">
+              <span>teal-10</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-teal-10);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-teal-30); color: var(--color-base-white);">
+              <span>teal-30</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-teal-30);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-teal-50); color: var(--color-base-white);">
+              <span>teal-50</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-teal-50);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-teal-70); color: var(--color-base-white);">
+              <span>teal-70</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-teal-70);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-teal-90); color: var(--color-base-white);">
+              <span>teal-90</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-teal-90);"></div>
+            </div>
+          </div>
+          
+          <!-- Tertiary Scale -->
+          <div class="color-scale">
+            <div class="color-scale-header">
+              <h3 class="color-scale-title">Tertiary (Purple)</h3>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-purple-10); color: var(--color-base-purple-90);">
+              <span>purple-10</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-purple-10);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-purple-30); color: var(--color-base-white);">
+              <span>purple-30</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-purple-30);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-purple-50); color: var(--color-base-white);">
+              <span>purple-50</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-purple-50);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-purple-70); color: var(--color-base-white);">
+              <span>purple-70</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-purple-70);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-purple-90); color: var(--color-base-white);">
+              <span>purple-90</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-purple-90);"></div>
+            </div>
+          </div>
+          
+          <!-- Error Scale -->
+          <div class="color-scale">
+            <div class="color-scale-header">
+              <h3 class="color-scale-title">Error (Red)</h3>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-red-10); color: var(--color-base-red-90);">
+              <span>red-10</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-red-10);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-red-30); color: var(--color-base-white);">
+              <span>red-30</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-red-30);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-red-50); color: var(--color-base-white);">
+              <span>red-50</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-red-50);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-red-70); color: var(--color-base-white);">
+              <span>red-70</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-red-70);"></div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-base-red-90); color: var(--color-base-white);">
+              <span>red-90</span>
+              <div class="color-swatch-indicator" style="background: var(--color-base-red-90);"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Typography Section -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Typography Scale</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Material 3 typography scale with Gibson font integration for consistent, accessible text hierarchy.</p>
+        
+        <div class="typography-showcase">
+          <div class="typography-sample">
+            <div class="typography-label">md-typescale-display-large</div>
+            <div class="md-typescale-display-large">Design that scales</div>
+          </div>
+          
+          <div class="typography-sample">
+            <div class="typography-label">md-typescale-display-medium</div>
+            <div class="md-typescale-display-medium">Build with confidence</div>
+          </div>
+          
+          <div class="typography-sample">
+            <div class="typography-label">md-typescale-headline-large</div>
+            <div class="md-typescale-headline-large">Material 3 meets Ramsey</div>
+          </div>
+          
+          <div class="typography-sample">
+            <div class="typography-label">md-typescale-headline-medium</div>
+            <div class="md-typescale-headline-medium">Consistent experiences</div>
+          </div>
+          
+          <div class="typography-sample">
+            <div class="typography-label">md-typescale-title-large</div>
+            <div class="md-typescale-title-large">Section titles and emphasis</div>
+          </div>
+          
+          <div class="typography-sample">
+            <div class="typography-label">md-typescale-body-large</div>
+            <div class="md-typescale-body-large">Primary body text for longer content and important information that needs to be easily readable across all devices.</div>
+          </div>
+          
+          <div class="typography-sample">
+            <div class="typography-label">md-typescale-body-medium</div>
+            <div class="md-typescale-body-medium">Default body text for most content, providing good readability while maintaining efficient use of space.</div>
+          </div>
+          
+          <div class="typography-sample">
+            <div class="typography-label">md-typescale-label-large</div>
+            <div class="md-typescale-label-large">Button text and prominent labels</div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Material 3 Integration -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Material 3 Integration</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Our design system seamlessly integrates with Material 3 components while maintaining Ramsey brand identity.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-primary-container); border-radius: 12px;">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 12px 0; color: var(--md-sys-color-on-primary-container);">Gibson Typography</h3>
+            <p class="md-typescale-body-medium" style="margin: 0; color: var(--md-sys-color-on-primary-container);">All Material 3 typography scales use Gibson font while maintaining proper hierarchy and accessibility.</p>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-secondary-container); border-radius: 12px;">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 12px 0; color: var(--md-sys-color-on-secondary-container);">Brand Colors</h3>
+            <p class="md-typescale-body-medium" style="margin: 0; color: var(--md-sys-color-on-secondary-container);">Ramsey color palette mapped to Material 3 semantic color roles for consistent theming.</p>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-tertiary-container); border-radius: 12px;">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 12px 0; color: var(--md-sys-color-on-tertiary-container);">Design Tokens</h3>
+            <p class="md-typescale-body-medium" style="margin: 0; color: var(--md-sys-color-on-tertiary-container);">Complete token system with CSS custom properties for easy theming and maintenance.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

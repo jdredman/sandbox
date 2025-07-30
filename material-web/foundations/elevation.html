@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Elevation - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Complete design token definitions */
+    :root {
+      /* Base Colors */
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      
+      /* Gray Scale */
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      
+      /* Blue Scale */
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      
+      /* Teal Scale */
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      
+      /* Purple Scale */
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      
+      /* Red Scale */
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      
+      /* Green Scale */
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      
+      /* Typography */
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      
+      /* Elevation Tokens */
+      --elevation-0: none;
+      --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      --elevation-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      --elevation-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      --elevation-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      --elevation-5: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+      
+      /* Material 3 System Color Tokens */
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    /* Material Web Typography Customization */
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    /* Base Styles */
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    /* Layout Container */
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Elevation Showcase */
+    .elevation-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .elevation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    
+    .elevation-card {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .elevation-level {
+      font-size: 32px;
+      font-weight: var(--font-weight-bold);
+      color: var(--md-sys-color-primary);
+      margin-bottom: 8px;
+    }
+    
+    .elevation-name {
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: 8px;
+    }
+    
+    .elevation-usage {
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+      line-height: 1.4;
+    }
+    
+    /* Elevation levels */
+    .elevation-0 { box-shadow: var(--elevation-0); }
+    .elevation-1 { box-shadow: var(--elevation-1); }
+    .elevation-2 { box-shadow: var(--elevation-2); }
+    .elevation-3 { box-shadow: var(--elevation-3); }
+    .elevation-4 { box-shadow: var(--elevation-4); }
+    .elevation-5 { box-shadow: var(--elevation-5); }
+    
+    /* Interactive examples */
+    .interactive-examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+    
+    .interactive-card {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      padding: 24px;
+      cursor: pointer;
+      transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      box-shadow: var(--elevation-1);
+    }
+    
+    .interactive-card:hover {
+      box-shadow: var(--elevation-3);
+      transform: translateY(-4px);
+    }
+    
+    .interactive-card:active {
+      box-shadow: var(--elevation-1);
+      transform: translateY(0);
+    }
+    
+    .card-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .card-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+    }
+    
+    /* Component examples */
+    .component-showcase {
+      background: var(--md-sys-color-background);
+      border-radius: 12px;
+      padding: 32px;
+      margin: 24px 0;
+    }
+    
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    
+    .component-example {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .component-demo {
+      background: var(--md-sys-color-surface);
+      border-radius: 8px;
+      padding: 24px;
+      min-height: 120px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .component-label {
+      font-size: 14px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    /* FAB Example */
+    .fab-demo {
+      position: relative;
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      box-shadow: var(--elevation-3);
+    }
+    
+    .fab-demo:hover {
+      box-shadow: var(--elevation-4);
+      transform: scale(1.05);
+    }
+    
+    .fab-demo:active {
+      box-shadow: var(--elevation-2);
+      transform: scale(0.95);
+    }
+    
+    /* Modal example */
+    .modal-demo {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 300px;
+      box-shadow: var(--elevation-5);
+    }
+    
+    .modal-title {
+      margin: 0 0 16px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .modal-content {
+      margin: 0 0 24px 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    
+    /* Code examples */
+    .code-example {
+      background: var(--color-base-gray-90);
+      color: var(--color-base-gray-10);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+      
+      .elevation-grid, .interactive-examples, .components-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Elevation</h1>
+        <p class="page-description md-typescale-body-large">Material Design elevation system for creating depth, hierarchy, and focus in user interfaces.</p>
+      </div>
+      
+      <!-- Elevation Scale -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Elevation Scale</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Elevation uses shadows to create depth and hierarchy. Higher elevations appear closer to the user and cast larger, softer shadows.</p>
+        
+        <div class="elevation-showcase">
+          <div class="elevation-grid">
+            <div class="elevation-card elevation-0">
+              <div class="elevation-level">0</div>
+              <div class="elevation-name md-typescale-title-small">Surface</div>
+              <div class="elevation-usage">Background surfaces, no shadow</div>
+            </div>
+            
+            <div class="elevation-card elevation-1">
+              <div class="elevation-level">1</div>
+              <div class="elevation-name md-typescale-title-small">Raised</div>
+              <div class="elevation-usage">Cards, buttons at rest</div>
+            </div>
+            
+            <div class="elevation-card elevation-2">
+              <div class="elevation-level">2</div>
+              <div class="elevation-name md-typescale-title-small">Hover</div>
+              <div class="elevation-usage">Cards on hover, raised buttons</div>
+            </div>
+            
+            <div class="elevation-card elevation-3">
+              <div class="elevation-level">3</div>
+              <div class="elevation-name md-typescale-title-small">Focus</div>
+              <div class="elevation-usage">FABs, active states</div>
+            </div>
+            
+            <div class="elevation-card elevation-4">
+              <div class="elevation-level">4</div>
+              <div class="elevation-name md-typescale-title-small">Overlay</div>
+              <div class="elevation-usage">Menus, tooltips, dropdowns</div>
+            </div>
+            
+            <div class="elevation-card elevation-5">
+              <div class="elevation-level">5</div>
+              <div class="elevation-name md-typescale-title-small">Modal</div>
+              <div class="elevation-usage">Dialogs, modals, bottom sheets</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Interactive Examples -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Interactive Examples</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Hover and interact with these elements to see how elevation changes with state.</p>
+        
+        <div class="interactive-examples">
+          <div class="interactive-card">
+            <h3 class="card-title md-typescale-title-medium">Budget Overview</h3>
+            <p class="card-description">You've spent 65% of your monthly budget. You're doing great!</p>
+          </div>
+          
+          <div class="interactive-card">
+            <h3 class="card-title md-typescale-title-medium">Emergency Fund</h3>
+            <p class="card-description">$3,500 saved of your $10,000 goal. Keep building that security!</p>
+          </div>
+          
+          <div class="interactive-card">
+            <h3 class="card-title md-typescale-title-medium">Investment Portfolio</h3>
+            <p class="card-description">Your investments have grown 8.2% this year. Steady progress!</p>
+          </div>
+          
+          <div class="interactive-card">
+            <h3 class="card-title md-typescale-title-medium">Debt Payoff</h3>
+            <p class="card-description">Only $2,400 left on your credit card. You're almost debt-free!</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Component Examples -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Component Elevation</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Different components use specific elevation levels to communicate their function and importance.</p>
+        
+        <div class="component-showcase">
+          <div class="components-grid">
+            <div class="component-example">
+              <div class="component-demo elevation-1">
+                <md-filled-button>Default Button</md-filled-button>
+              </div>
+              <div class="component-label">Buttons (Elevation 1)</div>
+            </div>
+            
+            <div class="component-example">
+              <div class="component-demo elevation-2">
+                <div style="padding: 16px; text-align: center;">
+                  <h4 class="md-typescale-title-small" style="margin: 0 0 8px 0;">Quick Tip</h4>
+                  <p class="md-typescale-body-small" style="margin: 0;">Save 20% of your income for the future</p>
+                </div>
+              </div>
+              <div class="component-label">Cards (Elevation 2)</div>
+            </div>
+            
+            <div class="component-example">
+              <div class="component-demo" style="background: transparent; padding: 0; min-height: auto;">
+                <div class="fab-demo">
+                  <md-icon>add</md-icon>
+                </div>
+              </div>
+              <div class="component-label">FAB (Elevation 3)</div>
+            </div>
+            
+            <div class="component-example">
+              <div class="component-demo elevation-4">
+                <div style="padding: 12px;">
+                  <div class="md-typescale-body-small" style="margin-bottom: 8px;">Budget Category</div>
+                  <div class="md-typescale-body-small" style="margin-bottom: 4px;">Edit Category</div>
+                  <div class="md-typescale-body-small">Delete Category</div>
+                </div>
+              </div>
+              <div class="component-label">Menus (Elevation 4)</div>
+            </div>
+            
+            <div class="component-example">
+              <div class="component-demo" style="background: transparent; padding: 0; min-height: auto;">
+                <div class="modal-demo">
+                  <h4 class="modal-title md-typescale-title-medium">Confirm Delete</h4>
+                  <p class="modal-content md-typescale-body-medium">Are you sure you want to delete this budget category?</p>
+                  <div class="modal-actions">
+                    <md-text-button>Cancel</md-text-button>
+                    <md-filled-button>Delete</md-filled-button>
+                  </div>
+                </div>
+              </div>
+              <div class="component-label">Dialogs (Elevation 5)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Usage Guidelines -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Usage Guidelines</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-green-60);">✅ Do</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use elevation to show hierarchy and importance</li>
+              <li>Increase elevation for interactive states (hover, focus)</li>
+              <li>Keep elevation consistent across similar components</li>
+              <li>Use higher elevation for temporary surfaces (modals, menus)</li>
+              <li>Apply elevation meaningfully, not decoratively</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-red-60);">❌ Don't</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use too many different elevation levels</li>
+              <li>Apply heavy shadows to small elements</li>
+              <li>Make permanent surfaces higher than temporary ones</li>
+              <li>Use elevation inconsistently across your interface</li>
+              <li>Overuse high elevation levels</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Hierarchy Principles</h3>
+            <ul class="md-typescale-body-medium">
+              <li><strong>Level 0:</strong> Background surfaces</li>
+              <li><strong>Level 1:</strong> Base components (cards, buttons)</li>
+              <li><strong>Level 2:</strong> Hover states, raised elements</li>
+              <li><strong>Level 3:</strong> Focus states, floating action buttons</li>
+              <li><strong>Level 4:</strong> Overlay content (menus, tooltips)</li>
+              <li><strong>Level 5:</strong> Modal content (dialogs, sheets)</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Accessibility</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Elevation helps users understand interface hierarchy</li>
+              <li>Higher elevation indicates higher importance or focus</li>
+              <li>Don't rely on elevation alone to convey information</li>
+              <li>Ensure sufficient contrast between elevated surfaces</li>
+              <li>Test shadows with high contrast mode</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Implementation -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Implementation</h2>
+        
+        <div class="elevation-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">CSS Shadow Tokens</h3>
+          <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Define elevation as CSS custom properties for consistent application across components.</p>
+          
+          <div class="code-example">
+/* Elevation shadow tokens */
+:root {
+  --elevation-0: none;
+  --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --elevation-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --elevation-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  --elevation-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  --elevation-5: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+/* Usage examples */
+.card {
+  box-shadow: var(--elevation-1);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.card:hover {
+  box-shadow: var(--elevation-2);
+}
+
+.fab {
+  box-shadow: var(--elevation-3);
+}
+
+.modal {
+  box-shadow: var(--elevation-5);
+}
+          </div>
+          
+          <h3 class="md-typescale-title-medium" style="margin: 32px 0 16px 0;">Interactive Transitions</h3>
+          <div class="code-example">
+/* Smooth elevation transitions */
+.interactive-element {
+  box-shadow: var(--elevation-1);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0.0, 0.2, 1),
+              transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.interactive-element:hover {
+  box-shadow: var(--elevation-3);
+  transform: translateY(-2px);
+}
+
+.interactive-element:active {
+  box-shadow: var(--elevation-1);
+  transform: translateY(0);
+}
+
+/* Focus states for accessibility */
+.interactive-element:focus-visible {
+  box-shadow: var(--elevation-2), 
+              0 0 0 3px var(--md-sys-color-primary);
+}
+          </div>
+          
+          <h3 class="md-typescale-title-medium" style="margin: 32px 0 16px 0;">Utility Classes</h3>
+          <div class="code-example">
+/* Elevation utility classes */
+.elevation-0 { box-shadow: var(--elevation-0); }
+.elevation-1 { box-shadow: var(--elevation-1); }
+.elevation-2 { box-shadow: var(--elevation-2); }
+.elevation-3 { box-shadow: var(--elevation-3); }
+.elevation-4 { box-shadow: var(--elevation-4); }
+.elevation-5 { box-shadow: var(--elevation-5); }
+
+/* Hover elevation modifiers */
+.hover-elevation-1:hover { box-shadow: var(--elevation-1); }
+.hover-elevation-2:hover { box-shadow: var(--elevation-2); }
+.hover-elevation-3:hover { box-shadow: var(--elevation-3); }
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    console.log('🏔️ Elevation documentation loaded with interactive examples');
+    
+    // Add click interactions to demonstrate elevation changes
+    document.querySelectorAll('.fab-demo').forEach(fab => {
+      fab.addEventListener('click', () => {
+        console.log('FAB clicked - elevation demonstration');
+      });
+    });
+    
+    document.querySelectorAll('.interactive-card').forEach(card => {
+      card.addEventListener('click', () => {
+        console.log('Card clicked - showing elevation interaction');
+      });
+    });
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

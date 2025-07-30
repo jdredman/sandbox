@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Menu - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Include all the design tokens and base styles */
+    :root {
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .component-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+    }
+    
+    .showcase-item {
+      padding: 24px;
+      background: var(--md-sys-color-background);
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      position: relative;
+    }
+    
+    .showcase-title {
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Menu container positioning */
+    .menu-container {
+      position: relative;
+      display: inline-block;
+      margin: 8px;
+    }
+    
+    /* Demo menu styles */
+    .demo-menu {
+      background: var(--md-sys-color-surface);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 8px 0;
+      min-width: 200px;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 200ms ease;
+    }
+    
+    .demo-menu.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: background-color 150ms ease;
+      color: var(--md-sys-color-on-surface);
+    }
+    
+    .menu-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .menu-item.disabled {
+      color: var(--md-sys-color-on-surface-variant);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    
+    .menu-item-icon {
+      margin-right: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .menu-item-text {
+      flex: 1;
+    }
+    
+    .menu-item-shortcut {
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 12px;
+      margin-left: 12px;
+    }
+    
+    .menu-divider {
+      height: 1px;
+      background-color: var(--md-sys-color-outline-variant);
+      margin: 8px 0;
+    }
+    
+    /* Action log styles */
+    .action-log {
+      background: var(--md-sys-color-surface-variant);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 24px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+      
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Menu</h1>
+        <p class="page-description md-typescale-body-large">Material 3 menus display a list of choices on temporary surfaces.</p>
+      </div>
+      
+      <!-- Basic Menu Examples -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Menu Types</h2>
+        
+        <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+          <div class="component-showcase">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Basic Menus</h3>
+            
+            <div class="menu-container">
+              <md-filled-button id="basic-menu-trigger">
+                <md-icon slot="icon">menu</md-icon>
+                Basic Menu
+              </md-filled-button>
+              <div class="demo-menu" id="basic-menu">
+                <div class="menu-item" data-action="new">
+                  <md-icon class="menu-item-icon">add</md-icon>
+                  <span class="menu-item-text">New</span>
+                  <span class="menu-item-shortcut">Ctrl+N</span>
+                </div>
+                <div class="menu-item" data-action="open">
+                  <md-icon class="menu-item-icon">folder_open</md-icon>
+                  <span class="menu-item-text">Open</span>
+                  <span class="menu-item-shortcut">Ctrl+O</span>
+                </div>
+                <div class="menu-item" data-action="save">
+                  <md-icon class="menu-item-icon">save</md-icon>
+                  <span class="menu-item-text">Save</span>
+                  <span class="menu-item-shortcut">Ctrl+S</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" data-action="print">
+                  <md-icon class="menu-item-icon">print</md-icon>
+                  <span class="menu-item-text">Print</span>
+                  <span class="menu-item-shortcut">Ctrl+P</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-container">
+              <md-outlined-button id="edit-menu-trigger">
+                <md-icon slot="icon">edit</md-icon>
+                Edit Menu
+              </md-outlined-button>
+              <div class="demo-menu" id="edit-menu">
+                <div class="menu-item" data-action="undo">
+                  <md-icon class="menu-item-icon">undo</md-icon>
+                  <span class="menu-item-text">Undo</span>
+                  <span class="menu-item-shortcut">Ctrl+Z</span>
+                </div>
+                <div class="menu-item" data-action="redo">
+                  <md-icon class="menu-item-icon">redo</md-icon>
+                  <span class="menu-item-text">Redo</span>
+                  <span class="menu-item-shortcut">Ctrl+Y</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" data-action="cut">
+                  <md-icon class="menu-item-icon">content_cut</md-icon>
+                  <span class="menu-item-text">Cut</span>
+                  <span class="menu-item-shortcut">Ctrl+X</span>
+                </div>
+                <div class="menu-item" data-action="copy">
+                  <md-icon class="menu-item-icon">content_copy</md-icon>
+                  <span class="menu-item-text">Copy</span>
+                  <span class="menu-item-shortcut">Ctrl+C</span>
+                </div>
+                <div class="menu-item" data-action="paste">
+                  <md-icon class="menu-item-icon">content_paste</md-icon>
+                  <span class="menu-item-text">Paste</span>
+                  <span class="menu-item-shortcut">Ctrl+V</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="component-showcase">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Context Menus</h3>
+            
+            <div class="menu-container">
+              <md-filled-tonal-button id="view-menu-trigger">
+                <md-icon slot="icon">visibility</md-icon>
+                View Options
+              </md-filled-tonal-button>
+              <div class="demo-menu" id="view-menu">
+                <div class="menu-item" data-action="zoom-in">
+                  <md-icon class="menu-item-icon">zoom_in</md-icon>
+                  <span class="menu-item-text">Zoom In</span>
+                  <span class="menu-item-shortcut">Ctrl++</span>
+                </div>
+                <div class="menu-item" data-action="zoom-out">
+                  <md-icon class="menu-item-icon">zoom_out</md-icon>
+                  <span class="menu-item-text">Zoom Out</span>
+                  <span class="menu-item-shortcut">Ctrl+-</span>
+                </div>
+                <div class="menu-item" data-action="fullscreen">
+                  <md-icon class="menu-item-icon">fullscreen</md-icon>
+                  <span class="menu-item-text">Fullscreen</span>
+                  <span class="menu-item-shortcut">F11</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" data-action="theme">
+                  <md-icon class="menu-item-icon">palette</md-icon>
+                  <span class="menu-item-text">Change Theme</span>
+                </div>
+                <div class="menu-item disabled" data-action="developer">
+                  <md-icon class="menu-item-icon">code</md-icon>
+                  <span class="menu-item-text">Developer Tools</span>
+                  <span class="menu-item-shortcut">F12</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-container">
+              <md-text-button id="share-menu-trigger">
+                <md-icon slot="icon">share</md-icon>
+                Share
+              </md-text-button>
+              <div class="demo-menu" id="share-menu">
+                <div class="menu-item" data-action="email">
+                  <md-icon class="menu-item-icon">email</md-icon>
+                  <span class="menu-item-text">Email</span>
+                </div>
+                <div class="menu-item" data-action="link">
+                  <md-icon class="menu-item-icon">link</md-icon>
+                  <span class="menu-item-text">Copy Link</span>
+                </div>
+                <div class="menu-item" data-action="social">
+                  <md-icon class="menu-item-icon">share</md-icon>
+                  <span class="menu-item-text">Social Media</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" data-action="export">
+                  <md-icon class="menu-item-icon">download</md-icon>
+                  <span class="menu-item-text">Export</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Advanced Menu Examples -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Advanced Examples</h2>
+        
+        <div class="component-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Application Menu Bar</h3>
+          
+          <div style="display: flex; gap: 0; background: var(--md-sys-color-surface-variant); border-radius: 8px; padding: 8px;">
+            <div class="menu-container">
+              <md-text-button id="file-menu-trigger">File</md-text-button>
+              <div class="demo-menu" id="file-menu">
+                <div class="menu-item" data-action="new-document">
+                  <md-icon class="menu-item-icon">description</md-icon>
+                  <span class="menu-item-text">New Document</span>
+                  <span class="menu-item-shortcut">Ctrl+N</span>
+                </div>
+                <div class="menu-item" data-action="new-folder">
+                  <md-icon class="menu-item-icon">create_new_folder</md-icon>
+                  <span class="menu-item-text">New Folder</span>
+                  <span class="menu-item-shortcut">Ctrl+Shift+N</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" data-action="open-file">
+                  <md-icon class="menu-item-icon">folder_open</md-icon>
+                  <span class="menu-item-text">Open File</span>
+                  <span class="menu-item-shortcut">Ctrl+O</span>
+                </div>
+                <div class="menu-item" data-action="open-recent">
+                  <md-icon class="menu-item-icon">history</md-icon>
+                  <span class="menu-item-text">Open Recent</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" data-action="save-file">
+                  <md-icon class="menu-item-icon">save</md-icon>
+                  <span class="menu-item-text">Save</span>
+                  <span class="menu-item-shortcut">Ctrl+S</span>
+                </div>
+                <div class="menu-item" data-action="save-as">
+                  <md-icon class="menu-item-icon">save_as</md-icon>
+                  <span class="menu-item-text">Save As...</span>
+                  <span class="menu-item-shortcut">Ctrl+Shift+S</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" data-action="export-pdf">
+                  <md-icon class="menu-item-icon">picture_as_pdf</md-icon>
+                  <span class="menu-item-text">Export as PDF</span>
+                </div>
+                <div class="menu-item" data-action="print-file">
+                  <md-icon class="menu-item-icon">print</md-icon>
+                  <span class="menu-item-text">Print</span>
+                  <span class="menu-item-shortcut">Ctrl+P</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-container">
+              <md-text-button id="format-menu-trigger">Format</md-text-button>
+              <div class="demo-menu" id="format-menu">
+                <div class="menu-item" data-action="bold">
+                  <md-icon class="menu-item-icon">format_bold</md-icon>
+                  <span class="menu-item-text">Bold</span>
+                  <span class="menu-item-shortcut">Ctrl+B</span>
+                </div>
+                <div class="menu-item" data-action="italic">
+                  <md-icon class="menu-item-icon">format_italic</md-icon>
+                  <span class="menu-item-text">Italic</span>
+                  <span class="menu-item-shortcut">Ctrl+I</span>
+                </div>
+                <div class="menu-item" data-action="underline">
+                  <md-icon class="menu-item-icon">format_underlined</md-icon>
+                  <span class="menu-item-text">Underline</span>
+                  <span class="menu-item-shortcut">Ctrl+U</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" data-action="align-left">
+                  <md-icon class="menu-item-icon">format_align_left</md-icon>
+                  <span class="menu-item-text">Align Left</span>
+                </div>
+                <div class="menu-item" data-action="align-center">
+                  <md-icon class="menu-item-icon">format_align_center</md-icon>
+                  <span class="menu-item-text">Align Center</span>
+                </div>
+                <div class="menu-item" data-action="align-right">
+                  <md-icon class="menu-item-icon">format_align_right</md-icon>
+                  <span class="menu-item-text">Align Right</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-container">
+              <md-text-button id="tools-menu-trigger">Tools</md-text-button>
+              <div class="demo-menu" id="tools-menu">
+                <div class="menu-item" data-action="spell-check">
+                  <md-icon class="menu-item-icon">spellcheck</md-icon>
+                  <span class="menu-item-text">Spell Check</span>
+                  <span class="menu-item-shortcut">F7</span>
+                </div>
+                <div class="menu-item" data-action="word-count">
+                  <md-icon class="menu-item-icon">text_fields</md-icon>
+                  <span class="menu-item-text">Word Count</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" data-action="preferences">
+                  <md-icon class="menu-item-icon">settings</md-icon>
+                  <span class="menu-item-text">Preferences</span>
+                  <span class="menu-item-shortcut">Ctrl+,</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-container">
+              <md-text-button id="help-menu-trigger">Help</md-text-button>
+              <div class="demo-menu" id="help-menu">
+                <div class="menu-item" data-action="documentation">
+                  <md-icon class="menu-item-icon">help</md-icon>
+                  <span class="menu-item-text">Documentation</span>
+                  <span class="menu-item-shortcut">F1</span>
+                </div>
+                <div class="menu-item" data-action="shortcuts">
+                  <md-icon class="menu-item-icon">keyboard</md-icon>
+                  <span class="menu-item-text">Keyboard Shortcuts</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" data-action="feedback">
+                  <md-icon class="menu-item-icon">feedback</md-icon>
+                  <span class="menu-item-text">Send Feedback</span>
+                </div>
+                <div class="menu-item" data-action="about">
+                  <md-icon class="menu-item-icon">info</md-icon>
+                  <span class="menu-item-text">About</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="action-log">
+            <h4 class="md-typescale-title-small" style="margin: 0 0 8px 0;">Menu Action Log</h4>
+            <div id="action-log-content" class="md-typescale-body-small">Click on menu items to see actions logged here...</div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Best Practices -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Best Practices</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-green-70);">Do</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Group related actions logically</li>
+              <li>Use dividers to separate sections</li>
+              <li>Include keyboard shortcuts where appropriate</li>
+              <li>Provide clear, descriptive labels</li>
+              <li>Use consistent icons throughout</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-red-70);">Don't</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Create overly long menu lists</li>
+              <li>Use ambiguous or unclear labels</li>
+              <li>Mix different interaction patterns</li>
+              <li>Forget to handle disabled states</li>
+              <li>Ignore mobile touch targets</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Accessibility</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Support keyboard navigation</li>
+              <li>Provide proper ARIA labels</li>
+              <li>Ensure sufficient contrast</li>
+              <li>Support screen readers</li>
+              <li>Include focus indicators</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const actionLog = document.getElementById('action-log-content');
+      let actions = [];
+      
+      function logAction(action, trigger = '') {
+        const timestamp = new Date().toLocaleTimeString();
+        actions.push(`${timestamp}: ${action}${trigger ? ` (${trigger})` : ''}`);
+        
+        // Keep only last 10 actions
+        if (actions.length > 10) {
+          actions = actions.slice(-10);
+        }
+        
+        if (actionLog) {
+          actionLog.innerHTML = actions.join('<br>');
+        }
+      }
+      
+      // Menu toggle functionality
+      function setupMenu(triggerId, menuId) {
+        const trigger = document.getElementById(triggerId);
+        const menu = document.getElementById(menuId);
+        
+        if (!trigger || !menu) return;
+        
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          
+          // Close all other menus
+          document.querySelectorAll('.demo-menu').forEach(m => {
+            if (m !== menu) m.classList.remove('open');
+          });
+          
+          // Toggle this menu
+          menu.classList.toggle('open');
+          
+          if (menu.classList.contains('open')) {
+            logAction(`Opened ${triggerId.replace('-trigger', '')} menu`);
+          }
+        });
+        
+        // Handle menu item clicks
+        menu.querySelectorAll('.menu-item:not(.disabled)').forEach(item => {
+          item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const action = item.dataset.action;
+            const text = item.querySelector('.menu-item-text')?.textContent || action;
+            
+            logAction(`Selected "${text}"`, triggerId.replace('-trigger', ''));
+            menu.classList.remove('open');
+          });
+        });
+      }
+      
+      // Setup all menus
+      const menuConfigs = [
+        ['basic-menu-trigger', 'basic-menu'],
+        ['edit-menu-trigger', 'edit-menu'],
+        ['view-menu-trigger', 'view-menu'],
+        ['share-menu-trigger', 'share-menu'],
+        ['file-menu-trigger', 'file-menu'],
+        ['format-menu-trigger', 'format-menu'],
+        ['tools-menu-trigger', 'tools-menu'],
+        ['help-menu-trigger', 'help-menu']
+      ];
+      
+      menuConfigs.forEach(([triggerId, menuId]) => {
+        setupMenu(triggerId, menuId);
+      });
+      
+      // Close menus when clicking outside
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.demo-menu').forEach(menu => {
+          menu.classList.remove('open');
+        });
+      });
+      
+      // Handle escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.demo-menu').forEach(menu => {
+            menu.classList.remove('open');
+          });
+        }
+      });
+      
+      console.log('✅ Menu interactions initialized');
+    });
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Card - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Include all the design tokens and base styles */
+    :root {
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .component-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+    }
+    
+    .showcase-item {
+      padding: 24px;
+      background: var(--md-sys-color-background);
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .showcase-title {
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Custom card styles */
+    .custom-card {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      overflow: hidden;
+      transition: all 200ms ease;
+      cursor: pointer;
+    }
+    
+    .custom-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+    
+    .card-image {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(135deg, var(--md-sys-color-primary), var(--md-sys-color-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--md-sys-color-on-primary);
+    }
+    
+    .card-content {
+      padding: 16px;
+    }
+    
+    .card-actions {
+      padding: 8px 16px 16px;
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    
+    .card-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .card-subtitle {
+      margin: 0 0 12px 0;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+    }
+    
+    .card-description {
+      margin: 0;
+      line-height: 1.5;
+    }
+    
+    /* Card grid layouts */
+    .card-grid {
+      display: grid;
+      gap: 24px;
+    }
+    
+    .card-grid.grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .card-grid.grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .card-grid.grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Card</h1>
+        <p class="page-description md-typescale-body-large">Material 3 cards contain content and actions about a single subject.</p>
+      </div>
+      
+      <!-- Basic Cards -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Card Types</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Elevated Cards</h3>
+              <div class="card-grid grid-2">
+                <div class="custom-card">
+                  <div class="card-content">
+                    <h4 class="card-title md-typescale-title-medium">Simple Card</h4>
+                    <p class="card-description md-typescale-body-medium">This is a basic card with just content and no additional elements.</p>
+                  </div>
+                </div>
+                
+                <div class="custom-card">
+                  <div class="card-content">
+                    <h4 class="card-title md-typescale-title-medium">Card with Actions</h4>
+                    <p class="card-description md-typescale-body-medium">This card includes action buttons at the bottom.</p>
+                  </div>
+                  <div class="card-actions">
+                    <md-text-button>Learn More</md-text-button>
+                    <md-filled-button>Get Started</md-filled-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Cards with Media</h3>
+              <div class="card-grid grid-2">
+                <div class="custom-card">
+                  <div class="card-image">
+                    <md-icon style="font-size: 48px;">image</md-icon>
+                  </div>
+                  <div class="card-content">
+                    <h4 class="card-title md-typescale-title-medium">Media Card</h4>
+                    <p class="card-subtitle md-typescale-body-small">Subtitle goes here</p>
+                    <p class="card-description md-typescale-body-medium">Cards can include media like images or videos at the top.</p>
+                  </div>
+                  <div class="card-actions">
+                    <md-icon-button>
+                      <md-icon>favorite_border</md-icon>
+                    </md-icon-button>
+                    <md-icon-button>
+                      <md-icon>share</md-icon>
+                    </md-icon-button>
+                  </div>
+                </div>
+                
+                <div class="custom-card">
+                  <div class="card-image" style="background: linear-gradient(135deg, var(--md-sys-color-tertiary), var(--md-sys-color-error));">
+                    <md-icon style="font-size: 48px;">video_library</md-icon>
+                  </div>
+                  <div class="card-content">
+                    <h4 class="card-title md-typescale-title-medium">Video Content</h4>
+                    <p class="card-subtitle md-typescale-body-small">Educational Series</p>
+                    <p class="card-description md-typescale-body-medium">Access our library of educational video content.</p>
+                  </div>
+                  <div class="card-actions">
+                    <md-text-button>Watch</md-text-button>
+                    <md-filled-button>Subscribe</md-filled-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Card Layouts -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Card Layouts</h2>
+        
+        <div class="component-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Product Grid</h3>
+          <div class="card-grid grid-3">
+            <div class="custom-card">
+              <div class="card-image" style="background: linear-gradient(135deg, #FF6B6B, #4ECDC4);">
+                <md-icon style="font-size: 48px;">smartphone</md-icon>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title md-typescale-title-medium">Mobile App</h4>
+                <p class="card-subtitle md-typescale-body-small">iOS & Android</p>
+                <p class="card-description md-typescale-body-medium">Native mobile application with full feature parity.</p>
+              </div>
+              <div class="card-actions">
+                <md-text-button>Preview</md-text-button>
+                <md-filled-button>Download</md-filled-button>
+              </div>
+            </div>
+            
+            <div class="custom-card">
+              <div class="card-image" style="background: linear-gradient(135deg, #A8E6CF, #88D8C0);">
+                <md-icon style="font-size: 48px;">web</md-icon>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title md-typescale-title-medium">Web Platform</h4>
+                <p class="card-subtitle md-typescale-body-small">Browser-based</p>
+                <p class="card-description md-typescale-body-medium">Access all features directly from your web browser.</p>
+              </div>
+              <div class="card-actions">
+                <md-text-button>Try Demo</md-text-button>
+                <md-filled-button>Sign Up</md-filled-button>
+              </div>
+            </div>
+            
+            <div class="custom-card">
+              <div class="card-image" style="background: linear-gradient(135deg, #FFD93D, #FF9A8B);">
+                <md-icon style="font-size: 48px;">desktop_windows</md-icon>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title md-typescale-title-medium">Desktop App</h4>
+                <p class="card-subtitle md-typescale-body-small">Windows & macOS</p>
+                <p class="card-description md-typescale-body-medium">Full-featured desktop application for power users.</p>
+              </div>
+              <div class="card-actions">
+                <md-text-button>Features</md-text-button>
+                <md-filled-button>Install</md-filled-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Interactive Demo -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Interactive Demo</h2>
+        
+        <div class="component-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Team Member Cards</h3>
+          <div class="card-grid grid-4">
+            <div class="custom-card" data-member="sarah">
+              <div class="card-image" style="background: linear-gradient(135deg, var(--md-sys-color-primary), var(--md-sys-color-primary-container));">
+                <md-icon style="font-size: 48px;">person</md-icon>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title md-typescale-title-medium">Sarah Johnson</h4>
+                <p class="card-subtitle md-typescale-body-small">Product Designer</p>
+                <p class="card-description md-typescale-body-medium">Specializes in user experience and interface design.</p>
+              </div>
+              <div class="card-actions">
+                <md-icon-button class="contact-btn" data-member="sarah">
+                  <md-icon>email</md-icon>
+                </md-icon-button>
+                <md-icon-button class="profile-btn" data-member="sarah">
+                  <md-icon>person</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="custom-card" data-member="mike">
+              <div class="card-image" style="background: linear-gradient(135deg, var(--md-sys-color-secondary), var(--md-sys-color-secondary-container));">
+                <md-icon style="font-size: 48px;">person</md-icon>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title md-typescale-title-medium">Mike Chen</h4>
+                <p class="card-subtitle md-typescale-body-small">Frontend Developer</p>
+                <p class="card-description md-typescale-body-medium">Expert in React, TypeScript, and modern web technologies.</p>
+              </div>
+              <div class="card-actions">
+                <md-icon-button class="contact-btn" data-member="mike">
+                  <md-icon>email</md-icon>
+                </md-icon-button>
+                <md-icon-button class="profile-btn" data-member="mike">
+                  <md-icon>person</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="custom-card" data-member="alex">
+              <div class="card-image" style="background: linear-gradient(135deg, var(--md-sys-color-tertiary), var(--md-sys-color-tertiary-container));">
+                <md-icon style="font-size: 48px;">person</md-icon>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title md-typescale-title-medium">Alex Rivera</h4>
+                <p class="card-subtitle md-typescale-body-small">Backend Engineer</p>
+                <p class="card-description md-typescale-body-medium">Builds scalable APIs and cloud infrastructure.</p>
+              </div>
+              <div class="card-actions">
+                <md-icon-button class="contact-btn" data-member="alex">
+                  <md-icon>email</md-icon>
+                </md-icon-button>
+                <md-icon-button class="profile-btn" data-member="alex">
+                  <md-icon>person</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="custom-card" data-member="jordan">
+              <div class="card-image" style="background: linear-gradient(135deg, var(--color-base-green-50), var(--color-base-green-20));">
+                <md-icon style="font-size: 48px;">person</md-icon>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title md-typescale-title-medium">Jordan Kim</h4>
+                <p class="card-subtitle md-typescale-body-small">Product Manager</p>
+                <p class="card-description md-typescale-body-medium">Leads product strategy and cross-functional collaboration.</p>
+              </div>
+              <div class="card-actions">
+                <md-icon-button class="contact-btn" data-member="jordan">
+                  <md-icon>email</md-icon>
+                </md-icon-button>
+                <md-icon-button class="profile-btn" data-member="jordan">
+                  <md-icon>person</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+          </div>
+          
+          <div style="margin-top: 24px; padding: 16px; background: var(--md-sys-color-surface-variant); border-radius: 8px;">
+            <h4 class="md-typescale-title-small" style="margin: 0 0 8px 0;">Card Interactions</h4>
+            <div id="interaction-log" class="md-typescale-body-small"></div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Best Practices -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Best Practices</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-green-70);">Do</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Keep content focused on a single subject</li>
+              <li>Use consistent card dimensions in grids</li>
+              <li>Include clear hierarchy with titles and body text</li>
+              <li>Provide meaningful actions</li>
+              <li>Use appropriate elevation for context</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-red-70);">Don't</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Overload cards with too much content</li>
+              <li>Use cards for single lines of text</li>
+              <li>Mix different card types inappropriately</li>
+              <li>Forget to provide touch/click feedback</li>
+              <li>Use low contrast for text</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Accessibility</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Ensure sufficient color contrast</li>
+              <li>Provide alt text for images</li>
+              <li>Use semantic HTML structure</li>
+              <li>Support keyboard navigation</li>
+              <li>Include proper ARIA labels</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const interactionLog = document.getElementById('interaction-log');
+      let interactions = [];
+      
+      function logInteraction(type, member) {
+        const timestamp = new Date().toLocaleTimeString();
+        interactions.push(`${timestamp}: ${type} action for ${member}`);
+        
+        // Keep only last 5 interactions
+        if (interactions.length > 5) {
+          interactions = interactions.slice(-5);
+        }
+        
+        if (interactionLog) {
+          interactionLog.textContent = interactions.join(' | ');
+        }
+      }
+      
+      // Handle contact button clicks
+      document.querySelectorAll('.contact-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const member = btn.dataset.member;
+          logInteraction('Contact', member);
+          console.log(`Contact clicked for ${member}`);
+        });
+      });
+      
+      // Handle profile button clicks
+      document.querySelectorAll('.profile-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const member = btn.dataset.member;
+          logInteraction('Profile', member);
+          console.log(`Profile clicked for ${member}`);
+        });
+      });
+      
+      // Handle card clicks
+      document.querySelectorAll('.custom-card[data-member]').forEach(card => {
+        card.addEventListener('click', () => {
+          const member = card.dataset.member;
+          logInteraction('Card', member);
+          console.log(`Card clicked for ${member}`);
+        });
+      });
+      
+      // Initialize interaction log
+      interactionLog.textContent = 'Click on cards or buttons to see interactions...';
+      
+      console.log('✅ Card interactions initialized');
+    });
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

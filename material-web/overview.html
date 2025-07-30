@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Overview - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <style>
+    /* === COMPLETE DESIGN TOKEN DEFINITIONS === */
+    :root {
+      /* === COLOR TOKENS === */
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      
+      /* Gray Scale */
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      
+      /* Blue Scale */
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      
+      /* Teal Scale */
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      
+      /* Purple Scale */
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      
+      /* Red Scale */
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      
+      /* Green Scale */
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      
+      /* Font Families */
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      
+      /* Font Weights */
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      
+      /* Material 3 System Tokens */
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    /* Material Web Typography Customization */
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    /* Base Styles */
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--md-sys-color-surface);
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+      padding: 16px 32px;
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .nav-section {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .nav-link {
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-link:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 80px 32px;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .hero-title {
+      margin: 0 0 24px 0;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero-description {
+      margin: 0 0 40px 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 80px 32px;
+      background-color: var(--md-sys-color-surface);
+    }
+    
+    .features-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .features-title {
+      text-align: center;
+      margin: 0 0 48px 0;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    
+    .feature-card {
+      padding: 32px;
+      background-color: var(--md-sys-color-background);
+      border-radius: 16px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      text-align: center;
+    }
+    
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px auto;
+      background: var(--md-sys-color-primary-container);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: var(--md-sys-color-on-primary-container);
+    }
+    
+    .feature-title {
+      margin: 0 0 16px 0;
+    }
+    
+    .feature-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    /* Component Showcase */
+    .showcase {
+      padding: 80px 32px;
+    }
+    
+    .showcase-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .showcase-title {
+      text-align: center;
+      margin: 0 0 48px 0;
+    }
+    
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 32px;
+    }
+    
+    .showcase-card {
+      background: var(--md-sys-color-surface);
+      border-radius: 16px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      overflow: hidden;
+      transition: box-shadow 150ms ease;
+    }
+    
+    .showcase-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    
+    .showcase-header {
+      padding: 24px;
+      background: var(--md-sys-color-surface-variant);
+    }
+    
+    .showcase-header h3 {
+      margin: 0 0 8px 0;
+    }
+    
+    .showcase-header p {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .showcase-demo {
+      padding: 32px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: var(--md-sys-color-surface);
+      border-top: 1px solid var(--md-sys-color-outline-variant);
+      padding: 48px 32px 24px 32px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-link {
+      color: var(--md-sys-color-on-surface-variant);
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+    
+    .footer-link:hover {
+      color: var(--md-sys-color-primary);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        padding: 16px;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .nav-section {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hero {
+        padding: 48px 16px;
+      }
+      
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .features,
+      .showcase {
+        padding: 48px 16px;
+      }
+      
+      .features-grid,
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer {
+        padding: 32px 16px 16px 16px;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo-section">
+        <svg alt="Ramsey Design System" width="60" height="32" viewBox="0 0 60 32" fill="none">
+          <g clip-path="url(#clip0_1232_459)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2H52C55.3137 2 58 4.68629 58 8V24C58 27.3137 55.3137 30 52 30H8C4.68629 30 2 27.3137 2 24V8C2 4.68629 4.68629 2 8 2ZM0 8C0 3.58172 3.58172 0 8 0H52C56.4183 0 60 3.58172 60 8V24C60 28.4183 56.4183 32 52 32H8C3.58172 32 0 28.4183 0 24V8ZM45.1976 14.24C47.2776 14.94 48.7976 15.98 48.7976 18.4C48.7976 19.84 48.0976 21.14 46.9976 22C45.8976 22.84 44.5176 23.18 42.9176 23.18C41.3176 23.18 39.4776 22.74 37.5976 21.34L39.5976 17.94C40.8776 19.02 42.6776 19.44 43.2776 19.44C43.8776 19.44 44.2976 19.26 44.2976 18.86C44.2976 18.46 43.7976 18.3 43.2976 18.14C42.7976 18 41.6976 17.64 41.2976 17.5C39.3776 16.74 38.1376 15.84 38.1376 13.54C38.1376 12.04 38.9176 10.88 39.7376 10.2C40.5776 9.50001 41.9576 9.00001 43.7976 9.00001C45.6376 9.00001 47.5176 9.66001 48.7176 10.66L46.9976 13.86C45.9576 12.94 44.4376 12.54 43.7176 12.54C42.9976 12.54 42.5976 12.68 42.5976 13.1C42.5976 13.4569 43.1071 13.6068 43.4442 13.706L43.4922 13.7202C43.5152 13.727 43.5371 13.7336 43.5576 13.74C43.6691 13.7748 43.8436 13.8267 44.0441 13.8862L44.0442 13.8862C44.4192 13.9975 44.8849 14.1357 45.1976 14.24ZM24 22.94L20.9 17.7L20.9127 17.6924C21.5235 17.326 23.2 16.3205 23.2 13.54C23.2 12.04 22.5 10.84 21.5 10.14C20.5 9.44001 19.2 9.14001 17.5 9.14001H11.5V22.94H16.02V18.34H16.6L18.8 22.94H24ZM18.64 13.74C18.64 14.64 17.92 14.94 17.14 14.94H16V12.54H17.14C17.64 12.54 17.94 12.64 18.14 12.8L18.1497 12.8068C18.3495 12.9465 18.64 13.1496 18.64 13.74ZM37.7031 16.04C37.7031 11.08 34.4831 9.14001 29.9031 9.14001H24.7031V22.94H29.9031C34.4831 22.94 37.7031 21 37.7031 16.04ZM33.1431 16.04C33.1431 18 32.2631 19.14 30.2431 19.14H29.2031V12.84H30.2431C32.3431 12.84 33.1431 14.04 33.1431 16.04Z" fill="var(--md-sys-color-on-surface)"></path>
+          </g>
+          <defs>
+            <clipPath id="clip0_1232_459">
+              <rect width="60" height="32" fill="white"></rect>
+            </clipPath>
+          </defs>
+        </svg>
+        <div class="md-typescale-title-medium">Material 3 Design System</div>
+      </div>
+      
+      <nav class="nav-section">
+        <a href="foundations/index.html" class="nav-link">Foundations</a>
+        <a href="components/index.html" class="nav-link">Components</a>
+        <a href="patterns/index.html" class="nav-link">Patterns</a>
+        <a href="get-started/installation.html" class="nav-link">Get Started</a>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="hero-title md-typescale-display-large">
+      Material 3 meets Ramsey
+    </h1>
+    <p class="hero-description md-typescale-body-large">
+      A comprehensive design system built on Material 3 principles, featuring Ramsey brand colors, Gibson typography, and battle-tested components for consistent user experiences.
+    </p>
+    <div class="hero-actions">
+      <md-filled-button onclick="window.location.href='get-started/installation.html'">
+        <md-icon slot="icon">rocket_launch</md-icon>
+        Get Started
+      </md-filled-button>
+      <md-outlined-button onclick="window.location.href='components/index.html'">
+        <md-icon slot="icon">widgets</md-icon>
+        View Components
+      </md-outlined-button>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section class="features">
+    <div class="features-content">
+      <h2 class="features-title md-typescale-display-medium">Built for Modern Web</h2>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3 class="feature-title md-typescale-headline-small">Material 3 Design</h3>
+          <p class="feature-description md-typescale-body-medium">
+            Built on Google's Material 3 design principles with adaptive color schemes, dynamic theming, and accessibility-first components.
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🏷️</div>
+          <h3 class="feature-title md-typescale-headline-small">Design Tokens</h3>
+          <p class="feature-description md-typescale-body-medium">
+            Comprehensive token system with Ramsey brand colors mapped to Material 3 semantic roles for consistent theming across all platforms.
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3 class="feature-title md-typescale-headline-small">Gibson Typography</h3>
+          <p class="feature-description md-typescale-body-medium">
+            Material 3 typography scale enhanced with Gibson font family, maintaining brand identity while ensuring optimal readability.
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title md-typescale-headline-small">Web Components</h3>
+          <p class="feature-description md-typescale-body-medium">
+            Native web components powered by Material Web, providing framework-agnostic solutions with zero dependencies.
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">♿</div>
+          <h3 class="feature-title md-typescale-headline-small">Accessibility First</h3>
+          <p class="feature-description md-typescale-body-medium">
+            WCAG 2.1 AA compliant components with keyboard navigation, screen reader support, and high contrast mode compatibility.
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3 class="feature-title md-typescale-headline-small">Developer Ready</h3>
+          <p class="feature-description md-typescale-body-medium">
+            TypeScript support, comprehensive documentation, and code examples for rapid development and easy integration.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Component Showcase -->
+  <section class="showcase">
+    <div class="showcase-content">
+      <h2 class="showcase-title md-typescale-display-medium">Component Library</h2>
+      
+      <div class="showcase-grid">
+        <div class="showcase-card">
+          <div class="showcase-header">
+            <h3 class="md-typescale-headline-small">Buttons</h3>
+            <p class="md-typescale-body-medium">Material 3 buttons with multiple variants and states</p>
+          </div>
+          <div class="showcase-demo">
+            <md-filled-button>Get Started</md-filled-button>
+            <md-outlined-button>Learn More</md-outlined-button>
+            <md-text-button>Cancel</md-text-button>
+          </div>
+        </div>
+        
+        <div class="showcase-card">
+          <div class="showcase-header">
+            <h3 class="md-typescale-headline-small">Form Controls</h3>
+            <p class="md-typescale-body-medium">Input fields, checkboxes, and selection controls</p>
+          </div>
+          <div class="showcase-demo">
+            <md-outlined-text-field label="Email address" style="width: 200px;"></md-outlined-text-field>
+            <md-checkbox checked></md-checkbox>
+            <md-switch selected></md-switch>
+          </div>
+        </div>
+        
+        <div class="showcase-card">
+          <div class="showcase-header">
+            <h3 class="md-typescale-headline-small">Navigation</h3>
+            <p class="md-typescale-body-medium">Tabs, menus, and navigation components</p>
+          </div>
+          <div class="showcase-demo">
+            <md-primary-tab active>Home</md-primary-tab>
+            <md-primary-tab>About</md-primary-tab>
+            <md-primary-tab>Contact</md-primary-tab>
+          </div>
+        </div>
+        
+        <div class="showcase-card">
+          <div class="showcase-header">
+            <h3 class="md-typescale-headline-small">Actions</h3>
+            <p class="md-typescale-body-medium">FABs, icon buttons, and action controls</p>
+          </div>
+          <div class="showcase-demo">
+            <md-fab>
+              <md-icon slot="icon">add</md-icon>
+            </md-fab>
+            <md-icon-button>
+              <md-icon>favorite</md-icon>
+            </md-icon-button>
+            <md-icon-button>
+              <md-icon>share</md-icon>
+            </md-icon-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="foundations/index.html" class="footer-link">Foundations</a>
+        <a href="components/index.html" class="footer-link">Components</a>
+        <a href="patterns/index.html" class="footer-link">Patterns</a>
+        <a href="get-started/installation.html" class="footer-link">Get Started</a>
+        <a href="https://github.com/material-components/material-web" class="footer-link" target="_blank">GitHub</a>
+        <a href="https://m3.material.io/" class="footer-link" target="_blank">Material Design</a>
+      </div>
+      <p class="md-typescale-body-small" style="margin: 0; color: var(--md-sys-color-on-surface-variant);">
+        Built with Material Web Components and powered by Material 3 design principles.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

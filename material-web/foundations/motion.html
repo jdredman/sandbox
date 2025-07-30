@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Motion - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Complete design token definitions */
+    :root {
+      /* Base Colors */
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      
+      /* Gray Scale */
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      
+      /* Blue Scale */
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      
+      /* Teal Scale */
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      
+      /* Purple Scale */
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      
+      /* Red Scale */
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      
+      /* Green Scale */
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      
+      /* Typography */
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      
+      /* Motion Duration Tokens */
+      --motion-duration-instant: 0ms;
+      --motion-duration-quick: 150ms;
+      --motion-duration-moderate: 300ms;
+      --motion-duration-slow: 500ms;
+      --motion-duration-extra-slow: 700ms;
+      
+      /* Motion Easing Tokens */
+      --motion-easing-linear: linear;
+      --motion-easing-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+      --motion-easing-emphasized: cubic-bezier(0.2, 0.0, 0, 1);
+      --motion-easing-decelerated: cubic-bezier(0.0, 0.0, 0.2, 1);
+      --motion-easing-accelerated: cubic-bezier(0.4, 0.0, 1, 1);
+      
+      /* Material 3 System Color Tokens */
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    /* Material Web Typography Customization */
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    /* Base Styles */
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    /* Layout Container */
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Motion Showcase */
+    .motion-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    /* Duration examples */
+    .duration-examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin: 24px 0;
+    }
+    
+    .duration-card {
+      background: var(--md-sys-color-surface);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .duration-title {
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: 8px;
+    }
+    
+    .duration-value {
+      color: var(--md-sys-color-primary);
+      font-size: 24px;
+      font-weight: var(--font-weight-bold);
+      margin-bottom: 8px;
+    }
+    
+    .duration-usage {
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+      margin-bottom: 16px;
+    }
+    
+    .duration-demo {
+      height: 32px;
+      background: var(--md-sys-color-primary);
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .duration-demo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--md-sys-color-tertiary);
+      transition: left var(--motion-easing-standard);
+    }
+    
+    .duration-demo.animating::before {
+      left: 0;
+    }
+    
+    /* Duration-specific animations */
+    .duration-instant::before { transition-duration: var(--motion-duration-instant); }
+    .duration-quick::before { transition-duration: var(--motion-duration-quick); }
+    .duration-moderate::before { transition-duration: var(--motion-duration-moderate); }
+    .duration-slow::before { transition-duration: var(--motion-duration-slow); }
+    .duration-extra-slow::before { transition-duration: var(--motion-duration-extra-slow); }
+    
+    /* Easing examples */
+    .easing-examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin: 24px 0;
+    }
+    
+    .easing-card {
+      background: var(--md-sys-color-surface);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    
+    .easing-title {
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: 8px;
+    }
+    
+    .easing-curve {
+      color: var(--md-sys-color-on-surface-variant);
+      font-family: monospace;
+      font-size: 11px;
+      margin-bottom: 16px;
+    }
+    
+    .easing-demo {
+      height: 8px;
+      background: var(--md-sys-color-surface-variant);
+      border-radius: 4px;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    
+    .easing-ball {
+      width: 16px;
+      height: 16px;
+      background: var(--md-sys-color-primary);
+      border-radius: 50%;
+      position: absolute;
+      top: -4px;
+      left: -8px;
+      transition: left 500ms;
+    }
+    
+    .easing-demo.animating .easing-ball {
+      left: calc(100% - 8px);
+    }
+    
+    /* Easing-specific curves */
+    .easing-linear .easing-ball { transition-timing-function: var(--motion-easing-linear); }
+    .easing-standard .easing-ball { transition-timing-function: var(--motion-easing-standard); }
+    .easing-emphasized .easing-ball { transition-timing-function: var(--motion-easing-emphasized); }
+    .easing-decelerated .easing-ball { transition-timing-function: var(--motion-easing-decelerated); }
+    .easing-accelerated .easing-ball { transition-timing-function: var(--motion-easing-accelerated); }
+    
+    /* Interactive motion examples */
+    .interactive-motion {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+    
+    .motion-demo-card {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .motion-demo-title {
+      margin: 0 0 16px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    /* Scale animation */
+    .scale-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-primary);
+      border-radius: 12px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      transition: transform var(--motion-duration-moderate) var(--motion-easing-emphasized);
+    }
+    
+    .scale-demo:hover {
+      transform: scale(1.1);
+    }
+    
+    .scale-demo:active {
+      transform: scale(0.95);
+    }
+    
+    /* Slide animation */
+    .slide-container {
+      width: 200px;
+      height: 80px;
+      background: var(--md-sys-color-surface-variant);
+      border-radius: 8px;
+      margin: 0 auto 16px auto;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .slide-element {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-secondary);
+      border-radius: 8px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: left var(--motion-duration-moderate) var(--motion-easing-standard);
+    }
+    
+    .slide-container.moved .slide-element {
+      left: 120px;
+    }
+    
+    /* Fade animation */
+    .fade-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-tertiary);
+      border-radius: 12px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      transition: opacity var(--motion-duration-moderate) var(--motion-easing-standard);
+    }
+    
+    .fade-demo.faded {
+      opacity: 0.3;
+    }
+    
+    /* Rotate animation */
+    .rotate-demo {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(45deg, var(--md-sys-color-primary), var(--md-sys-color-secondary));
+      border-radius: 12px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      transition: transform var(--motion-duration-slow) var(--motion-easing-emphasized);
+    }
+    
+    .rotate-demo.rotated {
+      transform: rotate(180deg);
+    }
+    
+    /* Bounce animation */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .bounce-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-error);
+      border-radius: 50%;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+    }
+    
+    .bounce-demo.bouncing {
+      animation: bounce 600ms var(--motion-easing-emphasized);
+    }
+    
+    /* Flip animation */
+    @keyframes flip {
+      0% { transform: perspective(400px) rotateY(0); }
+      100% { transform: perspective(400px) rotateY(180deg); }
+    }
+    
+    .flip-demo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform var(--motion-duration-moderate) var(--motion-easing-emphasized);
+    }
+    
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-weight-semibold);
+      font-size: 12px;
+    }
+    
+    .flip-front {
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+    }
+    
+    .flip-back {
+      background: var(--md-sys-color-secondary);
+      color: var(--md-sys-color-on-secondary);
+      transform: rotateY(180deg);
+    }
+    
+    .flip-demo.flipped {
+      transform: rotateY(180deg);
+    }
+    
+    /* Shake animation */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+      20%, 40%, 60%, 80% { transform: translateX(4px); }
+    }
+    
+    .shake-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-error);
+      border-radius: 12px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+    }
+    
+    .shake-demo.shaking {
+      animation: shake 600ms var(--motion-easing-emphasized);
+    }
+    
+    /* Elastic animation */
+    @keyframes elastic {
+      0% { transform: scale(1); }
+      20% { transform: scale(1.2) scaleY(0.8); }
+      40% { transform: scale(0.9) scaleY(1.1); }
+      60% { transform: scale(1.05) scaleY(0.95); }
+      80% { transform: scale(0.98) scaleY(1.02); }
+      100% { transform: scale(1); }
+    }
+    
+    .elastic-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-tertiary);
+      border-radius: 12px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+    }
+    
+    .elastic-demo.elastic {
+      animation: elastic 800ms var(--motion-easing-emphasized);
+    }
+    
+    /* Wobble animation */
+    @keyframes wobble {
+      0% { transform: translateX(0%) rotate(0deg); }
+      15% { transform: translateX(-25%) rotate(-5deg); }
+      30% { transform: translateX(20%) rotate(3deg); }
+      45% { transform: translateX(-15%) rotate(-3deg); }
+      60% { transform: translateX(10%) rotate(2deg); }
+      75% { transform: translateX(-5%) rotate(-1deg); }
+      100% { transform: translateX(0%) rotate(0deg); }
+    }
+    
+    .wobble-demo {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(45deg, var(--md-sys-color-primary), var(--md-sys-color-tertiary));
+      border-radius: 12px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+    }
+    
+    .wobble-demo.wobbling {
+      animation: wobble 800ms var(--motion-easing-emphasized);
+    }
+    
+    /* Zoom In animation */
+    @keyframes zoomIn {
+      0% { transform: scale(0) rotate(180deg); opacity: 0; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    
+    .zoom-in-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-secondary);
+      border-radius: 12px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+    }
+    
+    .zoom-in-demo.zooming {
+      animation: zoomIn 500ms var(--motion-easing-emphasized);
+    }
+    
+    /* Slide Up animation */
+    @keyframes slideUp {
+      0% { transform: translateY(100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    .slide-up-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-primary);
+      border-radius: 12px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .slide-up-demo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--md-sys-color-tertiary);
+      transform: translateY(100%);
+      transition: transform var(--motion-duration-moderate) var(--motion-easing-emphasized);
+    }
+    
+    .slide-up-demo.sliding::before {
+      transform: translateY(0);
+    }
+    
+    /* Float animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .float-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-secondary);
+      border-radius: 50%;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+    }
+    
+    .float-demo.floating {
+      animation: float 2s var(--motion-easing-standard) infinite;
+    }
+    
+    /* Heartbeat animation */
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.05); }
+    }
+    
+    .heartbeat-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-error);
+      border-radius: 50%;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .heartbeat-demo::before {
+      content: '♥';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 24px;
+    }
+    
+    .heartbeat-demo.beating {
+      animation: heartbeat 1000ms var(--motion-easing-emphasized) infinite;
+    }
+    
+    /* Material 3 Specific Animations */
+    
+    /* Container Transform */
+    .container-transform-demo {
+      width: 120px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .transform-container {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-primary);
+      border-radius: 8px;
+      transition: all var(--motion-duration-moderate) var(--motion-easing-emphasized);
+    }
+    
+    .container-transform-demo.expanded .transform-container {
+      width: 120px;
+      height: 80px;
+      background: var(--md-sys-color-primary-container);
+    }
+    
+    /* Shared Axis */
+    .shared-axis-demo {
+      width: 100px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--md-sys-color-surface-variant);
+    }
+    
+    .axis-content {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-weight-semibold);
+      font-size: 12px;
+      transition: transform var(--motion-duration-moderate) var(--motion-easing-emphasized);
+    }
+    
+    .axis-content:first-child {
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+    }
+    
+    .axis-content:last-child {
+      background: var(--md-sys-color-secondary);
+      color: var(--md-sys-color-on-secondary);
+      transform: translateX(100%);
+    }
+    
+    .shared-axis-demo.transitioning .axis-content:first-child {
+      transform: translateX(-100%);
+    }
+    
+    .shared-axis-demo.transitioning .axis-content:last-child {
+      transform: translateX(0);
+    }
+    
+    /* Fade Through */
+    .fade-through-demo {
+      width: 100px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .fade-content {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-weight-semibold);
+      font-size: 12px;
+      transition: opacity var(--motion-duration-moderate) var(--motion-easing-standard);
+    }
+    
+    .fade-content:first-child {
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      opacity: 1;
+    }
+    
+    .fade-content:last-child {
+      background: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      opacity: 0;
+    }
+    
+    .fade-through-demo.fading .fade-content:first-child {
+      opacity: 0;
+    }
+    
+    .fade-through-demo.fading .fade-content:last-child {
+      opacity: 1;
+    }
+    
+    /* Elevation Change */
+    .elevation-change-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      box-shadow: var(--elevation-1);
+      transition: box-shadow var(--motion-duration-moderate) var(--motion-easing-emphasized),
+                  transform var(--motion-duration-moderate) var(--motion-easing-emphasized);
+    }
+    
+    .elevation-change-demo.elevated {
+      box-shadow: var(--elevation-4);
+      transform: translateY(-4px);
+    }
+    
+    /* List Item Enter */
+    .list-enter-demo {
+      width: 120px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+    }
+    
+    .list-item {
+      padding: 8px 16px;
+      background: var(--md-sys-color-surface);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      margin-bottom: 4px;
+      border-radius: 4px;
+      font-size: 12px;
+      transform: translateX(-20px);
+      opacity: 0;
+      transition: transform var(--motion-duration-moderate) var(--motion-easing-decelerated),
+                  opacity var(--motion-duration-moderate) var(--motion-easing-decelerated);
+    }
+    
+    .list-enter-demo.animating .list-item:nth-child(1) {
+      transform: translateX(0);
+      opacity: 1;
+      transition-delay: 0ms;
+    }
+    
+    .list-enter-demo.animating .list-item:nth-child(2) {
+      transform: translateX(0);
+      opacity: 1;
+      transition-delay: 100ms;
+    }
+    
+    .list-enter-demo.animating .list-item:nth-child(3) {
+      transform: translateX(0);
+      opacity: 1;
+      transition-delay: 200ms;
+    }
+    
+    /* Tab Indicator */
+    .tab-indicator-demo {
+      width: 150px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+    }
+    
+    .tab-bar {
+      position: relative;
+      display: flex;
+      background: var(--md-sys-color-surface-variant);
+      border-radius: 8px;
+      padding: 4px;
+    }
+    
+    .tab {
+      flex: 1;
+      padding: 8px 4px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: var(--font-weight-semibold);
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      transition: color var(--motion-duration-quick) var(--motion-easing-standard);
+    }
+    
+    .tab.active {
+      color: var(--md-sys-color-on-primary);
+    }
+    
+    .tab-indicator {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      width: calc(33.333% - 2px);
+      left: 4px;
+      background: var(--md-sys-color-primary);
+      border-radius: 4px;
+      transition: transform var(--motion-duration-moderate) var(--motion-easing-emphasized);
+      z-index: 1;
+    }
+    
+    .tab-indicator-demo .tab:nth-child(2).active ~ .tab-indicator {
+      transform: translateX(100%);
+    }
+    
+    .tab-indicator-demo .tab:nth-child(3).active ~ .tab-indicator {
+      transform: translateX(200%);
+    }
+    
+    /* Advanced Animation Patterns */
+    
+    /* Loading Button */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .loading-button.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
+      border: 2px solid transparent;
+      border-top: 2px solid currentColor;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    .loading-button.loading {
+      color: transparent;
+      position: relative;
+    }
+    
+    /* Success Button */
+    @keyframes checkmark {
+      0% { transform: scale(0) rotate(45deg); opacity: 0; }
+      50% { transform: scale(1.2) rotate(45deg); opacity: 1; }
+      100% { transform: scale(1) rotate(45deg); opacity: 1; }
+    }
+    
+    .success-button.success {
+      background: var(--color-base-green-60);
+      color: transparent;
+      position: relative;
+    }
+    
+    .success-button.success::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 6px;
+      height: 12px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: translate(-50%, -60%) rotate(45deg);
+      animation: checkmark 400ms var(--motion-easing-emphasized);
+    }
+    
+    /* Morphing Shape */
+    .morph-demo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .morph-shape {
+      width: 60px;
+      height: 60px;
+      background: var(--md-sys-color-primary);
+      border-radius: 8px;
+      transition: all var(--motion-duration-slow) var(--motion-easing-emphasized);
+    }
+    
+    .morph-demo.morphed .morph-shape {
+      border-radius: 50%;
+      background: var(--md-sys-color-secondary);
+      transform: rotate(180deg);
+    }
+    
+    /* Particle Burst */
+    .particle-demo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .particle-source {
+      width: 40px;
+      height: 40px;
+      background: var(--md-sys-color-primary);
+      border-radius: 50%;
+      position: relative;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--md-sys-color-primary);
+      border-radius: 50%;
+      opacity: 0;
+    }
+    
+    @keyframes particle-burst {
+      0% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% { 
+        transform: translate(var(--dx), var(--dy)) scale(0);
+        opacity: 0;
+      }
+    }
+    
+    /* Progress Ring */
+    .progress-demo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+    }
+    
+    .progress-ring {
+      transform: rotate(-90deg);
+    }
+    
+    .progress-bg {
+      fill: none;
+      stroke: var(--md-sys-color-surface-variant);
+      stroke-width: 8;
+    }
+    
+    .progress-bar {
+      fill: none;
+      stroke: var(--md-sys-color-primary);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 226;
+      stroke-dashoffset: 226;
+      transition: stroke-dashoffset var(--motion-duration-slow) var(--motion-easing-emphasized);
+    }
+    
+    .progress-demo.animating .progress-bar {
+      stroke-dashoffset: 0;
+    }
+    
+    /* 3D Flip Card */
+    .flip-card-demo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+    
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform var(--motion-duration-moderate) var(--motion-easing-emphasized);
+      transform-style: preserve-3d;
+    }
+    
+    .flip-card-demo.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+    
+    .flip-card-front {
+      background: var(--md-sys-color-primary);
+    }
+    
+    .flip-card-back {
+      background: var(--md-sys-color-secondary);
+      transform: rotateY(180deg);
+    }
+    
+    /* Typewriter */
+    .typewriter-demo {
+      width: 120px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--md-sys-color-surface);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    
+    .typewriter-text {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      transition: width var(--motion-duration-extra-slow) steps(12, end);
+    }
+    
+    .typewriter-demo.typing .typewriter-text {
+      width: 72px;
+    }
+    
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    
+    .typewriter-cursor {
+      animation: blink 1s infinite;
+    }
+    
+    /* Wave Effect */
+    .wave-demo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      cursor: pointer;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      gap: 4px;
+      padding: 16px;
+    }
+    
+    .wave-bar {
+      width: 8px;
+      height: 20px;
+      background: var(--md-sys-color-primary);
+      border-radius: 4px;
+      transform: scaleY(0.3);
+      transition: transform var(--motion-duration-quick) var(--motion-easing-standard);
+    }
+    
+    .wave-demo.waving .wave-bar:nth-child(1) {
+      transform: scaleY(1);
+      transition-delay: 0ms;
+    }
+    
+    .wave-demo.waving .wave-bar:nth-child(2) {
+      transform: scaleY(0.7);
+      transition-delay: 100ms;
+    }
+    
+    .wave-demo.waving .wave-bar:nth-child(3) {
+      transform: scaleY(1);
+      transition-delay: 200ms;
+    }
+    
+    .wave-demo.waving .wave-bar:nth-child(4) {
+      transform: scaleY(0.8);
+      transition-delay: 300ms;
+    }
+    
+    .wave-demo.waving .wave-bar:nth-child(5) {
+      transform: scaleY(0.6);
+      transition-delay: 400ms;
+    }
+    
+    /* Micro-interactions */
+    .micro-interactions {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 32px 0;
+    }
+    
+    .micro-button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      font-family: var(--font-family-base);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--motion-duration-quick) var(--motion-easing-standard);
+    }
+    
+    .micro-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 115, 185, 0.3);
+    }
+    
+    .micro-button:active {
+      transform: translateY(0);
+    }
+    
+    .micro-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all var(--motion-duration-moderate) var(--motion-easing-emphasized);
+      transform: translate(-50%, -50%);
+    }
+    
+    .micro-button:active::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    /* Code examples */
+    .code-example {
+      background: var(--color-base-gray-90);
+      color: var(--color-base-gray-10);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+      
+      .duration-examples, .easing-examples, .interactive-motion {
+        grid-template-columns: 1fr;
+      }
+      
+      .micro-interactions {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Motion</h1>
+        <p class="page-description md-typescale-body-large">Motion design patterns that bring interfaces to life with meaningful, purposeful animation.</p>
+      </div>
+      
+      <!-- Duration Scale -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Duration Scale</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Animation durations should feel natural and purposeful. Longer durations for larger movements, shorter for subtle interactions.</p>
+        
+        <div class="motion-showcase">
+          <div class="duration-examples">
+            <div class="duration-card">
+              <div class="duration-title md-typescale-title-small">Instant</div>
+              <div class="duration-value">0ms</div>
+              <div class="duration-usage">Immediate feedback, toggles</div>
+              <div class="duration-demo duration-instant" onclick="animateDuration(this)"></div>
+            </div>
+            
+            <div class="duration-card">
+              <div class="duration-title md-typescale-title-small">Quick</div>
+              <div class="duration-value">150ms</div>
+              <div class="duration-usage">Small state changes, hover effects</div>
+              <div class="duration-demo duration-quick" onclick="animateDuration(this)"></div>
+            </div>
+            
+            <div class="duration-card">
+              <div class="duration-title md-typescale-title-small">Moderate</div>
+              <div class="duration-value">300ms</div>
+              <div class="duration-usage">Component transitions, modal entries</div>
+              <div class="duration-demo duration-moderate" onclick="animateDuration(this)"></div>
+            </div>
+            
+            <div class="duration-card">
+              <div class="duration-title md-typescale-title-small">Slow</div>
+              <div class="duration-value">500ms</div>
+              <div class="duration-usage">Page transitions, complex animations</div>
+              <div class="duration-demo duration-slow" onclick="animateDuration(this)"></div>
+            </div>
+            
+            <div class="duration-card">
+              <div class="duration-title md-typescale-title-small">Extra Slow</div>
+              <div class="duration-value">700ms</div>
+              <div class="duration-usage">Onboarding, attention-grabbing</div>
+              <div class="duration-demo duration-extra-slow" onclick="animateDuration(this)"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Easing Functions -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Easing Functions</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Easing functions define the character of motion, making animations feel natural and expressive.</p>
+        
+        <div class="motion-showcase">
+          <div class="easing-examples">
+            <div class="easing-card">
+              <div class="easing-title md-typescale-title-small">Linear</div>
+              <div class="easing-curve">linear</div>
+              <div class="easing-demo easing-linear" onclick="animateEasing(this)">
+                <div class="easing-ball"></div>
+              </div>
+            </div>
+            
+            <div class="easing-card">
+              <div class="easing-title md-typescale-title-small">Standard</div>
+              <div class="easing-curve">cubic-bezier(0.4, 0.0, 0.2, 1)</div>
+              <div class="easing-demo easing-standard" onclick="animateEasing(this)">
+                <div class="easing-ball"></div>
+              </div>
+            </div>
+            
+            <div class="easing-card">
+              <div class="easing-title md-typescale-title-small">Emphasized</div>
+              <div class="easing-curve">cubic-bezier(0.2, 0.0, 0, 1)</div>
+              <div class="easing-demo easing-emphasized" onclick="animateEasing(this)">
+                <div class="easing-ball"></div>
+              </div>
+            </div>
+            
+            <div class="easing-card">
+              <div class="easing-title md-typescale-title-small">Decelerated</div>
+              <div class="easing-curve">cubic-bezier(0.0, 0.0, 0.2, 1)</div>
+              <div class="easing-demo easing-decelerated" onclick="animateEasing(this)">
+                <div class="easing-ball"></div>
+              </div>
+            </div>
+            
+            <div class="easing-card">
+              <div class="easing-title md-typescale-title-small">Accelerated</div>
+              <div class="easing-curve">cubic-bezier(0.4, 0.0, 1, 1)</div>
+              <div class="easing-demo easing-accelerated" onclick="animateEasing(this)">
+                <div class="easing-ball"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Interactive Examples -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Interactive Motion</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Click and interact with these elements to see motion patterns in action.</p>
+        
+        <div class="interactive-motion">
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Scale</h3>
+            <div class="scale-demo" onclick="animateScale(this)"></div>
+            <p class="md-typescale-body-small">Hover and click to see scale feedback</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Slide</h3>
+            <div class="slide-container" onclick="animateSlide(this)">
+              <div class="slide-element"></div>
+            </div>
+            <p class="md-typescale-body-small">Click to slide element</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Fade</h3>
+            <div class="fade-demo" onclick="animateFade(this)"></div>
+            <p class="md-typescale-body-small">Click to toggle opacity</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Rotate</h3>
+            <div class="rotate-demo" onclick="animateRotate(this)"></div>
+            <p class="md-typescale-body-small">Click to rotate element</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Bounce</h3>
+            <div class="bounce-demo" onclick="animateBounce(this)"></div>
+            <p class="md-typescale-body-small">Click for bounce animation</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Flip</h3>
+            <div class="flip-demo" onclick="animateFlip(this)">
+              <div class="flip-front">Front</div>
+              <div class="flip-back">Back</div>
+            </div>
+            <p class="md-typescale-body-small">Click to flip card</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Shake</h3>
+            <div class="shake-demo" onclick="animateShake(this)"></div>
+            <p class="md-typescale-body-small">Click for shake animation</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Elastic</h3>
+            <div class="elastic-demo" onclick="animateElastic(this)"></div>
+            <p class="md-typescale-body-small">Click for elastic effect</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Wobble</h3>
+            <div class="wobble-demo" onclick="animateWobble(this)"></div>
+            <p class="md-typescale-body-small">Click for wobble animation</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Zoom In</h3>
+            <div class="zoom-in-demo" onclick="animateZoomIn(this)"></div>
+            <p class="md-typescale-body-small">Click for zoom entrance</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Slide Up</h3>
+            <div class="slide-up-demo" onclick="animateSlideUp(this)"></div>
+            <p class="md-typescale-body-small">Click for slide up effect</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Float</h3>
+            <div class="float-demo" onclick="animateFloat(this)"></div>
+            <p class="md-typescale-body-small">Click for floating animation</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Heartbeat</h3>
+            <div class="heartbeat-demo" onclick="animateHeartbeat(this)"></div>
+            <p class="md-typescale-body-small">Click for heartbeat pulse</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Material 3 Specific Animations -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Material 3 Transitions</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Material Design specific animation patterns for common UI interactions.</p>
+        
+        <div class="interactive-motion">
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Container Transform</h3>
+            <div class="container-transform-demo" onclick="animateContainerTransform(this)">
+              <div class="transform-container"></div>
+            </div>
+            <p class="md-typescale-body-small">Click to see container transformation</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Shared Axis</h3>
+            <div class="shared-axis-demo" onclick="animateSharedAxis(this)">
+              <div class="axis-content active">Page 1</div>
+              <div class="axis-content">Page 2</div>
+            </div>
+            <p class="md-typescale-body-small">Click for page transition</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Fade Through</h3>
+            <div class="fade-through-demo" onclick="animateFadeThrough(this)">
+              <div class="fade-content active">Content A</div>
+              <div class="fade-content">Content B</div>
+            </div>
+            <p class="md-typescale-body-small">Click for fade through transition</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Elevation Change</h3>
+            <div class="elevation-change-demo" onclick="animateElevationChange(this)"></div>
+            <p class="md-typescale-body-small">Click for elevation animation</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">List Item Enter</h3>
+            <div class="list-enter-demo" onclick="animateListEnter(this)">
+              <div class="list-item">Item 1</div>
+              <div class="list-item">Item 2</div>
+              <div class="list-item">Item 3</div>
+            </div>
+            <p class="md-typescale-body-small">Click to animate list items</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Tab Indicator</h3>
+            <div class="tab-indicator-demo" onclick="animateTabIndicator(this)">
+              <div class="tab-bar">
+                <div class="tab active">Tab 1</div>
+                <div class="tab">Tab 2</div>
+                <div class="tab">Tab 3</div>
+                <div class="tab-indicator"></div>
+              </div>
+            </div>
+            <p class="md-typescale-body-small">Click tabs to see indicator move</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Micro-interactions -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Micro-interactions</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Small animations that provide immediate feedback and enhance the user experience.</p>
+        
+        <div class="motion-showcase">
+          <div class="micro-interactions">
+            <button class="micro-button" onclick="this.style.transform = 'scale(0.95)'">Hover & Click Me</button>
+            <button class="micro-button" onclick="rippleEffect(this)">Ripple Effect</button>
+            <button class="micro-button" onclick="pulseEffect(this)">Pulse Animation</button>
+            <button class="micro-button loading-button" onclick="toggleLoading(this)">Loading State</button>
+            <button class="micro-button success-button" onclick="triggerSuccess(this)">Success Feedback</button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Advanced Animation Patterns -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Advanced Patterns</h2>
+        <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Complex animation patterns for sophisticated interactions and state changes.</p>
+        
+        <div class="interactive-motion">
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Morphing Shape</h3>
+            <div class="morph-demo" onclick="animateMorph(this)">
+              <div class="morph-shape"></div>
+            </div>
+            <p class="md-typescale-body-small">Click to morph between shapes</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Particle Burst</h3>
+            <div class="particle-demo" onclick="animateParticles(this)">
+              <div class="particle-source"></div>
+            </div>
+            <p class="md-typescale-body-small">Click for particle explosion</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Progress Ring</h3>
+            <div class="progress-demo" onclick="animateProgress(this)">
+              <svg class="progress-ring" width="80" height="80">
+                <circle class="progress-bg" cx="40" cy="40" r="36"></circle>
+                <circle class="progress-bar" cx="40" cy="40" r="36"></circle>
+              </svg>
+            </div>
+            <p class="md-typescale-body-small">Click to animate progress</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">3D Flip Card</h3>
+            <div class="flip-card-demo" onclick="animateFlipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">💳</div>
+                <div class="flip-card-back">🔒</div>
+              </div>
+            </div>
+            <p class="md-typescale-body-small">Click to flip the card</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Typewriter</h3>
+            <div class="typewriter-demo" onclick="animateTypewriter(this)">
+              <span class="typewriter-text">Hello World!</span>
+              <span class="typewriter-cursor">|</span>
+            </div>
+            <p class="md-typescale-body-small">Click to start typing animation</p>
+          </div>
+          
+          <div class="motion-demo-card">
+            <h3 class="motion-demo-title md-typescale-title-medium">Wave Effect</h3>
+            <div class="wave-demo" onclick="animateWave(this)">
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+            </div>
+            <p class="md-typescale-body-small">Click for wave animation</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Usage Guidelines -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Usage Guidelines</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-green-60);">✅ Do</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use motion to guide attention and provide feedback</li>
+              <li>Keep animations purposeful and functional</li>
+              <li>Respect user preferences for reduced motion</li>
+              <li>Use consistent timing and easing across your interface</li>
+              <li>Make entering animations faster than exiting ones</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-red-60);">❌ Don't</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use motion purely for decoration</li>
+              <li>Make animations too slow or too fast</li>
+              <li>Create distracting or overwhelming motion</li>
+              <li>Ignore accessibility preferences</li>
+              <li>Use different easing for similar interactions</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Motion Principles</h3>
+            <ul class="md-typescale-body-medium">
+              <li><strong>Informative:</strong> Guides users and provides feedback</li>
+              <li><strong>Focused:</strong> Directs attention to important elements</li>
+              <li><strong>Expressive:</strong> Reflects your brand personality</li>
+              <li><strong>Natural:</strong> Uses familiar, physics-based motion</li>
+              <li><strong>Accessible:</strong> Respects user motion preferences</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Performance</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use transform and opacity for smooth animations</li>
+              <li>Avoid animating layout properties (width, height)</li>
+              <li>Use hardware acceleration with transform3d</li>
+              <li>Consider battery life on mobile devices</li>
+              <li>Provide animation controls for power users</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Implementation -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Implementation</h2>
+        
+        <div class="motion-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Motion Tokens</h3>
+          <p class="md-typescale-body-medium" style="margin-bottom: 24px;">Define motion as CSS custom properties for consistent timing and easing.</p>
+          
+          <div class="code-example">
+/* Motion duration tokens */
+:root {
+  --motion-duration-instant: 0ms;
+  --motion-duration-quick: 150ms;
+  --motion-duration-moderate: 300ms;
+  --motion-duration-slow: 500ms;
+  --motion-duration-extra-slow: 700ms;
+}
+
+/* Motion easing tokens */
+:root {
+  --motion-easing-linear: linear;
+  --motion-easing-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --motion-easing-emphasized: cubic-bezier(0.2, 0.0, 0, 1);
+  --motion-easing-decelerated: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --motion-easing-accelerated: cubic-bezier(0.4, 0.0, 1, 1);
+}
+          </div>
+          
+          <h3 class="md-typescale-title-medium" style="margin: 32px 0 16px 0;">Common Patterns</h3>
+          <div class="code-example">
+/* Button hover effect */
+.button {
+  transition: transform var(--motion-duration-quick) var(--motion-easing-standard),
+              box-shadow var(--motion-duration-quick) var(--motion-easing-standard);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal entrance */
+.modal {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity var(--motion-duration-moderate) var(--motion-easing-emphasized),
+              transform var(--motion-duration-moderate) var(--motion-easing-emphasized);
+}
+
+.modal.open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* List item animation */
+.list-item {
+  transform: translateX(-20px);
+  opacity: 0;
+  transition: transform var(--motion-duration-moderate) var(--motion-easing-decelerated),
+              opacity var(--motion-duration-moderate) var(--motion-easing-decelerated);
+}
+
+.list-item.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+          </div>
+          
+          <h3 class="md-typescale-title-medium" style="margin: 32px 0 16px 0;">Accessibility Considerations</h3>
+          <div class="code-example">
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Provide animation controls */
+.no-animations * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Focus management for screen readers */
+.modal {
+  /* Ensure focus is managed properly during transitions */
+  transition: opacity var(--motion-duration-moderate) var(--motion-easing-emphasized);
+}
+
+.modal[inert] {
+  pointer-events: none;
+}
+          </div>
+          
+          <h3 class="md-typescale-title-medium" style="margin: 32px 0 16px 0;">JavaScript Integration</h3>
+          <div class="code-example">
+// Animation utility functions
+function animateElement(element, keyframes, options = {}) {
+  const defaultOptions = {
+    duration: 300,
+    easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+    fill: 'both'
+  };
+  
+  return element.animate(keyframes, { ...defaultOptions, ...options });
+}
+
+// Stagger animations for lists
+function staggerAnimation(elements, delay = 100) {
+  elements.forEach((element, index) => {
+    setTimeout(() => {
+      element.classList.add('animate-in');
+    }, index * delay);
+  });
+}
+
+// Respect user preferences
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (prefersReducedMotion) {
+  document.documentElement.classList.add('no-animations');
+}
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    console.log('🎬 Motion documentation loaded with interactive animations');
+    
+    // Duration animation function
+    function animateDuration(element) {
+      element.classList.remove('animating');
+      setTimeout(() => {
+        element.classList.add('animating');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('animating');
+      }, 1000);
+    }
+    
+    // Easing animation function
+    function animateEasing(element) {
+      element.classList.remove('animating');
+      setTimeout(() => {
+        element.classList.add('animating');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('animating');
+      }, 1000);
+    }
+    
+    // Interactive animation functions
+    function animateScale(element) {
+      element.style.transform = 'scale(1.2)';
+      setTimeout(() => {
+        element.style.transform = 'scale(1)';
+      }, 200);
+    }
+    
+    function animateSlide(container) {
+      container.classList.toggle('moved');
+    }
+    
+    function animateFade(element) {
+      element.classList.toggle('faded');
+    }
+    
+    function animateRotate(element) {
+      element.classList.toggle('rotated');
+    }
+    
+    function animateBounce(element) {
+      element.classList.remove('bouncing');
+      setTimeout(() => {
+        element.classList.add('bouncing');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('bouncing');
+      }, 600);
+    }
+    
+    // Additional animation functions
+    function animateFlip(element) {
+      element.classList.toggle('flipped');
+    }
+    
+    function animateShake(element) {
+      element.classList.remove('shaking');
+      setTimeout(() => {
+        element.classList.add('shaking');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('shaking');
+      }, 600);
+    }
+    
+    function animateElastic(element) {
+      element.classList.remove('elastic');
+      setTimeout(() => {
+        element.classList.add('elastic');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('elastic');
+      }, 800);
+    }
+    
+    function animateWobble(element) {
+      element.classList.remove('wobbling');
+      setTimeout(() => {
+        element.classList.add('wobbling');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('wobbling');
+      }, 800);
+    }
+    
+    function animateZoomIn(element) {
+      element.classList.remove('zooming');
+      setTimeout(() => {
+        element.classList.add('zooming');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('zooming');
+      }, 500);
+    }
+    
+    function animateSlideUp(element) {
+      element.classList.remove('sliding');
+      setTimeout(() => {
+        element.classList.add('sliding');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('sliding');
+      }, 300);
+    }
+    
+    function animateFloat(element) {
+      if (element.classList.contains('floating')) {
+        element.classList.remove('floating');
+      } else {
+        element.classList.add('floating');
+      }
+    }
+    
+    function animateHeartbeat(element) {
+      if (element.classList.contains('beating')) {
+        element.classList.remove('beating');
+      } else {
+        element.classList.add('beating');
+      }
+    }
+    
+    // Material 3 specific animations
+    function animateContainerTransform(element) {
+      element.classList.toggle('expanded');
+    }
+    
+    function animateSharedAxis(element) {
+      element.classList.remove('transitioning');
+      setTimeout(() => {
+        element.classList.add('transitioning');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('transitioning');
+      }, 300);
+    }
+    
+    function animateFadeThrough(element) {
+      element.classList.toggle('fading');
+    }
+    
+    function animateElevationChange(element) {
+      element.classList.toggle('elevated');
+    }
+    
+    function animateListEnter(element) {
+      element.classList.remove('animating');
+      setTimeout(() => {
+        element.classList.add('animating');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('animating');
+      }, 500);
+    }
+    
+    function animateTabIndicator(element) {
+      const tabs = element.querySelectorAll('.tab');
+      
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+        });
+      });
+    }
+    
+    // Initialize tab indicator functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.tab-indicator-demo').forEach(demo => {
+        const tabs = demo.querySelectorAll('.tab');
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+          });
+        });
+      });
+    });
+    
+    // Advanced animation functions
+    function toggleLoading(button) {
+      if (button.classList.contains('loading')) {
+        button.classList.remove('loading');
+        button.textContent = 'Loading State';
+      } else {
+        button.classList.add('loading');
+        button.textContent = 'Loading...';
+        setTimeout(() => {
+          button.classList.remove('loading');
+          button.textContent = 'Loading State';
+        }, 3000);
+      }
+    }
+    
+    function triggerSuccess(button) {
+      button.classList.add('success');
+      setTimeout(() => {
+        button.classList.remove('success');
+      }, 2000);
+    }
+    
+    function animateMorph(element) {
+      element.classList.toggle('morphed');
+    }
+    
+    function animateParticles(element) {
+      const source = element.querySelector('.particle-source');
+      
+      // Remove existing particles
+      element.querySelectorAll('.particle').forEach(p => p.remove());
+      
+      // Create new particles
+      for (let i = 0; i < 8; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const angle = (i / 8) * Math.PI * 2;
+        const distance = 40;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+        
+        particle.style.setProperty('--dx', dx + 'px');
+        particle.style.setProperty('--dy', dy + 'px');
+        particle.style.left = '50%';
+        particle.style.top = '50%';
+        particle.style.transform = 'translate(-50%, -50%)';
+        
+        source.appendChild(particle);
+        
+        setTimeout(() => {
+          particle.style.animation = 'particle-burst 600ms ease-out forwards';
+        }, 10);
+        
+        setTimeout(() => {
+          particle.remove();
+        }, 610);
+      }
+    }
+    
+    function animateProgress(element) {
+      element.classList.remove('animating');
+      setTimeout(() => {
+        element.classList.add('animating');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('animating');
+      }, 500);
+    }
+    
+    function animateFlipCard(element) {
+      element.classList.toggle('flipped');
+    }
+    
+    function animateTypewriter(element) {
+      element.classList.remove('typing');
+      setTimeout(() => {
+        element.classList.add('typing');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('typing');
+      }, 700);
+    }
+    
+    function animateWave(element) {
+      element.classList.remove('waving');
+      setTimeout(() => {
+        element.classList.add('waving');
+      }, 10);
+      
+      setTimeout(() => {
+        element.classList.remove('waving');
+      }, 500);
+    }
+    
+    // Micro-interaction effects
+    function rippleEffect(button) {
+      console.log('Ripple effect triggered');
+      // Ripple effect is handled by CSS ::before pseudo-element
+    }
+    
+    function pulseEffect(button) {
+      button.style.animation = 'none';
+      setTimeout(() => {
+        button.style.animation = 'pulse 600ms ease-out';
+      }, 10);
+      
+      setTimeout(() => {
+        button.style.animation = 'none';
+      }, 600);
+    }
+    
+    // Add pulse keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Respect user motion preferences
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      console.log('User prefers reduced motion - animations will be minimized');
+      document.documentElement.style.setProperty('--motion-duration-quick', '0ms');
+      document.documentElement.style.setProperty('--motion-duration-moderate', '0ms');
+      document.documentElement.style.setProperty('--motion-duration-slow', '0ms');
+    }
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

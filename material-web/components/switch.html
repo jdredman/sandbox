@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Switch - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Include all the design tokens and base styles */
+    :root {
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .component-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+    }
+    
+    .showcase-item {
+      padding: 24px;
+      background: var(--md-sys-color-background);
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .showcase-title {
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .switch-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .switch-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+    
+    .switch-label {
+      flex: 1;
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    .switch-description {
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Switch</h1>
+        <p class="page-description md-typescale-body-large">Material 3 switches toggle the state of a single setting on or off.</p>
+      </div>
+      
+      <!-- Basic Switches -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Switch States</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Basic States</h3>
+              <div class="switch-group">
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Off state</div>
+                    <div class="switch-description">Switch is turned off</div>
+                  </label>
+                  <md-switch></md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>On state</div>
+                    <div class="switch-description">Switch is turned on</div>
+                  </label>
+                  <md-switch selected></md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Disabled off</div>
+                    <div class="switch-description">Cannot be toggled</div>
+                  </label>
+                  <md-switch disabled></md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Disabled on</div>
+                    <div class="switch-description">Cannot be toggled</div>
+                  </label>
+                  <md-switch selected disabled></md-switch>
+                </div>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">With Icons</h3>
+              <div class="switch-group">
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Dark mode</div>
+                    <div class="switch-description">Toggle dark theme</div>
+                  </label>
+                  <md-switch id="dark-mode-switch">
+                    <md-icon slot="selected-icon">dark_mode</md-icon>
+                    <md-icon slot="icon">light_mode</md-icon>
+                  </md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Notifications</div>
+                    <div class="switch-description">Receive push notifications</div>
+                  </label>
+                  <md-switch>
+                    <md-icon slot="selected-icon">notifications</md-icon>
+                    <md-icon slot="icon">notifications_off</md-icon>
+                  </md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Wi-Fi</div>
+                    <div class="switch-description">Connect to wireless networks</div>
+                  </label>
+                  <md-switch selected>
+                    <md-icon slot="selected-icon">wifi</md-icon>
+                    <md-icon slot="icon">wifi_off</md-icon>
+                  </md-switch>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Settings Examples -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Settings Panel Examples</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Privacy Settings</h3>
+              <div class="switch-group">
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Profile visibility</div>
+                    <div class="switch-description">Let others find your profile</div>
+                  </label>
+                  <md-switch selected></md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Activity status</div>
+                    <div class="switch-description">Show when you're online</div>
+                  </label>
+                  <md-switch></md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Data analytics</div>
+                    <div class="switch-description">Help improve our services</div>
+                  </label>
+                  <md-switch></md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Location sharing</div>
+                    <div class="switch-description">Share your location for relevant content</div>
+                  </label>
+                  <md-switch></md-switch>
+                </div>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Accessibility Settings</h3>
+              <div class="switch-group">
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>High contrast</div>
+                    <div class="switch-description">Increase color contrast for better visibility</div>
+                  </label>
+                  <md-switch id="high-contrast"></md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Reduced motion</div>
+                    <div class="switch-description">Minimize animations and transitions</div>
+                  </label>
+                  <md-switch></md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Screen reader</div>
+                    <div class="switch-description">Enable screen reader announcements</div>
+                  </label>
+                  <md-switch selected></md-switch>
+                </div>
+                <div class="switch-item">
+                  <label class="switch-label">
+                    <div>Large text</div>
+                    <div class="switch-description">Increase font size for readability</div>
+                  </label>
+                  <md-switch></md-switch>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Interactive Demo -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Interactive Demo</h2>
+        
+        <div class="component-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">App Preferences</h3>
+          <div style="max-width: 500px;">
+            <div class="switch-group">
+              <div class="switch-item">
+                <label class="switch-label">
+                  <div>Auto-save documents</div>
+                  <div class="switch-description">Automatically save changes while you work</div>
+                </label>
+                <md-switch id="autosave" selected></md-switch>
+              </div>
+              
+              <div class="switch-item">
+                <label class="switch-label">
+                  <div>Email notifications</div>
+                  <div class="switch-description">Receive email alerts for important updates</div>
+                </label>
+                <md-switch id="email-notifications" selected></md-switch>
+              </div>
+              
+              <div class="switch-item">
+                <label class="switch-label">
+                  <div>Spell check</div>
+                  <div class="switch-description">Check spelling as you type</div>
+                </label>
+                <md-switch id="spell-check" selected></md-switch>
+              </div>
+              
+              <div class="switch-item">
+                <label class="switch-label">
+                  <div>Collaborative editing</div>
+                  <div class="switch-description">Allow others to edit shared documents</div>
+                </label>
+                <md-switch id="collaboration"></md-switch>
+              </div>
+              
+              <div class="switch-item">
+                <label class="switch-label">
+                  <div>Offline mode</div>
+                  <div class="switch-description">Work without an internet connection</div>
+                </label>
+                <md-switch id="offline-mode"></md-switch>
+              </div>
+            </div>
+            
+            <div style="margin-top: 24px; padding: 16px; background: var(--md-sys-color-surface-variant); border-radius: 8px;">
+              <h4 class="md-typescale-title-small" style="margin: 0 0 8px 0;">Current Settings</h4>
+              <div id="settings-summary" class="md-typescale-body-small"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Best Practices -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Best Practices</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-green-70);">Do</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use for binary on/off settings</li>
+              <li>Provide clear, descriptive labels</li>
+              <li>Include helpful descriptions</li>
+              <li>Show immediate effect when toggled</li>
+              <li>Group related switches logically</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0; color: var(--color-base-red-70);">Don't</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Use for actions that require confirmation</li>
+              <li>Mix switches with other selection controls</li>
+              <li>Use vague or confusing labels</li>
+              <li>Make destructive changes without warning</li>
+              <li>Disable without explanation</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Accessibility</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Include proper ARIA labels</li>
+              <li>Ensure 44px minimum touch target</li>
+              <li>Support keyboard navigation</li>
+              <li>Announce state changes</li>
+              <li>Provide sufficient color contrast</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Settings tracking
+      const settings = {
+        autosave: true,
+        emailNotifications: true,
+        spellCheck: true,
+        collaboration: false,
+        offlineMode: false
+      };
+      
+      // Get all interactive switches
+      const switches = {
+        autosave: document.getElementById('autosave'),
+        emailNotifications: document.getElementById('email-notifications'),
+        spellCheck: document.getElementById('spell-check'),
+        collaboration: document.getElementById('collaboration'),
+        offlineMode: document.getElementById('offline-mode')
+      };
+      
+      const settingsSummary = document.getElementById('settings-summary');
+      
+      // Update settings summary
+      function updateSummary() {
+        const enabledSettings = Object.entries(settings)
+          .filter(([key, value]) => value)
+          .map(([key, value]) => {
+            switch(key) {
+              case 'autosave': return 'Auto-save';
+              case 'emailNotifications': return 'Email notifications';
+              case 'spellCheck': return 'Spell check';
+              case 'collaboration': return 'Collaborative editing';
+              case 'offlineMode': return 'Offline mode';
+              default: return key;
+            }
+          });
+        
+        if (enabledSettings.length > 0) {
+          settingsSummary.textContent = `Enabled: ${enabledSettings.join(', ')}`;
+        } else {
+          settingsSummary.textContent = 'No settings enabled';
+        }
+      }
+      
+      // Add event listeners
+      Object.entries(switches).forEach(([key, switchElement]) => {
+        if (switchElement) {
+          switchElement.addEventListener('change', () => {
+            settings[key] = switchElement.selected;
+            updateSummary();
+            console.log(`${key} ${switchElement.selected ? 'enabled' : 'disabled'}`);
+          });
+        }
+      });
+      
+      // Initialize summary
+      updateSummary();
+      
+      // Dark mode demo
+      const darkModeSwitch = document.getElementById('dark-mode-switch');
+      if (darkModeSwitch) {
+        darkModeSwitch.addEventListener('change', () => {
+          console.log(`Dark mode ${darkModeSwitch.selected ? 'enabled' : 'disabled'}`);
+        });
+      }
+      
+      // High contrast demo
+      const highContrastSwitch = document.getElementById('high-contrast');
+      if (highContrastSwitch) {
+        highContrastSwitch.addEventListener('change', () => {
+          console.log(`High contrast ${highContrastSwitch.selected ? 'enabled' : 'disabled'}`);
+        });
+      }
+      
+      // Make labels clickable
+      document.querySelectorAll('.switch-item .switch-label').forEach(label => {
+        label.addEventListener('click', () => {
+          const switchElement = label.parentElement.querySelector('md-switch');
+          if (switchElement && !switchElement.disabled) {
+            switchElement.selected = !switchElement.selected;
+            switchElement.dispatchEvent(new Event('change'));
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>

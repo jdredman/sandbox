@@ -1,0 +1,94 @@
+/* Custom Theme Example - Override specific tokens */
+
+:root {
+  /* Custom Primary Color - Change this to your brand color */
+  --md-sys-color-primary: #1976D2; /* Blue instead of purple */
+  --md-sys-color-primary-container: #E3F2FD;
+  --md-sys-color-on-primary-container: #0D47A1;
+  
+  /* Custom Secondary Color */
+  --md-sys-color-secondary: #388E3C; /* Green accent */
+  --md-sys-color-secondary-container: #E8F5E8;
+  --md-sys-color-on-secondary-container: #1B5E20;
+  
+  /* Custom Surface Colors for a warmer feel */
+  --md-sys-color-surface: #FEFDF8; /* Slightly warm white */
+  --md-sys-color-surface-container: #F8F6F0;
+  
+  /* Custom Typography - Change font family */
+  --md-sys-typescale-display-medium-font-family-name: 'Inter';
+  --md-sys-typescale-headline-large-font-family-name: 'Inter';
+  --md-sys-typescale-body-medium-font-family-name: 'Inter';
+  
+  /* Custom Corner Radius - More rounded */
+  --md-sys-shape-corner-medium: 16px; /* Default is 12px */
+  --md-sys-shape-corner-large: 24px; /* Default is 16px */
+  
+  /* Custom Motion - Faster animations */
+  --md-sys-motion-duration-short2: 80ms; /* Default is 100ms */
+  --md-sys-motion-duration-medium1: 200ms; /* Default is 250ms */
+  
+  /* Override the dark theme tokens to use your custom colors */
+  --md-sys-color-primary-dark: #64B5F6; /* Lighter blue for dark mode */
+  --md-sys-color-primary-container-dark: #1565C0;
+  --md-sys-color-on-primary-container-dark: #E3F2FD;
+  
+  --md-sys-color-secondary-dark: #81C784; /* Lighter green for dark mode */
+  --md-sys-color-secondary-container-dark: #2E7D32;
+  --md-sys-color-on-secondary-container-dark: #E8F5E8;
+  
+  /* Custom dark surfaces */
+  --md-sys-color-surface-dark: #0F0F0F;
+  --md-sys-color-surface-container-dark: #1A1A1A;
+  --md-sys-color-background-dark: #0A0A0A;
+  --md-sys-color-on-background-dark: #E6E0E9;
+  --md-sys-color-on-surface-dark: #E6E0E9;
+}
+
+/* This media query will now use the corrected dark tokens from theme-tokens.css */
+/* No need to override here since theme-tokens.css handles the switching */
+
+/* Custom component styles using theme tokens */
+.custom-card {
+  background-color: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+  border-radius: var(--md-sys-shape-corner-large);
+  box-shadow: var(--md-sys-elevation-level2);
+  padding: 24px;
+  margin: 16px 0;
+  transition: box-shadow var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-standard);
+}
+
+.custom-card:hover {
+  box-shadow: var(--md-sys-elevation-level4);
+}
+
+/* Button customizations */
+md-filled-button {
+  --md-filled-button-container-color: var(--md-sys-color-primary);
+  --md-filled-button-label-text-color: var(--md-sys-color-on-primary);
+  --md-filled-button-container-shape: var(--md-sys-shape-corner-medium);
+}
+
+md-outlined-button {
+  --md-outlined-button-outline-color: var(--md-sys-color-outline);
+  --md-outlined-button-label-text-color: var(--md-sys-color-primary);
+  --md-outlined-button-container-shape: var(--md-sys-shape-corner-medium);
+}
+
+/* Text field customizations */
+md-outlined-text-field {
+  --md-outlined-text-field-container-shape: var(--md-sys-shape-corner-small);
+  --md-outlined-text-field-outline-color: var(--md-sys-color-outline);
+  --md-outlined-text-field-focus-outline-color: var(--md-sys-color-primary);
+}
+
+/* Checkbox and radio customizations */
+md-checkbox {
+  --md-checkbox-selected-container-color: var(--md-sys-color-primary);
+  --md-checkbox-selected-icon-color: var(--md-sys-color-on-primary);
+}
+
+md-radio {
+  --md-radio-selected-icon-color: var(--md-sys-color-primary);
+}

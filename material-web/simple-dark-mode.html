@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material Web Components - Simple Dark Mode</title>
+  
+  <!-- Material Design Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Import Material Web Components -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
+  
+  <style>
+    /* Theme tokens */
+    :root {
+      --md-sys-color-primary: #1976D2;
+      --md-sys-color-on-primary: #FFFFFF;
+      --md-sys-color-background: #FEFDF8;
+      --md-sys-color-on-background: #1C1B1F;
+      --md-sys-color-surface: #FFFBFE;
+      --md-sys-color-on-surface: #1C1B1F;
+      --md-sys-color-surface-container: #F3EDF7;
+      --md-sys-color-on-surface-variant: #49454F;
+      --md-sys-color-outline-variant: #CAC4D0;
+    }
+    
+    /* Dark theme tokens */
+    .theme-dark {
+      --md-sys-color-primary: #A5C9FF;
+      --md-sys-color-on-primary: #003258;
+      --md-sys-color-background: #0F0F13;
+      --md-sys-color-on-background: #E4E1E6;
+      --md-sys-color-surface: #141218;
+      --md-sys-color-on-surface: #E4E1E6;
+      --md-sys-color-surface-container: #201F23;
+      --md-sys-color-on-surface-variant: #C4C7CF;
+      --md-sys-color-outline-variant: #44474F;
+      color-scheme: dark;
+    }
+    
+    html {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    body {
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .main-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .theme-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .theme-indicator {
+      font-size: 14px;
+      color: var(--md-sys-color-on-surface-variant);
+      font-weight: 500;
+    }
+    
+    .demo-form {
+      background-color: var(--md-sys-color-surface);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+    
+    .form-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .debug-panel {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--md-sys-color-surface-container);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface);
+      font-family: monospace;
+      opacity: 0.8;
+    }
+    
+    .simple-toggle {
+      padding: 8px 16px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      background: var(--md-sys-color-surface);
+      color: var(--md-sys-color-on-surface);
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-content">
+    <header class="header">
+      <h1 class="md-typescale-display-medium">Material Design 3</h1>
+      <div class="theme-controls">
+        <span id="theme-indicator" class="theme-indicator">Light Mode</span>
+        <md-text-button id="theme-toggle">🌙 Toggle Dark Mode</md-text-button>
+        <button class="simple-toggle" id="simple-toggle">Simple Toggle</button>
+      </div>
+    </header>
+    
+    <div class="demo-form">
+      <h2 class="md-typescale-headline-small">Component Showcase</h2>
+      <p class="md-typescale-body-medium">Simple dark mode implementation with CSS custom properties.</p>
+      
+      <div class="form-section">
+        <h3 class="md-typescale-title-medium">Selection Controls</h3>
+        <md-checkbox>Subscribe to updates</md-checkbox>
+      </div>
+      
+      <div class="form-section">
+        <h3 class="md-typescale-title-medium">Text Input</h3>
+        <md-outlined-text-field label="Your name"></md-outlined-text-field>
+      </div>
+      
+      <div class="form-section">
+        <h3 class="md-typescale-title-medium">Actions</h3>
+        <div class="button-group">
+          <md-outlined-button>Reset</md-outlined-button>
+          <md-filled-button>Submit</md-filled-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="debug-panel" id="debug-panel">
+    <div><strong>Debug Info:</strong></div>
+    <div>Theme: <span id="debug-mode">light</span></div>
+    <div>Background: <span id="debug-bg">-</span></div>
+  </div>
+
+  <script>
+    console.log('🚀 Simple dark mode implementation loaded');
+    
+    let isDark = false;
+    
+    function updateTheme() {
+      document.body.classList.toggle('theme-dark', isDark);
+      
+      const indicator = document.getElementById('theme-indicator');
+      const toggle = document.getElementById('theme-toggle');
+      const simpleToggle = document.getElementById('simple-toggle');
+      const debugMode = document.getElementById('debug-mode');
+      const debugBg = document.getElementById('debug-bg');
+      
+      if (indicator) indicator.textContent = isDark ? 'Dark Mode' : 'Light Mode';
+      if (toggle) toggle.textContent = isDark ? '☀️ Toggle Light' : '🌙 Toggle Dark';
+      if (simpleToggle) simpleToggle.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+      if (debugMode) debugMode.textContent = isDark ? 'dark' : 'light';
+      
+      if (debugBg) {
+        const computedStyle = getComputedStyle(document.documentElement);
+        debugBg.textContent = computedStyle.getPropertyValue('--md-sys-color-background').trim();
+      }
+      
+      console.log('🎨 Theme updated to:', isDark ? 'dark' : 'light');
+    }
+    
+    function toggle() {
+      isDark = !isDark;
+      updateTheme();
+      localStorage.setItem('theme-mode', isDark ? 'dark' : 'light');
+    }
+    
+    // Set up event listeners after DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // Restore saved theme
+      const saved = localStorage.getItem('theme-mode');
+      if (saved === 'dark') {
+        isDark = true;
+        updateTheme();
+      }
+      
+      // Material button toggle
+      const themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', toggle);
+        console.log('✅ Material button toggle set up');
+      }
+      
+      // Simple button toggle  
+      const simpleToggle = document.getElementById('simple-toggle');
+      if (simpleToggle) {
+        simpleToggle.addEventListener('click', toggle);
+        console.log('✅ Simple button toggle set up');
+      }
+      
+      // Initial update
+      updateTheme();
+      
+      console.log('✅ All event listeners attached');
+    });
+    
+    // Global toggle function for console testing
+    window.toggleTheme = toggle;
+  </script>
+</body>
+</html>

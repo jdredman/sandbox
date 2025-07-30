@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0073b9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#A5C9FF" media="(prefers-color-scheme: dark)">
+  <title>Icon Button - Ramsey Design System Material 3</title>
+  
+  <!-- Gibson Typography via TypeKit -->
+  <link rel="stylesheet" href="https://use.typekit.net/euz0vgw.css">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Material Web Components - Official ESM Import -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  
+  <!-- Load Material Web Components and Typography -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    console.log('✅ Material Web components and typography loaded');
+  </script>
+  
+  <!-- Shared Design System Styles -->
+  <link rel="stylesheet" href="../shared/layout.css">
+  
+  <style>
+    /* Include all the design tokens and base styles */
+    :root {
+      --color-base-white: #ffffff;
+      --color-base-black: #000000;
+      --color-base-gray-10: #f5f7f8;
+      --color-base-gray-20: #e8eced;
+      --color-base-gray-30: #d5d9db;
+      --color-base-gray-40: #b6bec2;
+      --color-base-gray-50: #8e999e;
+      --color-base-gray-60: #69757a;
+      --color-base-gray-70: #495257;
+      --color-base-gray-80: #333a3d;
+      --color-base-gray-90: #1f2426;
+      --color-base-blue-5: #ebf4fa;
+      --color-base-blue-10: #ade9ff;
+      --color-base-blue-20: #61d5ff;
+      --color-base-blue-30: #00b2f6;
+      --color-base-blue-40: #0091d9;
+      --color-base-blue-50: #0073b9;
+      --color-base-blue-60: #005b98;
+      --color-base-blue-70: #004477;
+      --color-base-blue-80: #003561;
+      --color-base-blue-90: #002342;
+      --color-base-teal-5: #e7f6f4;
+      --color-base-teal-10: #adfff4;
+      --color-base-teal-20: #67f5e2;
+      --color-base-teal-30: #2de0c8;
+      --color-base-teal-40: #1cc8b4;
+      --color-base-teal-50: #16a597;
+      --color-base-teal-60: #0e8e7e;
+      --color-base-teal-70: #077565;
+      --color-base-teal-80: #035a4b;
+      --color-base-teal-90: #004033;
+      --color-base-purple-5: #f8eff6;
+      --color-base-purple-10: #ffc7f2;
+      --color-base-purple-20: #f59de2;
+      --color-base-purple-30: #e07ecb;
+      --color-base-purple-40: #d160b7;
+      --color-base-purple-50: #b34fa0;
+      --color-base-purple-60: #964286;
+      --color-base-purple-70: #773569;
+      --color-base-purple-80: #5b284f;
+      --color-base-purple-90: #401c36;
+      --color-base-red-5: #fcedeb;
+      --color-base-red-10: #ffc4b8;
+      --color-base-red-20: #ff9c8c;
+      --color-base-red-30: #fa7c69;
+      --color-base-red-40: #f26552;
+      --color-base-red-50: #e64b40;
+      --color-base-red-60: #cc392f;
+      --color-base-red-70: #a62b24;
+      --color-base-red-80: #821d1a;
+      --color-base-red-90: #520d0b;
+      --color-base-green-5: #eaf8ee;
+      --color-base-green-10: #adffbe;
+      --color-base-green-20: #83f295;
+      --color-base-green-30: #5ae072;
+      --color-base-green-40: #48ce65;
+      --color-base-green-50: #35bd59;
+      --color-base-green-60: #24a344;
+      --color-base-green-70: #1b8533;
+      --color-base-green-80: #106621;
+      --color-base-green-90: #094212;
+      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-family-base: var(--font-family-gibson);
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-heading: var(--font-weight-semibold);
+      --md-sys-color-primary: var(--color-base-blue-50);
+      --md-sys-color-on-primary: var(--color-base-white);
+      --md-sys-color-primary-container: var(--color-base-blue-10);
+      --md-sys-color-on-primary-container: var(--color-base-blue-80);
+      --md-sys-color-secondary: var(--color-base-teal-50);
+      --md-sys-color-on-secondary: var(--color-base-white);
+      --md-sys-color-secondary-container: var(--color-base-teal-10);
+      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
+      --md-sys-color-tertiary: var(--color-base-purple-50);
+      --md-sys-color-on-tertiary: var(--color-base-white);
+      --md-sys-color-tertiary-container: var(--color-base-purple-10);
+      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
+      --md-sys-color-error: var(--color-base-red-60);
+      --md-sys-color-on-error: var(--color-base-white);
+      --md-sys-color-error-container: var(--color-base-red-10);
+      --md-sys-color-on-error-container: var(--color-base-red-80);
+      --md-sys-color-background: var(--color-base-gray-10);
+      --md-sys-color-on-background: var(--color-base-gray-90);
+      --md-sys-color-surface: var(--color-base-white);
+      --md-sys-color-on-surface: var(--color-base-gray-90);
+      --md-sys-color-surface-variant: var(--color-base-gray-20);
+      --md-sys-color-on-surface-variant: var(--color-base-gray-70);
+      --md-sys-color-outline: var(--color-base-gray-60);
+      --md-sys-color-outline-variant: var(--color-base-gray-30);
+    }
+    
+    :root {
+      --md-ref-typeface-brand: var(--font-family-gibson);
+      --md-ref-typeface-plain: var(--font-family-gibson);
+      --md-sys-typescale-display-large-font: var(--font-family-gibson);
+      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-display-small-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+      --md-sys-typescale-title-large-font: var(--font-family-gibson);
+      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-title-small-font: var(--font-family-gibson);
+      --md-sys-typescale-body-large-font: var(--font-family-gibson);
+      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-body-small-font: var(--font-family-gibson);
+      --md-sys-typescale-label-large-font: var(--font-family-gibson);
+      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+      --md-sys-typescale-label-small-font: var(--font-family-gibson);
+    }
+    
+    * { box-sizing: border-box; }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: var(--font-family-base);
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+    }
+    
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      width: 280px;
+      background-color: var(--md-sys-color-surface);
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      padding: 8px 24px;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: block;
+      padding: 12px 24px;
+      color: var(--md-sys-color-on-surface);
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--md-sys-color-surface-variant);
+    }
+    
+    .nav-item.active {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    .page-header {
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      margin: 0 0 8px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .page-description {
+      margin: 0;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .content-section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      margin: 0 0 24px 0;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .component-showcase {
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+    }
+    
+    .showcase-item {
+      padding: 24px;
+      background: var(--md-sys-color-background);
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
+    .showcase-title {
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .icon-button-demo {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .toolbar-demo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      background: var(--md-sys-color-surface-variant);
+      border-radius: 8px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        max-width: 100vw;
+        padding: 16px;
+      }
+      
+      .layout-container {
+        flex-direction: column;
+      }
+      
+      .icon-button-demo {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared Header Container -->
+  <div id="shared-header"></div>
+
+  <div class="layout-container">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title md-typescale-display-small">Icon Button</h1>
+        <p class="page-description md-typescale-body-large">Material 3 icon buttons help people take supplementary actions with a single tap.</p>
+      </div>
+      
+      <!-- Icon Button Variants -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Icon Button Variants</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Standard Icon Buttons</h3>
+              <div class="icon-button-demo">
+                <md-icon-button aria-label="Search">
+                  <md-icon>search</md-icon>
+                </md-icon-button>
+                <md-icon-button aria-label="Favorite">
+                  <md-icon>favorite</md-icon>
+                </md-icon-button>
+                <md-icon-button aria-label="Share">
+                  <md-icon>share</md-icon>
+                </md-icon-button>
+                <md-icon-button aria-label="Settings">
+                  <md-icon>settings</md-icon>
+                </md-icon-button>
+                <md-icon-button disabled aria-label="Disabled">
+                  <md-icon>block</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Filled Icon Buttons</h3>
+              <div class="icon-button-demo">
+                <md-filled-icon-button aria-label="Add">
+                  <md-icon>add</md-icon>
+                </md-filled-icon-button>
+                <md-filled-icon-button aria-label="Edit">
+                  <md-icon>edit</md-icon>
+                </md-filled-icon-button>
+                <md-filled-icon-button aria-label="Delete">
+                  <md-icon>delete</md-icon>
+                </md-filled-icon-button>
+                <md-filled-icon-button disabled aria-label="Disabled">
+                  <md-icon>lock</md-icon>
+                </md-filled-icon-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Outlined and Tonal Variants -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Additional Variants</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Outlined Icon Buttons</h3>
+              <div class="icon-button-demo">
+                <md-outlined-icon-button aria-label="Home">
+                  <md-icon>home</md-icon>
+                </md-outlined-icon-button>
+                <md-outlined-icon-button aria-label="Account">
+                  <md-icon>account_circle</md-icon>
+                </md-outlined-icon-button>
+                <md-outlined-icon-button aria-label="Notifications">
+                  <md-icon>notifications</md-icon>
+                </md-outlined-icon-button>
+                <md-outlined-icon-button disabled aria-label="Disabled">
+                  <md-icon>visibility_off</md-icon>
+                </md-outlined-icon-button>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Filled Tonal Icon Buttons</h3>
+              <div class="icon-button-demo">
+                <md-filled-tonal-icon-button aria-label="Calendar">
+                  <md-icon>calendar_today</md-icon>
+                </md-filled-tonal-icon-button>
+                <md-filled-tonal-icon-button aria-label="Email">
+                  <md-icon>email</md-icon>
+                </md-filled-tonal-icon-button>
+                <md-filled-tonal-icon-button aria-label="Phone">
+                  <md-icon>phone</md-icon>
+                </md-filled-tonal-icon-button>
+                <md-filled-tonal-icon-button disabled aria-label="Disabled">
+                  <md-icon>wifi_off</md-icon>
+                </md-filled-tonal-icon-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Toggle Buttons -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Toggle Icon Buttons</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Standard Toggle</h3>
+              <div class="icon-button-demo">
+                <md-icon-button toggle id="favorite-toggle" aria-label="Add to favorites">
+                  <md-icon>favorite_border</md-icon>
+                  <md-icon slot="selected">favorite</md-icon>
+                </md-icon-button>
+                <md-icon-button toggle id="bookmark-toggle" aria-label="Bookmark">
+                  <md-icon>bookmark_border</md-icon>
+                  <md-icon slot="selected">bookmark</md-icon>
+                </md-icon-button>
+                <md-icon-button toggle id="star-toggle" aria-label="Star">
+                  <md-icon>star_border</md-icon>
+                  <md-icon slot="selected">star</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Filled Toggle</h3>
+              <div class="icon-button-demo">
+                <md-filled-icon-button toggle id="sound-toggle" aria-label="Toggle sound">
+                  <md-icon>volume_up</md-icon>
+                  <md-icon slot="selected">volume_off</md-icon>
+                </md-filled-icon-button>
+                <md-filled-icon-button toggle id="visibility-toggle" aria-label="Toggle visibility">
+                  <md-icon>visibility</md-icon>
+                  <md-icon slot="selected">visibility_off</md-icon>
+                </md-filled-icon-button>
+                <md-filled-icon-button toggle id="lock-toggle" aria-label="Toggle lock">
+                  <md-icon>lock_open</md-icon>
+                  <md-icon slot="selected">lock</md-icon>
+                </md-filled-icon-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Toolbar Examples -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Toolbar Examples</h2>
+        
+        <div class="component-showcase">
+          <div class="showcase-grid" style="grid-template-columns: 1fr;">
+            <div class="showcase-item">
+              <h3 class="showcase-title">Text Editor Toolbar</h3>
+              <div class="toolbar-demo">
+                <md-icon-button aria-label="Bold">
+                  <md-icon>format_bold</md-icon>
+                </md-icon-button>
+                <md-icon-button aria-label="Italic">
+                  <md-icon>format_italic</md-icon>
+                </md-icon-button>
+                <md-icon-button aria-label="Underline">
+                  <md-icon>format_underlined</md-icon>
+                </md-icon-button>
+                <div style="width: 1px; height: 24px; background: var(--md-sys-color-outline); margin: 0 8px;"></div>
+                <md-icon-button aria-label="Align left">
+                  <md-icon>format_align_left</md-icon>
+                </md-icon-button>
+                <md-icon-button aria-label="Align center">
+                  <md-icon>format_align_center</md-icon>
+                </md-icon-button>
+                <md-icon-button aria-label="Align right">
+                  <md-icon>format_align_right</md-icon>
+                </md-icon-button>
+                <div style="width: 1px; height: 24px; background: var(--md-sys-color-outline); margin: 0 8px;"></div>
+                <md-icon-button aria-label="Bulleted list">
+                  <md-icon>format_list_bulleted</md-icon>
+                </md-icon-button>
+                <md-icon-button aria-label="Numbered list">
+                  <md-icon>format_list_numbered</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">Media Player Controls</h3>
+              <div class="toolbar-demo" style="justify-content: center;">
+                <md-icon-button aria-label="Previous track">
+                  <md-icon>skip_previous</md-icon>
+                </md-icon-button>
+                <md-filled-icon-button aria-label="Play">
+                  <md-icon>play_arrow</md-icon>
+                </md-filled-icon-button>
+                <md-icon-button aria-label="Next track">
+                  <md-icon>skip_next</md-icon>
+                </md-icon-button>
+                <div style="width: 1px; height: 24px; background: var(--md-sys-color-outline); margin: 0 16px;"></div>
+                <md-icon-button toggle aria-label="Shuffle">
+                  <md-icon>shuffle</md-icon>
+                  <md-icon slot="selected" style="color: var(--md-sys-color-primary);">shuffle</md-icon>
+                </md-icon-button>
+                <md-icon-button toggle aria-label="Repeat">
+                  <md-icon>repeat</md-icon>
+                  <md-icon slot="selected" style="color: var(--md-sys-color-primary);">repeat</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+            
+            <div class="showcase-item">
+              <h3 class="showcase-title">App Bar Actions</h3>
+              <div class="toolbar-demo">
+                <md-icon-button aria-label="Menu">
+                  <md-icon>menu</md-icon>
+                </md-icon-button>
+                <div style="flex: 1; margin: 0 16px;">
+                  <span class="md-typescale-title-large">Page Title</span>
+                </div>
+                <md-icon-button aria-label="Search">
+                  <md-icon>search</md-icon>
+                </md-icon-button>
+                <md-icon-button toggle aria-label="Favorite">
+                  <md-icon>favorite_border</md-icon>
+                  <md-icon slot="selected">favorite</md-icon>
+                </md-icon-button>
+                <md-icon-button aria-label="More options">
+                  <md-icon>more_vert</md-icon>
+                </md-icon-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Interactive Demo -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Interactive Demo</h2>
+        
+        <div class="component-showcase">
+          <h3 class="md-typescale-title-medium" style="margin: 0 0 24px 0;">Click to Interact</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+            <div style="text-align: center;">
+              <md-icon-button id="like-btn" toggle aria-label="Like">
+                <md-icon>thumb_up_off_alt</md-icon>
+                <md-icon slot="selected">thumb_up</md-icon>
+              </md-icon-button>
+              <div class="md-typescale-body-small" style="margin-top: 8px;">Like (<span id="like-count">0</span>)</div>
+            </div>
+            
+            <div style="text-align: center;">
+              <md-filled-icon-button id="notify-btn" toggle aria-label="Notifications">
+                <md-icon>notifications_off</md-icon>
+                <md-icon slot="selected">notifications</md-icon>
+              </md-filled-icon-button>
+              <div class="md-typescale-body-small" style="margin-top: 8px;">Notifications</div>
+            </div>
+            
+            <div style="text-align: center;">
+              <md-outlined-icon-button id="share-btn" aria-label="Share">
+                <md-icon>share</md-icon>
+              </md-outlined-icon-button>
+              <div class="md-typescale-body-small" style="margin-top: 8px;">Share</div>
+            </div>
+            
+            <div style="text-align: center;">
+              <md-filled-tonal-icon-button id="download-btn" aria-label="Download">
+                <md-icon>download</md-icon>
+              </md-filled-tonal-icon-button>
+              <div class="md-typescale-body-small" style="margin-top: 8px;">Download</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Accessibility -->
+      <section class="content-section">
+        <h2 class="section-title md-typescale-headline-medium">Accessibility</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Labels and Descriptions</h3>
+            <ul class="md-typescale-body-medium">
+              <li>Always include aria-label for screen readers</li>
+              <li>Use descriptive labels that explain the action</li>
+              <li>Indicate toggle states in labels</li>
+              <li>Group related buttons with roles</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Keyboard Navigation</h3>
+            <ul class="md-typescale-body-medium">
+              <li><kbd>Tab</kbd> - Move to next button</li>
+              <li><kbd>Shift + Tab</kbd> - Move to previous button</li>
+              <li><kbd>Enter</kbd> or <kbd>Space</kbd> - Activate button</li>
+              <li>Arrow keys work in button groups</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: var(--md-sys-color-surface); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <h3 class="md-typescale-title-medium" style="margin: 0 0 16px 0;">Visual Indicators</h3>
+            <ul class="md-typescale-body-medium">
+              <li>44px minimum touch target size</li>
+              <li>Clear focus indicators</li>
+              <li>High contrast color combinations</li>
+              <li>State changes are visually distinct</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Like button with counter
+      let likeCount = 0;
+      const likeBtn = document.getElementById('like-btn');
+      const likeCountElement = document.getElementById('like-count');
+      
+      likeBtn.addEventListener('click', () => {
+        if (likeBtn.selected) {
+          likeCount++;
+        } else {
+          likeCount = Math.max(0, likeCount - 1);
+        }
+        likeCountElement.textContent = likeCount;
+      });
+      
+      // Notification toggle
+      const notifyBtn = document.getElementById('notify-btn');
+      notifyBtn.addEventListener('click', () => {
+        const status = notifyBtn.selected ? 'enabled' : 'disabled';
+        console.log(`Notifications ${status}`);
+      });
+      
+      // Share button
+      const shareBtn = document.getElementById('share-btn');
+      shareBtn.addEventListener('click', () => {
+        alert('Share menu opened! (Demo action)');
+      });
+      
+      // Download button
+      const downloadBtn = document.getElementById('download-btn');
+      downloadBtn.addEventListener('click', () => {
+        alert('Download started! (Demo action)');
+      });
+    });
+  </script>
+
+  <!-- Shared Component Initialization -->
+  <script type="module" src="../shared/page-init.js"></script>
+</body>
+</html>
