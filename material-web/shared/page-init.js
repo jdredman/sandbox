@@ -22,13 +22,18 @@ async function initializePage() {
     
     // Determine base path for shared components and navigation links
     const currentPath = window.location.pathname;
-    let sharedPath = './shared/';
-    let basePath = './';
     
-    // If we're in a subdirectory (foundations/, components/), use relative path for shared components
+    // Calculate paths based on current location
+    let sharedPath, basePath;
+    
     if (currentPath.includes('/foundations/') || currentPath.includes('/components/')) {
+      // We're in a subdirectory
       sharedPath = '../shared/';
       basePath = '../';
+    } else {
+      // We're in the root directory
+      sharedPath = './shared/';
+      basePath = './';
     }
     
     // Load shared header
@@ -79,7 +84,7 @@ async function initializePage() {
     // Initialize theme management
     const themeManager = new MaterialThemeManager();
     
-    // Initialize navigation management
+    // Initialize navigation management (after components are loaded)
     const navManager = new NavigationManager();
     
     // Set up toggle button

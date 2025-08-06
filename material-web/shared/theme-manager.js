@@ -100,6 +100,7 @@ class MaterialThemeManager {
  */
 class NavigationManager {
   constructor() {
+    this.mobileNavOpen = false;
     this.init();
   }
   
@@ -109,6 +110,69 @@ class NavigationManager {
     
     // Set active navigation states
     this.setActiveNavigation();
+    
+    // Initialize mobile navigation
+    this.initMobileNavigation();
+  }
+  
+  initMobileNavigation() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+    
+    if (mobileMenuToggle && mobileNavOverlay) {
+      // Open mobile navigation
+      mobileMenuToggle.addEventListener('click', () => {
+        this.openMobileNav();
+      });
+      
+      // Close mobile navigation when clicking overlay
+      mobileNavOverlay.addEventListener('click', (e) => {
+        if (e.target === mobileNavOverlay) {
+          this.closeMobileNav();
+        }
+      });
+      
+      // Close mobile navigation when clicking close button
+      if (mobileNavClose) {
+        mobileNavClose.addEventListener('click', () => {
+          this.closeMobileNav();
+        });
+      }
+      
+      // Close mobile navigation when clicking any nav item
+      const mobileNavItems = mobileNavOverlay.querySelectorAll('.mobile-nav-item');
+      mobileNavItems.forEach(item => {
+        item.addEventListener('click', () => {
+          this.closeMobileNav();
+        });
+      });
+      
+      // Handle escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.mobileNavOpen) {
+          this.closeMobileNav();
+        }
+      });
+    }
+  }
+  
+  openMobileNav() {
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+    if (mobileNavOverlay) {
+      this.mobileNavOpen = true;
+      mobileNavOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+  }
+  
+  closeMobileNav() {
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+    if (mobileNavOverlay) {
+      this.mobileNavOpen = false;
+      mobileNavOverlay.classList.remove('open');
+      document.body.style.overflow = ''; // Restore scrolling
+    }
   }
   
   updateNavigationPaths() {
@@ -141,6 +205,15 @@ class NavigationManager {
       const parentElement = componentsLink.parentElement;
       if (parentElement) parentElement.href = basePath + 'components/index.html';
     }
+    
+    // Update mobile navigation links
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-item[href]');
+    mobileNavLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href.startsWith('./')) {
+        link.setAttribute('href', basePath + href.substring(2));
+      }
+    });
   }
   
   setActiveNavigation() {
@@ -155,14 +228,18 @@ class NavigationManager {
       item.classList.remove('active');
     });
     
+    document.querySelectorAll('.mobile-nav-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    
     // Set active states based on current path
     if (currentPath.includes('/foundations/')) {
       const foundationsNav = document.getElementById('nav-foundations');
       if (foundationsNav) foundationsNav.querySelector('md-text-button').classList.add('current');
       
-      // Set specific foundation page active in sidebar
+      // Set specific foundation page active in sidebar and mobile nav
       const foundationFile = currentPath.split('/').pop();
-      document.querySelectorAll('.nav-item').forEach(item => {
+      document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(item => {
         if (item.href && item.href.includes(foundationFile)) {
           item.classList.add('active');
         }
@@ -171,9 +248,9 @@ class NavigationManager {
       const componentsNav = document.getElementById('nav-components');
       if (componentsNav) componentsNav.querySelector('md-text-button').classList.add('current');
       
-      // Set specific component page active in sidebar
+      // Set specific component page active in sidebar and mobile nav
       const componentFile = currentPath.split('/').pop();
-      document.querySelectorAll('.nav-item').forEach(item => {
+      document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(item => {
         if (item.href && item.href.includes(componentFile)) {
           item.classList.add('active');
         }

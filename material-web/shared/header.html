@@ -1,6 +1,11 @@
 <!-- Fixed Header Component -->
 <header class="fixed-header">
   <div class="header-container">
+    <!-- Mobile Menu Button -->
+    <md-icon-button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+      <md-icon>menu</md-icon>
+    </md-icon-button>
+    
     <!-- Ramsey Logo -->
     <div class="logo-container">
       <a href="./index.html" style="display: flex; align-items: center; text-decoration: none;" id="logo-link">
@@ -17,18 +22,13 @@
       </a>
     </div>
     
-    <!-- Navigation -->
+    <!-- Desktop Navigation -->
     <nav class="main-nav">
       <ul class="nav-list">
-        <li><a href="./index.html" id="nav-overview"><md-text-button class="nav-link">Overview</md-text-button></a></li>
-        <li><a href="./foundations/index.html" id="nav-foundations"><md-text-button class="nav-link">Foundations</md-text-button></a></li>
-        <li><a href="./components/index.html" id="nav-components"><md-text-button class="nav-link">Components</md-text-button></a></li>
-        <li><md-text-button class="nav-link">Patterns</md-text-button></li>
-        <li><md-text-button class="nav-link">Resources</md-text-button></li>
       </ul>
     </nav>
     
-    <!-- Theme Toggle -->
+    <!-- Header Controls -->
     <div class="header-controls">
       <md-text-button id="theme-toggle" aria-label="Toggle theme mode">
         🌙
@@ -36,3 +36,51 @@
     </div>
   </div>
 </header>
+
+<!-- Mobile Navigation Overlay -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay">
+  <nav class="mobile-nav">
+    <div class="mobile-nav-header">
+      <h2 class="mobile-nav-title">Navigation</h2>
+      <md-icon-button id="mobile-nav-close" aria-label="Close navigation menu">
+        <md-icon>close</md-icon>
+      </md-icon-button>
+    </div>
+    
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-section">
+        <h3 class="mobile-nav-section-title">Main</h3>
+        <a href="./index.html" class="mobile-nav-item">Overview</a>
+        <a href="./foundations/index.html" class="mobile-nav-item">Foundations</a>
+        <a href="./components/index.html" class="mobile-nav-item">Components</a>
+      </div>
+      
+      <div class="mobile-nav-section">
+        <h3 class="mobile-nav-section-title">Foundations</h3>
+        <a href="./foundations/color.html" class="mobile-nav-item">Color</a>
+        <a href="./foundations/typography.html" class="mobile-nav-item">Typography</a>
+        <a href="./foundations/spacing.html" class="mobile-nav-item">Spacing</a>
+        <a href="./foundations/elevation.html" class="mobile-nav-item">Elevation</a>
+        <a href="./foundations/motion.html" class="mobile-nav-item">Motion</a>
+      </div>
+      
+      <div class="mobile-nav-section">
+        <h3 class="mobile-nav-section-title">Components</h3>
+        <a href="./components/button.html" class="mobile-nav-item">Button</a>
+        <a href="./components/card.html" class="mobile-nav-item">Card</a>
+        <a href="./components/checkbox.html" class="mobile-nav-item">Checkbox</a>
+        <a href="./components/dialog.html" class="mobile-nav-item">Dialog</a>
+        <a href="./components/fab.html" class="mobile-nav-item">FAB</a>
+        <a href="./components/icon-button.html" class="mobile-nav-item">Icon Button</a>
+        <a href="./components/list.html" class="mobile-nav-item">List</a>
+        <a href="./components/menu.html" class="mobile-nav-item">Menu</a>
+        <a href="./components/navigation.html" class="mobile-nav-item">Navigation</a>
+        <a href="./components/radio.html" class="mobile-nav-item">Radio</a>
+        <a href="./components/slider.html" class="mobile-nav-item">Slider</a>
+        <a href="./components/switch.html" class="mobile-nav-item">Switch</a>
+        <a href="./components/tabs.html" class="mobile-nav-item">Tabs</a>
+        <a href="./components/text-field.html" class="mobile-nav-item">Text Field</a>
+      </div>
+    </div>
+  </nav>
+</div>
