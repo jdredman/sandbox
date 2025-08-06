@@ -1,0 +1,25 @@
+{
+  "name": "material-web-design-system",
+  "version": "1.0.0",
+  "description": "Material Design 3 design system implementation with Ramsey design tokens",
+  "scripts": {
+    "version-css": "node version-css.js",
+    "serve": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "build": "./build.sh",
+    "build-css": "npm run version-css",
+    "deploy": "./build.sh && echo 'Ready for production deployment!'"
+  },
+  "keywords": [
+    "material-design",
+    "design-system",
+    "css",
+    "web-components"
+  ],
+  "author": "Ramsey Design System Team",
+  "license": "MIT",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
