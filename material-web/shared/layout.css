@@ -135,6 +135,25 @@
   --md-sys-color-on-surface-variant: var(--color-base-gray-70);
   --md-sys-color-outline: var(--color-base-gray-60);
   --md-sys-color-outline-variant: var(--color-base-gray-30);
+  
+  /* Material 3 Shape Tokens - Button Border Radius */
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+  
+  /* Button Shape Tokens - 8px Border Radius */
+  --md-filled-button-container-shape: 8px;
+  --md-filled-tonal-button-container-shape: 8px;
+  --md-outlined-button-container-shape: 8px;
+  --md-text-button-container-shape: 8px;
+  --md-icon-button-state-layer-shape: 8px;
+  
+  /* FAB Shape Tokens - Keep Circular */
+  --md-fab-container-shape: 16px;
+  --md-fab-small-container-shape: 12px;
+  --md-fab-large-container-shape: 28px;
 }
 
 /* Dark Theme Tokens */
@@ -174,6 +193,18 @@
   /* Outline Tokens Dark */
   --md-sys-color-outline: var(--color-base-gray-50);
   --md-sys-color-outline-variant: var(--color-base-gray-70);
+  
+  /* Button Shape Tokens - 8px Border Radius (Dark) */
+  --md-filled-button-container-shape: 8px;
+  --md-filled-tonal-button-container-shape: 8px;
+  --md-outlined-button-container-shape: 8px;
+  --md-text-button-container-shape: 8px;
+  --md-icon-button-state-layer-shape: 8px;
+  
+  /* FAB Shape Tokens - Keep Circular (Dark) */
+  --md-fab-container-shape: 16px;
+  --md-fab-small-container-shape: 12px;
+  --md-fab-large-container-shape: 28px;
   
   /* Color scheme for browser */
   color-scheme: dark;
