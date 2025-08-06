@@ -301,10 +301,16 @@ class ComponentLoader {
 }
 
 /**
- * Initialize the design system
+ * Initialize the design system (only if not already initialized by page-init.js)
  */
 function initRamseyDesignSystem() {
-  console.log('🚀 Initializing Ramsey Material Web Design System...');
+  // Check if already initialized
+  if (window.ramseyTheme) {
+    console.log('� Design system already initialized');
+    return;
+  }
+  
+  console.log('�🚀 Initializing Ramsey Material Web Design System...');
   
   try {
     // Create theme manager
@@ -343,9 +349,14 @@ function initRamseyDesignSystem() {
   }
 }
 
-// Auto-initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initRamseyDesignSystem);
-} else {
-  initRamseyDesignSystem();
+// Export for ES modules
+export { MaterialThemeManager, NavigationManager, ComponentLoader, initRamseyDesignSystem };
+
+// Fallback auto-initialize only if no module loader detected
+if (typeof document !== 'undefined' && !window.moduleSystemDetected) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRamseyDesignSystem);
+  } else {
+    initRamseyDesignSystem();
+  }
 }

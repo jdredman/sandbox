@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Test</title>
+    <link rel="stylesheet" href="shared/layout.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "@material/web/": "https://esm.run/@material/web/"
+        }
+      }
+    </script>
+    <script type="module">
+      import '@material/web/button/text-button.js';
+      import '@material/web/icon/icon.js';
+      import '@material/web/iconbutton/icon-button.js';
+    </script>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: var(--font-family-base);
+      }
+      .debug-section {
+        margin: 20px 0;
+        padding: 15px;
+        border: 2px solid var(--color-base-gray-30);
+        border-radius: 8px;
+      }
+    </style>
+</head>
+<body>
+    <h1>Debug Test Page</h1>
+    
+    <div class="debug-section">
+        <h2>1. Component Loading Test</h2>
+        <div id="shared-header">
+            <!-- Header will be loaded here -->
+        </div>
+        <div id="shared-sidebar">
+            <!-- Sidebar will be loaded here -->
+        </div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>2. Manual Button Test</h2>
+        <md-text-button id="manual-theme-toggle">Manual Theme Toggle</md-text-button>
+        <md-icon-button id="manual-menu-toggle">
+            <md-icon>menu</md-icon>
+        </md-icon-button>
+    </div>
+    
+    <div class="debug-section">
+        <h2>3. Console Output</h2>
+        <div id="console-output"></div>
+    </div>
+
+    <script type="module">
+        // Manual component loading test
+        async function loadComponent(url) {
+            try {
+                console.log('Loading:', url);
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                const text = await response.text();
+                console.log('Loaded successfully, length:', text.length);
+                return text;
+            } catch (error) {
+                console.error('Failed to load:', url, error);
+                return null;
+            }
+        }
+        
+        async function debugTest() {
+            console.log('🔍 Starting debug test...');
+            
+            // Test component loading
+            const headerHtml = await loadComponent('./shared/header.html');
+            if (headerHtml) {
+                document.getElementById('shared-header').innerHTML = headerHtml;
+                console.log('✅ Header loaded');
+            }
+            
+            const sidebarHtml = await loadComponent('./shared/sidebar.html');
+            if (sidebarHtml) {
+                document.getElementById('shared-sidebar').innerHTML = sidebarHtml;
+                console.log('✅ Sidebar loaded');
+            }
+            
+            // Wait for DOM to process
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            // Check for elements
+            const themeToggle = document.getElementById('theme-toggle');
+            const menuToggle = document.getElementById('mobile-menu-toggle');
+            
+            console.log('Element check:');
+            console.log('- Theme toggle found:', !!themeToggle);
+            console.log('- Menu toggle found:', !!menuToggle);
+            
+            if (themeToggle) {
+                console.log('Theme toggle element:', themeToggle);
+                themeToggle.addEventListener('click', () => {
+                    console.log('Theme toggle clicked!');
+                    document.body.classList.toggle('theme-dark');
+                });
+            }
+            
+            if (menuToggle) {
+                console.log('Menu toggle element:', menuToggle);
+                menuToggle.addEventListener('click', () => {
+                    console.log('Menu toggle clicked!');
+                });
+            }
+            
+            // Test manual buttons
+            document.getElementById('manual-theme-toggle').addEventListener('click', () => {
+                console.log('Manual theme toggle clicked!');
+                document.body.classList.toggle('theme-dark');
+            });
+            
+            document.getElementById('manual-menu-toggle').addEventListener('click', () => {
+                console.log('Manual menu toggle clicked!');
+            });
+            
+            console.log('🎉 Debug test complete');
+        }
+        
+        debugTest();
+    </script>
+</body>
+</html>

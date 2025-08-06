@@ -1,24 +1,25 @@
 /**
- * Ramsey Design System Page Initializer
- * Simple function to load shared components and initialize the page
+ * Page Initialization Script
+ * Loads shared components and initializes theme/navigation managers
  */
 
 async function loadComponent(url) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Failed to load ${url}: ${response.status}`);
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
     return await response.text();
   } catch (error) {
-    console.error(`❌ Error loading component from ${url}:`, error);
+    console.error(`Failed to load component from ${url}:`, error);
     return null;
   }
 }
 
 async function initializePage() {
   try {
-    console.log('🚀 Initializing page components...');
+    console.log('🚀 Starting page initialization...');
+    console.log('Current pathname:', window.location.pathname);
     
     // Determine base path for shared components and navigation links
     const currentPath = window.location.pathname;
@@ -36,13 +37,18 @@ async function initializePage() {
       basePath = './';
     }
     
+    console.log('Calculated paths - shared:', sharedPath, 'base:', basePath);
+    
     // Load shared header
     const headerContainer = document.getElementById('shared-header');
+    console.log('Header container found:', !!headerContainer);
     if (headerContainer) {
       console.log('📝 Loading header from:', sharedPath + 'header.html');
       const headerHtml = await loadComponent(sharedPath + 'header.html');
+      console.log('Header HTML loaded:', !!headerHtml);
       if (headerHtml) {
         headerContainer.innerHTML = headerHtml;
+        console.log('Header HTML inserted, length:', headerHtml.length);
         
         // Fix navigation links in header based on current page location
         const navLinks = headerContainer.querySelectorAll('a[href]');
@@ -59,11 +65,14 @@ async function initializePage() {
     
     // Load shared sidebar
     const sidebarContainer = document.getElementById('shared-sidebar');
+    console.log('Sidebar container found:', !!sidebarContainer);
     if (sidebarContainer) {
       console.log('📝 Loading sidebar from:', sharedPath + 'sidebar.html');
       const sidebarHtml = await loadComponent(sharedPath + 'sidebar.html');
+      console.log('Sidebar HTML loaded:', !!sidebarHtml);
       if (sidebarHtml) {
         sidebarContainer.innerHTML = sidebarHtml;
+        console.log('Sidebar HTML inserted');
         
         // Fix navigation links in sidebar based on current page location
         const navLinks = sidebarContainer.querySelectorAll('a[href]');
@@ -78,30 +87,65 @@ async function initializePage() {
       }
     }
     
-    // Import and initialize theme manager
-    const { MaterialThemeManager, NavigationManager } = await import(sharedPath + 'theme-manager.js');
+    // Wait for DOM content to be fully processed
+    await new Promise(resolve => setTimeout(resolve, 500));
     
-    // Initialize theme management
-    const themeManager = new MaterialThemeManager();
+    // Check if critical elements exist after loading
+    const themeToggle = document.getElementById('theme-toggle');
+    const menuToggle = document.getElementById('mobile-menu-toggle');
     
-    // Initialize navigation management (after components are loaded)
-    const navManager = new NavigationManager();
+    console.log('Post-load element check:');
+    console.log('- Theme toggle found:', !!themeToggle);
+    console.log('- Menu toggle found:', !!menuToggle);
     
-    // Set up toggle button
-    const toggleButton = document.getElementById('theme-toggle');
-    if (toggleButton) {
-      toggleButton.addEventListener('click', () => {
-        themeManager.toggle();
+    if (themeToggle) {
+      console.log('Theme toggle details:', {
+        tagName: themeToggle.tagName,
+        id: themeToggle.id,
+        textContent: themeToggle.textContent
       });
     }
     
-    // Dispatch event to signal components are loaded
-    document.dispatchEvent(new CustomEvent('componentsLoaded'));
+    if (menuToggle) {
+      console.log('Menu toggle details:', {
+        tagName: menuToggle.tagName,
+        id: menuToggle.id,
+        innerHTML: menuToggle.innerHTML
+      });
+    }
     
-    console.log('✅ Page initialization complete');
+    // Only initialize managers if elements exist
+    if (themeToggle || menuToggle) {
+      console.log('📦 Importing theme manager...');
+      try {
+        const { MaterialThemeManager, NavigationManager } = await import('./theme-manager.js');
+        console.log('✅ Theme manager imported successfully');
+        
+        if (themeToggle) {
+          console.log('🎨 Initializing MaterialThemeManager...');
+          const themeManager = new MaterialThemeManager();
+          window.ramseyTheme = themeManager;
+          console.log('✅ Theme manager initialized');
+        }
+        
+        if (menuToggle) {
+          console.log('📱 Initializing NavigationManager...');
+          const navigationManager = new NavigationManager();
+          window.ramseyNav = navigationManager;
+          console.log('✅ Navigation manager initialized');
+        }
+        
+      } catch (importError) {
+        console.error('❌ Failed to import or initialize managers:', importError);
+      }
+    } else {
+      console.warn('⚠️ No critical elements found - skipping manager initialization');
+    }
+    
+    console.log('🎉 Page initialization complete!');
     
   } catch (error) {
-    console.error('❌ Failed to initialize page:', error);
+    console.error('❌ Error during page initialization:', error);
   }
 }
 

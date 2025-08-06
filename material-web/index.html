@@ -66,779 +66,7 @@
   <link rel="stylesheet" href="shared/layout.css">
   
   <style>
-    /* === COMPLETE DESIGN TOKEN DEFINITIONS FROM YOUR SYSTEM === */
-    
-    :root {
-      /* === COLOR TOKENS === */
-      
-      /* Base Colors */
-      --color-base-white: #ffffff;
-      --color-base-black: #000000;
-      
-      /* Gray Scale */
-      --color-base-gray-10: #f5f7f8;
-      --color-base-gray-20: #e8eced;
-      --color-base-gray-30: #d5d9db;
-      --color-base-gray-40: #b6bec2;
-      --color-base-gray-50: #8e999e;
-      --color-base-gray-60: #69757a;
-      --color-base-gray-70: #495257;
-      --color-base-gray-80: #333a3d;
-      --color-base-gray-90: #1f2426;
-      
-      /* Magenta Scale */
-      --color-base-magenta-5: #fef1f8;
-      --color-base-magenta-8: #fee5f3;
-      --color-base-magenta-10: #ffc6e6;
-      --color-base-magenta-20: #ff93cf;
-      --color-base-magenta-30: #f863b7;
-      --color-base-magenta-40: #ed3d9f;
-      --color-base-magenta-50: #e30a8d;
-      --color-base-magenta-60: #c40879;
-      --color-base-magenta-70: #9c085c;
-      --color-base-magenta-80: #770644;
-      --color-base-magenta-90: #55022e;
-      
-      /* Purple Scale */
-      --color-base-purple-5: #f8eff6;
-      --color-base-purple-8: #fae2f5;
-      --color-base-purple-10: #ffc7f2;
-      --color-base-purple-20: #f59de2;
-      --color-base-purple-30: #e07ecb;
-      --color-base-purple-40: #d160b7;
-      --color-base-purple-50: #b34fa0;
-      --color-base-purple-60: #964286;
-      --color-base-purple-70: #773569;
-      --color-base-purple-80: #5b284f;
-      --color-base-purple-90: #401c36;
-      
-      /* Violet Scale */
-      --color-base-violet-5: #f3f1f9;
-      --color-base-violet-8: #ece7fb;
-      --color-base-violet-10: #d8c7ff;
-      --color-base-violet-20: #b69df5;
-      --color-base-violet-30: #9379e0;
-      --color-base-violet-40: #7b62cc;
-      --color-base-violet-50: #634fb3;
-      --color-base-violet-60: #534296;
-      --color-base-violet-70: #44367b;
-      --color-base-violet-80: #352a60;
-      --color-base-violet-90: #271f47;
-      
-      /* Blue Scale */
-      --color-base-blue-5: #ebf4fa;
-      --color-base-blue-8: #d8f1fc;
-      --color-base-blue-10: #ade9ff;
-      --color-base-blue-20: #61d5ff;
-      --color-base-blue-30: #00b2f6;
-      --color-base-blue-40: #0091d9;
-      --color-base-blue-50: #0073b9;
-      --color-base-blue-60: #005b98;
-      --color-base-blue-70: #004477;
-      --color-base-blue-80: #003561;
-      --color-base-blue-90: #002342;
-      
-      /* Aqua Scale */
-      --color-base-aqua-5: #e5f7f9;
-      --color-base-aqua-8: #d6f9fb;
-      --color-base-aqua-10: #adffff;
-      --color-base-aqua-20: #75f8fc;
-      --color-base-aqua-30: #3bebf5;
-      --color-base-aqua-40: #00d6e6;
-      --color-base-aqua-50: #00b6c7;
-      --color-base-aqua-60: #0097a8;
-      --color-base-aqua-70: #007384;
-      --color-base-aqua-80: #005362;
-      --color-base-aqua-90: #003540;
-      
-      /* Teal Scale */
-      --color-base-teal-5: #e7f6f4;
-      --color-base-teal-8: #d2f9f4;
-      --color-base-teal-10: #adfff4;
-      --color-base-teal-20: #67f5e2;
-      --color-base-teal-30: #2de0c8;
-      --color-base-teal-40: #1cc8b4;
-      --color-base-teal-50: #16a597;
-      --color-base-teal-60: #0e8e7e;
-      --color-base-teal-70: #077565;
-      --color-base-teal-80: #035a4b;
-      --color-base-teal-90: #004033;
-      
-      /* Green Scale */
-      --color-base-green-5: #eaf8ee;
-      --color-base-green-8: #d9fae1;
-      --color-base-green-10: #adffbe;
-      --color-base-green-20: #83f295;
-      --color-base-green-30: #5ae072;
-      --color-base-green-40: #48ce65;
-      --color-base-green-50: #35bd59;
-      --color-base-green-60: #24a344;
-      --color-base-green-70: #1b8533;
-      --color-base-green-80: #106621;
-      --color-base-green-90: #094212;
-      
-      /* Lime Scale */
-      --color-base-lime-5: #f3f9eb;
-      --color-base-lime-8: #edfccd;
-      --color-base-lime-10: #e5ffa8;
-      --color-base-lime-20: #cdf383;
-      --color-base-lime-30: #b3e65c;
-      --color-base-lime-40: #a0d64a;
-      --color-base-lime-50: #8ec738;
-      --color-base-lime-60: #73ab29;
-      --color-base-lime-70: #588f1a;
-      --color-base-lime-80: #3b6610;
-      --color-base-lime-90: #234208;
-      
-      /* Yellow Scale */
-      --color-base-yellow-5: #fefae7;
-      --color-base-yellow-8: #fef9d0;
-      --color-base-yellow-10: #fff6a8;
-      --color-base-yellow-20: #ffec82;
-      --color-base-yellow-30: #ffe45e;
-      --color-base-yellow-40: #ffda47;
-      --color-base-yellow-50: #fcd214;
-      --color-base-yellow-60: #e3b409;
-      --color-base-yellow-70: #b88907;
-      --color-base-yellow-80: #805203;
-      --color-base-yellow-90: #4d2d02;
-      
-      /* Amber Scale */
-      --color-base-amber-5: #fef6e8;
-      --color-base-amber-8: #fef0d1;
-      --color-base-amber-10: #ffe6a8;
-      --color-base-amber-20: #ffd784;
-      --color-base-amber-30: #ffc95e;
-      --color-base-amber-40: #fdba40;
-      --color-base-amber-50: #faab19;
-      --color-base-amber-60: #e3900b;
-      --color-base-amber-70: #b86b07;
-      --color-base-amber-80: #804103;
-      --color-base-amber-90: #4d2502;
-      
-      /* Orange Scale */
-      --color-base-orange-5: #fcf0e8;
-      --color-base-orange-8: #fde5d3;
-      --color-base-orange-10: #ffd3ad;
-      --color-base-orange-20: #feb881;
-      --color-base-orange-30: #fa9f5a;
-      --color-base-orange-40: #f58331;
-      --color-base-orange-50: #e66f20;
-      --color-base-orange-60: #c95a14;
-      --color-base-orange-70: #a6400d;
-      --color-base-orange-80: #7d2c09;
-      --color-base-orange-90: #571c03;
-      
-      /* Red Scale */
-      --color-base-red-5: #fcedeb;
-      --color-base-red-8: #fdded8;
-      --color-base-red-10: #ffc4b8;
-      --color-base-red-20: #ff9c8c;
-      --color-base-red-30: #fa7c69;
-      --color-base-red-40: #f26552;
-      --color-base-red-50: #e64b40;
-      --color-base-red-60: #cc392f;
-      --color-base-red-70: #a62b24;
-      --color-base-red-80: #821d1a;
-      --color-base-red-90: #520d0b;
-      
-      /* Background Colors */
-      --color-background-overlay: rgb(31 36 38 / 0.64);
-      --color-background-base: var(--color-base-gray-10);
-      --color-background-control: var(--color-base-white);
-      --color-background-control-disabled: var(--color-base-gray-10);
-      --color-background-success: var(--color-base-green-70);
-      --color-background-error: var(--color-base-red-60);
-      
-      /* Border Colors */
-      --color-border-control: var(--color-base-gray-60);
-      --color-border-control-disabled: var(--color-base-gray-30);
-      --color-border-control-interactive: var(--color-base-blue-50);
-      --color-border-error: var(--color-base-red-60);
-      
-      /* Text Colors */
-      --color-text-base: var(--color-base-gray-90);
-      --color-text-darkCanvas: var(--color-base-white);
-      --color-text-subdued: var(--color-base-gray-70);
-      --color-text-link: var(--color-base-blue-50);
-      --color-text-link-interactive: var(--color-base-blue-60);
-      --color-text-error: var(--color-base-red-70);
-      --color-text-success: var(--color-base-green-80);
-      --color-text-disabled: var(--color-base-gray-40);
-      
-      /* Brand Colors */
-      --color-brand-twitter: #1da1f2;
-      --color-brand-linkedin: #0077b5;
-      --color-brand-facebook: #3b5998;
-      --color-brand-pinterest: #bd081c;
-      --color-brand-youtube: #ff0000;
-      --color-brand-x: #000000;
-      
-      /* Shadow Colors */
-      --color-shadow-sm: rgb(31 36 38 / 0.1);
-      --color-shadow-md: rgb(31 36 38 / 0.12);
-      --color-shadow-lg: rgb(31 36 38 / 0.18);
-      
-      /* === TYPOGRAPHY TOKENS === */
-      
-      /* Font Families */
-      --font-family-arial: Arial, sans-serif;
-      --font-family-gibson: "gibson", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      --font-family-base: var(--font-family-gibson);
-      
-      /* Font Weights */
-      --font-weight-normal: 400;
-      --font-weight-semibold: 600;
-      --font-weight-bold: 700;
-      --font-weight-strong: var(--font-weight-semibold);
-      --font-weight-heading: var(--font-weight-semibold);
-      
-      /* Font Sizes */
-      --size-font-1: 12px;
-      --size-font-2: 14px;
-      --size-font-3: 16px;
-      --size-font-4: 18px;
-      --size-font-5: 20px;
-      --size-font-6: 24px;
-      --size-font-7: 28px;
-      --size-font-8: 34px;
-      --size-font-9: 40px;
-      --size-font-10: 48px;
-      --size-font-11: 60px;
-      --size-font-12: 72px;
-      --size-font-13: 96px;
-      --size-font-control-sm: var(--size-font-2);
-      --size-font-control-md: var(--size-font-3);
-      --size-font-control-lg: var(--size-font-4);
-      
-      /* Line Heights */
-      --size-lineHeight-reset: 1;
-      --size-lineHeight-sm: 1.1;
-      --size-lineHeight-md: 1.25;
-      --size-lineHeight-lg: 1.5;
-      
-      /* === SIZE TOKENS === */
-      
-      /* Border Sizes */
-      --size-border-none: 0px;
-      --size-border-sm: 1px;
-      --size-border-md: 2px;
-      --size-border-lg: 4px;
-      --size-border-xl: 8px;
-      --size-border-control: var(--size-border-sm);
-      
-      /* Breakpoints */
-      --size-breakpoint-sm: 37.5em;
-      --size-breakpoint-md: 56.25em;
-      --size-breakpoint-lg: 75em;
-      --size-breakpoint-xl: 93.75em;
-      --size-breakpoint-2xl: 112.5em;
-      
-      /* Icon Sizes */
-      --size-icon-xs: 12px;
-      --size-icon-sm: 14px;
-      --size-icon-md: 16px;
-      --size-icon-lg: 24px;
-      --size-icon-xl: 32px;
-      --size-icon-2xl: 48px;
-      --size-icon-3xl: 64px;
-      
-      /* Border Radius */
-      --size-radius-none: 0px;
-      --size-radius-sm: 4px;
-      --size-radius-md: 8px;
-      --size-radius-lg: 16px;
-      --size-radius-full: 9999px;
-      --size-radius-control: var(--size-radius-sm);
-      
-      /* Spacing */
-      --size-spacing-none: 0px;
-      --size-spacing-basis: 8px;
-      
-      /* Inset Spacing */
-      --size-spacing-inset-xs: 8px;
-      --size-spacing-inset-sm: 12px;
-      --size-spacing-inset-md: 16px;
-      --size-spacing-inset-lg: 24px;
-      --size-spacing-inset-xl: 32px;
-      --size-spacing-inset-2xl: 48px;
-      
-      /* Inset Squish Spacing */
-      --size-spacing-insetSquish-xs: 4px 8px;
-      --size-spacing-insetSquish-sm: 8px 16px;
-      --size-spacing-insetSquish-md: 12px 20px;
-      --size-spacing-insetSquish-lg: 16px 24px;
-      --size-spacing-insetSquish-xl: 20px 28px;
-      
-      /* Inline Spacing */
-      --size-spacing-inline-2xs: 2px;
-      --size-spacing-inline-xs: 4px;
-      --size-spacing-inline-sm: 8px;
-      --size-spacing-inline-md: 16px;
-      --size-spacing-inline-lg: 24px;
-      --size-spacing-inline-xl: 32px;
-      --size-spacing-inline-2xl: 48px;
-      --size-spacing-inline-3xl: 64px;
-      
-      /* Block Spacing */
-      --size-spacing-block-2xs: 2px;
-      --size-spacing-block-xs: 4px;
-      --size-spacing-block-sm: 8px;
-      --size-spacing-block-md: 16px;
-      --size-spacing-block-lg: 24px;
-      --size-spacing-block-xl: 32px;
-      --size-spacing-block-2xl: 48px;
-      --size-spacing-block-3xl: 64px;
-      --size-spacing-block-4xl: 96px;
-      --size-spacing-block-5xl: 160px;
-      --size-spacing-block-6xl: 256px;
-      --size-spacing-block-7xl: 384px;
-      
-      /* === SHADOW TOKENS === */
-      
-      /* Box Shadows */
-      --shadow-box-none: none;
-      --shadow-box-sm: 0 2px 4px 0 var(--color-shadow-sm);
-      --shadow-box-md: 0 4px 16px 0 var(--color-shadow-md);
-      --shadow-box-lg: 0 8px 24px 0 var(--color-shadow-lg);
-    }
-    
-    /* === MATERIAL 3 DESIGN TOKENS - MAPPED FROM CUSTOM SYSTEM === */
-    
-    :root {
-      /* Primary Color Tokens - Blue Scale */
-      --md-sys-color-primary: var(--color-base-blue-50);
-      --md-sys-color-on-primary: var(--color-base-white);
-      --md-sys-color-primary-container: var(--color-base-blue-10);
-      --md-sys-color-on-primary-container: var(--color-base-blue-80);
-      
-      /* Secondary Color Tokens - Teal Scale */
-      --md-sys-color-secondary: var(--color-base-teal-50);
-      --md-sys-color-on-secondary: var(--color-base-white);
-      --md-sys-color-secondary-container: var(--color-base-teal-10);
-      --md-sys-color-on-secondary-container: var(--color-base-teal-80);
-      
-      /* Tertiary Color Tokens - Purple Scale */
-      --md-sys-color-tertiary: var(--color-base-purple-50);
-      --md-sys-color-on-tertiary: var(--color-base-white);
-      --md-sys-color-tertiary-container: var(--color-base-purple-10);
-      --md-sys-color-on-tertiary-container: var(--color-base-purple-80);
-      
-      /* Error Color Tokens - Red Scale */
-      --md-sys-color-error: var(--color-base-red-60);
-      --md-sys-color-on-error: var(--color-base-white);
-      --md-sys-color-error-container: var(--color-base-red-10);
-      --md-sys-color-on-error-container: var(--color-base-red-80);
-      
-      /* Surface Color Tokens - Gray Scale */
-      --md-sys-color-background: var(--color-background-base);
-      --md-sys-color-on-background: var(--color-text-base);
-      --md-sys-color-surface: var(--color-background-control);
-      --md-sys-color-on-surface: var(--color-text-base);
-      --md-sys-color-surface-variant: var(--color-base-gray-20);
-      --md-sys-color-on-surface-variant: var(--color-text-subdued);
-      
-      /* Surface Container Levels */
-      --md-sys-color-surface-container-lowest: var(--color-base-white);
-      --md-sys-color-surface-container-low: var(--color-base-gray-10);
-      --md-sys-color-surface-container: var(--color-base-gray-20);
-      --md-sys-color-surface-container-high: var(--color-base-gray-30);
-      --md-sys-color-surface-container-highest: var(--color-base-gray-40);
-      --md-sys-color-surface-bright: var(--color-base-white);
-      --md-sys-color-surface-dim: var(--color-base-gray-30);
-      
-      /* Outline Tokens */
-      --md-sys-color-outline: var(--color-border-control);
-      --md-sys-color-outline-variant: var(--color-border-control-disabled);
-      
-      /* Inverse and Other Tokens */
-      --md-sys-color-inverse-surface: var(--color-base-gray-80);
-      --md-sys-color-inverse-on-surface: var(--color-text-darkCanvas);
-      --md-sys-color-inverse-primary: var(--color-base-blue-30);
-      --md-sys-color-shadow: var(--color-base-black);
-      --md-sys-color-scrim: var(--color-base-black);
-      --md-sys-color-surface-tint: var(--color-base-blue-50);
-      
-      /* Shape Tokens */
-      --md-sys-shape-corner-none: var(--size-radius-none);
-      --md-sys-shape-corner-extra-small: var(--size-radius-sm);
-      --md-sys-shape-corner-small: var(--size-radius-md);
-      --md-sys-shape-corner-medium: 12px;
-      --md-sys-shape-corner-large: var(--size-radius-lg);
-      --md-sys-shape-corner-extra-large: 28px;
-      --md-sys-shape-corner-full: var(--size-radius-full);
-      
-      /* Elevation Tokens */
-      --md-sys-elevation-level0: var(--shadow-box-none);
-      --md-sys-elevation-level1: var(--shadow-box-sm);
-      --md-sys-elevation-level2: var(--shadow-box-md);
-      --md-sys-elevation-level3: var(--shadow-box-lg);
-      --md-sys-elevation-level4: 0 6px 10px 0 var(--color-shadow-md), 0 1px 18px 0 var(--color-shadow-sm);
-      --md-sys-elevation-level5: 0 8px 12px 0 var(--color-shadow-lg), 0 4px 20px 0 var(--color-shadow-md);
-    }
-    
-    /* === DARK THEME TOKENS - MAPPED FROM CUSTOM SYSTEM === */
-    .theme-dark {
-      /* Primary Color Tokens - Blue Scale Dark */
-      --md-sys-color-primary: var(--color-base-blue-30);
-      --md-sys-color-on-primary: var(--color-base-blue-90);
-      --md-sys-color-primary-container: var(--color-base-blue-80);
-      --md-sys-color-on-primary-container: var(--color-base-blue-20);
-      
-      /* Secondary Color Tokens - Teal Scale Dark */
-      --md-sys-color-secondary: var(--color-base-teal-30);
-      --md-sys-color-on-secondary: var(--color-base-teal-90);
-      --md-sys-color-secondary-container: var(--color-base-teal-80);
-      --md-sys-color-on-secondary-container: var(--color-base-teal-20);
-      
-      /* Tertiary Color Tokens - Purple Scale Dark */
-      --md-sys-color-tertiary: var(--color-base-purple-30);
-      --md-sys-color-on-tertiary: var(--color-base-purple-90);
-      --md-sys-color-tertiary-container: var(--color-base-purple-80);
-      --md-sys-color-on-tertiary-container: var(--color-base-purple-20);
-      
-      /* Error Color Tokens - Red Scale Dark */
-      --md-sys-color-error: var(--color-base-red-40);
-      --md-sys-color-on-error: var(--color-base-red-90);
-      --md-sys-color-error-container: var(--color-base-red-80);
-      --md-sys-color-on-error-container: var(--color-base-red-20);
-      
-      /* Surface Color Tokens - Gray Scale Dark */
-      --md-sys-color-background: var(--color-base-gray-90);
-      --md-sys-color-on-background: var(--color-text-darkCanvas);
-      --md-sys-color-surface: var(--color-base-gray-80);
-      --md-sys-color-on-surface: var(--color-text-darkCanvas);
-      --md-sys-color-surface-variant: var(--color-base-gray-70);
-      --md-sys-color-on-surface-variant: var(--color-base-gray-40);
-      
-      /* Surface Container Levels Dark */
-      --md-sys-color-surface-container-lowest: var(--color-base-gray-90);
-      --md-sys-color-surface-container-low: var(--color-base-gray-80);
-      --md-sys-color-surface-container: var(--color-base-gray-70);
-      --md-sys-color-surface-container-high: var(--color-base-gray-60);
-      --md-sys-color-surface-container-highest: var(--color-base-gray-50);
-      --md-sys-color-surface-bright: var(--color-base-gray-60);
-      --md-sys-color-surface-dim: var(--color-base-gray-90);
-      
-      /* Outline Tokens Dark */
-      --md-sys-color-outline: var(--color-base-gray-50);
-      --md-sys-color-outline-variant: var(--color-base-gray-70);
-      
-      /* Inverse and Other Tokens Dark */
-      --md-sys-color-inverse-surface: var(--color-text-darkCanvas);
-      --md-sys-color-inverse-on-surface: var(--color-base-gray-80);
-      --md-sys-color-inverse-primary: var(--color-base-blue-50);
-      --md-sys-color-shadow: var(--color-base-black);
-      --md-sys-color-scrim: var(--color-base-black);
-      --md-sys-color-surface-tint: var(--color-base-blue-30);
-      
-      /* Color scheme for browser */
-      color-scheme: dark;
-    }
-    
-    /* === MATERIAL WEB COMPONENT CUSTOMIZATION === */
-    /* Using CSS parts and custom properties to style Material Web components */
-    /* while maintaining official best practices */
-    
-    /* === MATERIAL WEB TYPOGRAPHY CUSTOMIZATION === */
-    /* Override Material Web typography CSS custom properties to use Gibson */
-    :root {
-      /* Material Web Typography System Overrides */
-      --md-ref-typeface-brand: var(--font-family-gibson);
-      --md-ref-typeface-plain: var(--font-family-gibson);
-      
-      /* Typography Scale Font Family Overrides */
-      --md-sys-typescale-display-large-font: var(--font-family-gibson);
-      --md-sys-typescale-display-medium-font: var(--font-family-gibson);
-      --md-sys-typescale-display-small-font: var(--font-family-gibson);
-      --md-sys-typescale-headline-large-font: var(--font-family-gibson);
-      --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
-      --md-sys-typescale-headline-small-font: var(--font-family-gibson);
-      --md-sys-typescale-title-large-font: var(--font-family-gibson);
-      --md-sys-typescale-title-medium-font: var(--font-family-gibson);
-      --md-sys-typescale-title-small-font: var(--font-family-gibson);
-      --md-sys-typescale-body-large-font: var(--font-family-gibson);
-      --md-sys-typescale-body-medium-font: var(--font-family-gibson);
-      --md-sys-typescale-body-small-font: var(--font-family-gibson);
-      --md-sys-typescale-label-large-font: var(--font-family-gibson);
-      --md-sys-typescale-label-medium-font: var(--font-family-gibson);
-      --md-sys-typescale-label-small-font: var(--font-family-gibson);
-      
-      /* Optional: Customize weights to match your design system */
-      --md-sys-typescale-headline-large-weight: var(--font-weight-heading);
-      --md-sys-typescale-headline-medium-weight: var(--font-weight-heading);
-      --md-sys-typescale-headline-small-weight: var(--font-weight-heading);
-      --md-sys-typescale-title-large-weight: var(--font-weight-heading);
-      --md-sys-typescale-title-medium-weight: var(--font-weight-heading);
-      --md-sys-typescale-title-small-weight: var(--font-weight-heading);
-      --md-sys-typescale-label-large-weight: var(--font-weight-semibold);
-      --md-sys-typescale-label-medium-weight: var(--font-weight-semibold);
-      --md-sys-typescale-label-small-weight: var(--font-weight-semibold);
-    }
-    
-    /* Button Customizations */
-    md-filled-button {
-      --md-filled-button-container-shape: var(--size-radius-md);
-      --md-filled-button-label-text-font: var(--font-family-base);
-      --md-filled-button-label-text-weight: var(--font-weight-semibold);
-      --md-filled-button-container-height: 48px;
-      font-family: var(--font-family-base);
-    }
-    
-    md-filled-tonal-button {
-      --md-filled-tonal-button-container-shape: var(--size-radius-md);
-      --md-filled-tonal-button-label-text-font: var(--font-family-base);
-      --md-filled-tonal-button-label-text-weight: var(--font-weight-semibold);
-      --md-filled-tonal-button-container-height: 48px;
-      font-family: var(--font-family-base);
-    }
-    
-    md-outlined-button {
-      --md-outlined-button-container-shape: var(--size-radius-md);
-      --md-outlined-button-label-text-font: var(--font-family-base);
-      --md-outlined-button-label-text-weight: var(--font-weight-semibold);
-      --md-outlined-button-container-height: 48px;
-      --md-outlined-button-outline-width: var(--size-border-sm);
-      font-family: var(--font-family-base);
-    }
-    
-    md-text-button {
-      --md-text-button-label-text-font: var(--font-family-base);
-      --md-text-button-label-text-weight: var(--font-weight-semibold);
-      --md-text-button-container-height: 48px;
-      font-family: var(--font-family-base);
-    }
-    
-    /* Text Field Customizations */
-    md-outlined-text-field {
-      --md-outlined-text-field-container-shape: var(--size-radius-sm);
-      --md-outlined-text-field-label-text-font: var(--font-family-base);
-      --md-outlined-text-field-input-text-font: var(--font-family-base);
-      --md-outlined-text-field-supporting-text-font: var(--font-family-base);
-      --md-outlined-text-field-outline-width: var(--size-border-sm);
-      font-family: var(--font-family-base);
-    }
-    
-    md-filled-text-field {
-      --md-filled-text-field-container-shape: var(--size-radius-sm) var(--size-radius-sm) 0 0;
-      --md-filled-text-field-label-text-font: var(--font-family-base);
-      --md-filled-text-field-input-text-font: var(--font-family-base);
-      --md-filled-text-field-supporting-text-font: var(--font-family-base);
-      font-family: var(--font-family-base);
-    }
-    
-    /* Checkbox and Radio Customizations */
-    md-checkbox {
-      --md-checkbox-container-shape: var(--size-radius-sm);
-      --md-checkbox-label-text-font: var(--font-family-base);
-      font-family: var(--font-family-base);
-    }
-    
-    md-radio {
-      --md-radio-label-text-font: var(--font-family-base);
-      font-family: var(--font-family-base);
-    }
-    
-    /* Custom Typography Classes using your design tokens */
-    .typography-display-large {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-13);
-      font-weight: var(--font-weight-normal);
-      line-height: var(--size-lineHeight-sm);
-    }
-    
-    .typography-display-medium {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-12);
-      font-weight: var(--font-weight-normal);
-      line-height: var(--size-lineHeight-sm);
-    }
-    
-    .typography-display-small {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-11);
-      font-weight: var(--font-weight-normal);
-      line-height: var(--size-lineHeight-sm);
-    }
-    
-    .typography-headline-large {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-10);
-      font-weight: var(--font-weight-heading);
-      line-height: var(--size-lineHeight-md);
-    }
-    
-    .typography-headline-medium {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-9);
-      font-weight: var(--font-weight-heading);
-      line-height: var(--size-lineHeight-md);
-    }
-    
-    .typography-headline-small {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-8);
-      font-weight: var(--font-weight-heading);
-      line-height: var(--size-lineHeight-md);
-    }
-    
-    .typography-title-large {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-7);
-      font-weight: var(--font-weight-heading);
-      line-height: var(--size-lineHeight-md);
-    }
-    
-    .typography-title-medium {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-6);
-      font-weight: var(--font-weight-heading);
-      line-height: var(--size-lineHeight-md);
-    }
-    
-    .typography-title-small {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-5);
-      font-weight: var(--font-weight-heading);
-      line-height: var(--size-lineHeight-md);
-    }
-    
-    .typography-body-large {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-4);
-      font-weight: var(--font-weight-normal);
-      line-height: var(--size-lineHeight-lg);
-    }
-    
-    .typography-body-medium {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-3);
-      font-weight: var(--font-weight-normal);
-      line-height: var(--size-lineHeight-lg);
-    }
-    
-    .typography-body-small {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-2);
-      font-weight: var(--font-weight-normal);
-      line-height: var(--size-lineHeight-lg);
-    }
-    
-    .typography-label-large {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-3);
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--size-lineHeight-md);
-    }
-    
-    .typography-label-medium {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-2);
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--size-lineHeight-md);
-    }
-    
-    .typography-label-small {
-      font-family: var(--font-family-base);
-      font-size: var(--size-font-1);
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--size-lineHeight-md);
-    }
-    
-    /* Utility Classes for Direct Token Usage */
-    .use-primary-color { color: var(--md-sys-color-primary); }
-    .use-secondary-color { color: var(--md-sys-color-secondary); }
-    .use-tertiary-color { color: var(--md-sys-color-tertiary); }
-    .use-error-color { color: var(--md-sys-color-error); }
-    
-    .use-spacing-sm { padding: var(--size-spacing-inset-sm); }
-    .use-spacing-md { padding: var(--size-spacing-inset-md); }
-    .use-spacing-lg { padding: var(--size-spacing-inset-lg); }
-    
-    .use-radius-sm { border-radius: var(--size-radius-sm); }
-    .use-radius-md { border-radius: var(--size-radius-md); }
-    .use-radius-lg { border-radius: var(--size-radius-lg); }
-    
-    .use-shadow-sm { box-shadow: var(--shadow-box-sm); }
-    .use-shadow-md { box-shadow: var(--shadow-box-md); }
-    .use-shadow-lg { box-shadow: var(--shadow-box-lg); }
-    
-    /* Custom Surface Variants using your tokens */
-    .surface-tinted {
-      background-color: var(--color-base-blue-5);
-      color: var(--color-text-base);
-      border-radius: var(--size-radius-md);
-      padding: var(--size-spacing-inset-md);
-    }
-    
-    .surface-success {
-      background-color: var(--color-base-green-5);
-      color: var(--color-text-success);
-      border-radius: var(--size-radius-md);
-      padding: var(--size-spacing-inset-md);
-    }
-    
-    .surface-warning {
-      background-color: var(--color-base-amber-5);
-      color: var(--color-base-amber-90);
-      border-radius: var(--size-radius-md);
-      padding: var(--size-spacing-inset-md);
-    }
-    
-    .surface-error {
-      background-color: var(--color-base-red-5);
-      color: var(--color-text-error);
-      border-radius: var(--size-radius-md);
-      padding: var(--size-spacing-inset-md);
-    }
-    
-    /* Dark theme adjustments for custom surfaces */
-    .theme-dark .surface-tinted {
-      background-color: var(--color-base-blue-90);
-      color: var(--color-base-blue-20);
-    }
-    
-    .theme-dark .surface-success {
-      background-color: var(--color-base-green-90);
-      color: var(--color-base-green-20);
-    }
-    
-    .theme-dark .surface-warning {
-      background-color: var(--color-base-amber-90);
-      color: var(--color-base-amber-20);
-    }
-    
-    .theme-dark .surface-error {
-      background-color: var(--color-base-red-90);
-      color: var(--color-base-red-20);
-    }
-    
-    /* === BASE STYLES === */
-    * {
-      box-sizing: border-box;
-    }
-    
-    html {
-      font-family: var(--font-family-base), system-ui, -apple-system, sans-serif;
-      background-color: var(--md-sys-color-background);
-      color: var(--md-sys-color-on-background);
-      color-scheme: light dark;
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background-color: var(--md-sys-color-background);
-      color: var(--md-sys-color-on-background);
-      transition: background-color 250ms ease, color 250ms ease;
-      line-height: 1.5;
-      font-family: var(--font-family-base), system-ui, -apple-system, sans-serif;
-    }
-    
-    /* === RAMSEY DESIGN SYSTEM LAYOUT === */
-    
+    /* === INDEX PAGE SPECIFIC STYLES === */
     /* Hero Section */
     .hero-section {
       display: flex;
@@ -898,7 +126,6 @@
       transition: all 250ms ease;
       cursor: pointer;
       overflow: hidden;
-      opacity: 1; /* Ensure cards are visible */
     }
     
     .material-card:hover {
@@ -1025,6 +252,64 @@
       text-align: center;
     }
     
+    /* Custom surface styles */
+    .surface-tinted {
+      background-color: var(--color-base-blue-5);
+      color: var(--color-text-base);
+    }
+    
+    .surface-success {
+      background-color: var(--color-base-green-5);
+      color: var(--color-text-success);
+    }
+    
+    .surface-warning {
+      background-color: var(--color-base-amber-5);
+      color: var(--color-base-amber-90);
+    }
+    
+    .surface-error {
+      background-color: var(--color-base-red-5);
+      color: var(--color-text-error);
+    }
+    
+    /* Dark theme adjustments for custom surfaces */
+    .theme-dark .surface-tinted {
+      background-color: var(--color-base-blue-90);
+      color: var(--color-base-blue-20);
+    }
+    
+    .theme-dark .surface-success {
+      background-color: var(--color-base-green-90);
+      color: var(--color-base-green-20);
+    }
+    
+    .theme-dark .surface-warning {
+      background-color: var(--color-base-amber-90);
+      color: var(--color-base-amber-20);
+    }
+    
+    .theme-dark .surface-error {
+      background-color: var(--color-base-red-90);
+      color: var(--color-base-red-20);
+    }
+    
+    /* Animation styles */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .material-card.animate-in {
+      animation: fadeInUp 600ms ease-out forwards;
+    }
+    
     /* === RESPONSIVE DESIGN === */
     @media (max-width: 1024px) {
       .card-grid {
@@ -1091,11 +376,14 @@
   
   <!-- Layout Container -->
   <div class="layout-container">
-    <!-- Main Content Container (no sidebar on overview page) -->
-    <div class="main-content" style="margin-left: 0; max-width: 100vw;">
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-content">
+    <!-- Shared Sidebar Container -->
+    <div id="shared-sidebar"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-content">
         <h1 class="hero-title md-typescale-display-medium">Ramsey Design System</h1>
         <p class="hero-subtitle md-typescale-headline-small">Build simple &amp; delightful Ramsey experiences</p>
         <md-filled-button class="hero-cta">
@@ -1174,7 +462,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </main>
   </div>
 
   <!-- Shared Component Initialization -->
@@ -1229,26 +517,6 @@
         card.classList.add('animate-in');
       });
     });
-    
-    // Add CSS animation for cards
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      
-      .material-card.animate-in {
-        animation: fadeInUp 600ms ease-out forwards;
-      }
-    `;
-    document.head.appendChild(style);
   </script>
 </body>
 </html>

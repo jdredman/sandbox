@@ -90,6 +90,25 @@
   --font-weight-bold: 700;
   --font-weight-heading: var(--font-weight-semibold);
   
+  /* Material 3 Typography Tokens - Gibson Font Integration */
+  --md-ref-typeface-brand: var(--font-family-gibson);
+  --md-ref-typeface-plain: var(--font-family-gibson);
+  --md-sys-typescale-display-large-font: var(--font-family-gibson);
+  --md-sys-typescale-display-medium-font: var(--font-family-gibson);
+  --md-sys-typescale-display-small-font: var(--font-family-gibson);
+  --md-sys-typescale-headline-large-font: var(--font-family-gibson);
+  --md-sys-typescale-headline-medium-font: var(--font-family-gibson);
+  --md-sys-typescale-headline-small-font: var(--font-family-gibson);
+  --md-sys-typescale-title-large-font: var(--font-family-gibson);
+  --md-sys-typescale-title-medium-font: var(--font-family-gibson);
+  --md-sys-typescale-title-small-font: var(--font-family-gibson);
+  --md-sys-typescale-body-large-font: var(--font-family-gibson);
+  --md-sys-typescale-body-medium-font: var(--font-family-gibson);
+  --md-sys-typescale-body-small-font: var(--font-family-gibson);
+  --md-sys-typescale-label-large-font: var(--font-family-gibson);
+  --md-sys-typescale-label-medium-font: var(--font-family-gibson);
+  --md-sys-typescale-label-small-font: var(--font-family-gibson);
+  
   /* Material 3 System Tokens - Light Theme */
   --md-sys-color-primary: var(--color-base-blue-50);
   --md-sys-color-on-primary: var(--color-base-white);
